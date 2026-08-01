@@ -4,8 +4,8 @@
 
 ## 两个测试版本
 
-- **Memory Safe（推荐）**：域名/IP 规则和安全可转换的 URL 去跟踪参数。省略路径级 URL 正则，降低 iOS Network Extension 的解析峰值和常驻内存。
-- **Full URL（压力测试）**：在相同内容上额外加入可安全转换的路径级 URL 正则。本次官方版本共有 42,812 条，当前默认 9 个列表会启用其中约 15,784 条。
+- **Memory Safe（推荐）**：域名/IP 规则和安全可转换的 URL 去跟踪参数。省略路径级 URL 正则与网页元素隐藏，降低 iOS Network Extension 的解析峰值和常驻内存。
+- **Full URL + CSS（压力测试）**：在相同内容上额外加入可安全转换的路径级 URL 正则，以及官方列表中的站点专用纯 CSS 元素隐藏规则。当前版本有 42,812 条 URL 正则；通用 CSS、程序化选择器和 scriptlet 仍无法由 Egern 等价执行。
 
 发布后的模块入口：
 
@@ -21,15 +21,19 @@
 
 ## 内存说明
 
-Memory Safe 的全部静态产物约 4.2 MB；当前默认列表包含约 11.3 万个经后缀去重的域名/IP 项。磁盘大小不能直接等同于 Egern 扩展进程的常驻内存，因此无法在 Windows 上承诺低于 iOS 的 50 MB 限制。建议先测 Memory Safe，再单独测 Full URL；不要同时启用两个版本。
+Memory Safe 的全部静态产物约 4.2 MB；Full URL + CSS 的全量静态产物约 14.1 MB，其中当前默认列表实际启用 6 个 CSS 脚本，合计约 1.13 MB、22,657 条站点专用选择器。CSS 响应脚本只在目标站点命中规则且响应为 HTML 时读取正文，单个响应上限为 1 MB。
 
-模块不会自动加入 `mitm.hostnames: ["*"]`。域名/IP 拦截不需要全局 MITM；URL 去参数脚本只会在 Egern 已配置 MITM、能够看到完整 HTTPS URL 的主机上生效。可通过模块设置里的 `ENABLE_QUERY_CLEANING` 总开关关闭脚本。
+磁盘大小不能直接等同于 Egern 扩展进程的常驻内存，因此无法在 Windows 上承诺低于 iOS 的 50 MB 限制。建议先测 Memory Safe，再单独测 Full URL + CSS；不要同时启用两个版本。
+
+模块不会自动加入 `mitm.hostnames: ["*"]`。Full 版只自动加入 `iplark.com` 与 `*.iplark.com`，用于修复该站由 AdGuard 中文列表提供的 4 条元素隐藏规则；其他 HTTPS 网站只有在 Egern 主配置已覆盖对应 MITM 主机时才会注入 CSS。可通过模块设置里的 `Safari 网页元素隐藏` 总开关关闭这类响应脚本。
+
+域名/IP 拦截不需要 MITM。URL 去参数脚本只会在 Egern 能看到完整 HTTPS URL 的主机上生效，可通过 `URL 查询参数清理` 总开关关闭。
 
 ## 转换边界
 
-Egern 能原生承接无请求上下文的域名、IP 和 URL 规则。以下浏览器能力无法安全一比一转换，因此不会假装支持：
+Egern 能原生承接无请求上下文的域名、IP 和 URL 规则。Full 版还能通过修改 HTML 响应注入站点专用纯 CSS。以下浏览器能力仍无法安全一比一转换，因此不会假装支持：
 
-- 元素隐藏、CSS、scriptlet 和弹窗处理
+- 通用元素隐藏、程序化选择器、scriptlet 和弹窗处理
 - 依赖发起方、第一方/第三方、资源类型、方法或响应头的规则
 - 重定向到扩展内置空资源和 Header 修改
 - uBOL 的 strict-block 提示页面（其中纯恶意域名会转为 `REJECT`）
@@ -50,7 +54,8 @@ python scripts/update.py --latest \
 python scripts/update.py --latest \
   --dist dist/full \
   --base-url https://raw.githubusercontent.com/OWNER/REPO/main/dist/full \
-  --include-url-regex
+  --include-url-regex \
+  --include-specific-css
 ```
 
 验证：

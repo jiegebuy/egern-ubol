@@ -38,7 +38,8 @@ jobs:
           python scripts/update.py --latest \
             --dist dist/full \
             --base-url "${base}/full" \
-            --include-url-regex
+            --include-url-regex \
+            --include-specific-css
 
       - name: Validate generated YAML and scripts
         run: |

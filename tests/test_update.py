@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from scripts.update import (  # noqa: E402
+    DOCUMENT_RESPONSE_MATCH,
     RULESET_UI,
     argument_key,
     minimize_domains,
@@ -73,6 +74,12 @@ class UrlFilterTests(unittest.TestCase):
             "|https://example.com/path|", "https://example.com/path/more"
         )
 
+    def test_cosmetic_script_match_targets_documents_not_static_assets(self) -> None:
+        self.assertRegex("https://iplark.com/", DOCUMENT_RESPONSE_MATCH)
+        self.assertRegex("https://example.com/article", DOCUMENT_RESPONSE_MATCH)
+        self.assertRegex("https://example.com/a.html?x=1", DOCUMENT_RESPONSE_MATCH)
+        self.assertNotRegex("https://example.com/static/app.js", DOCUMENT_RESPONSE_MATCH)
+
 
 class DomainMinimizationTests(unittest.TestCase):
     def test_parent_domain_covers_children(self) -> None:
@@ -109,7 +116,13 @@ class GeneratedArtifactTests(unittest.TestCase):
                 self.assertEqual(metadata["preset"]["available_count"], 56)
                 self.assertEqual(len(module["rules"]), 56)
                 self.assertEqual(len(defaults), 57)  # policy plus 56 booleans
-                self.assertNotIn("mitm", module)
+                if profile_name == "memory-safe":
+                    self.assertNotIn("mitm", module)
+                else:
+                    self.assertEqual(
+                        module["mitm"]["hostnames"]["includes"],
+                        ["iplark.com", "*.iplark.com"],
+                    )
                 self.assertTrue((root / "config.example.yaml").is_file())
 
     def test_module_editor_text_is_localized_and_uses_list_names(self) -> None:
@@ -127,6 +140,11 @@ class GeneratedArtifactTests(unittest.TestCase):
                     module["env_schema"]["ENABLE_QUERY_CLEANING"]["name"],
                     "URL 查询参数清理",
                 )
+                if profile_name == "full":
+                    self.assertEqual(
+                        module["env_schema"]["ENABLE_COSMETIC_FILTERING"]["name"],
+                        "Safari 网页元素隐藏",
+                    )
 
     def test_preset_defaults_match_requested_selection(self) -> None:
         _, metadata, module, defaults = self.profile("memory-safe")
@@ -142,8 +160,10 @@ class GeneratedArtifactTests(unittest.TestCase):
         _, full, _, _ = self.profile("full")
         self.assertEqual(memory["build_options"]["profile"], "memory-safe")
         self.assertEqual(memory["totals"]["url_regexes"], 0)
-        self.assertEqual(full["build_options"]["profile"], "full-url")
+        self.assertEqual(full["build_options"]["profile"], "full-url-css")
+        self.assertTrue(full["build_options"]["include_specific_css"])
         self.assertGreater(full["totals"]["url_regexes"], 40_000)
+        self.assertGreater(full["totals"]["cosmetic_selectors"], 50_000)
         self.assertEqual(
             memory["totals"]["domain_suffixes"],
             full["totals"]["domain_suffixes"],
@@ -157,10 +177,25 @@ class GeneratedArtifactTests(unittest.TestCase):
                 self.assertIn(f"/dist/{profile_name}/rulesets/", url)
                 self.assertTrue((root / "rulesets" / Path(url).name).is_file())
             for entry in module.get("scriptings", []):
-                url = entry["http_request"]["script_url"]
-                self.assertIn(f"/dist/{profile_name}/scripts/", url)
-                self.assertTrue((root / "scripts" / Path(url).name).is_file())
+                if "http_request" in entry:
+                    url = entry["http_request"]["script_url"]
+                    self.assertIn(f"/dist/{profile_name}/scripts/", url)
+                    self.assertTrue((root / "scripts" / Path(url).name).is_file())
+                else:
+                    url = entry["http_response"]["script_url"]
+                    self.assertEqual(profile_name, "full")
+                    self.assertIn(f"/dist/{profile_name}/cosmetic/", url)
+                    self.assertTrue((root / "cosmetic" / Path(url).name).is_file())
             self.assertEqual(len(metadata["rulesets"]), 56)
+
+    def test_full_profile_has_targeted_iplark_cosmetic_bridge(self) -> None:
+        root, metadata, module, _ = self.profile("full")
+        chinese = next(
+            item for item in metadata["rulesets"] if item["id"] == "chn-0"
+        )
+        self.assertGreater(chinese["output"]["cosmetic_selectors"], 1_000)
+        self.assertTrue((root / "cosmetic" / "chn-0.js").is_file())
+        self.assertNotIn("*", module["mitm"]["hostnames"]["includes"])
 
     def test_memory_profile_stays_compact(self) -> None:
         root, metadata, _, _ = self.profile("memory-safe")

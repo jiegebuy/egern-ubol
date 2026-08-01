@@ -25,6 +25,11 @@ EXTENSION_ID = "ddkjiahejlhfcafbddmgiahcphecmpfh"
 RELEASE_API = "https://api.github.com/repos/uBlockOrigin/uBOL-home/releases/latest"
 UPSTREAM_HOME = "https://github.com/uBlockOrigin/uBOL-home"
 USER_AGENT = "ubol-egern-converter/1.0"
+DOCUMENT_RESPONSE_MATCH = (
+    r"^https?://(?:[^/?#]+(?:/[^?#.]*)?|"
+    r"[^?#]+\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+)
+COSMETIC_MITM_HOSTNAMES = ("iplark.com", "*.iplark.com")
 
 GROUP_ORDER = (
     "default",
@@ -167,6 +172,17 @@ class QueryOutput:
     operations: list[dict[str, Any]]
     stats: dict[str, int]
     sample: dict[str, str] | None
+
+
+@dataclass
+class CosmeticOutput:
+    selectors: list[str]
+    selector_lists: list[str]
+    selector_list_refs: list[int]
+    hostnames: list[str]
+    has_entities: bool
+    regexes: list[Any]
+    stats: dict[str, int]
 
 
 def http_request(url: str) -> urllib.request.Request:
@@ -428,6 +444,137 @@ def load_strictblock_rules(
 ) -> list[dict[str, Any]]:
     path = ruleset_root / "strictblock" / f"{ruleset_id}.json"
     return read_json(path) if path.is_file() else []
+
+
+def convert_specific_cosmetic_rules(
+    ruleset_root: Path,
+    ruleset_id: str,
+    include_specific_css: bool = False,
+) -> CosmeticOutput:
+    if not include_specific_css:
+        return CosmeticOutput([], [], [], [], False, [], {})
+    path = ruleset_root / "scripting" / "specific" / f"{ruleset_id}.json"
+    if not path.is_file():
+        return CosmeticOutput([], [], [], [], False, [], {})
+
+    document = read_json(path)
+    raw_selectors = document.get("selectors", [])
+    raw_lists = document.get("selectorLists", [])
+    raw_refs = document.get("selectorListRefs", [])
+    raw_hostnames = document.get("hostnames", [])
+    raw_regexes = document.get("regexes", [])
+    stats: Counter[str] = Counter(
+        {
+            "input_selectors": len(raw_selectors),
+            "input_selector_lists": len(raw_lists),
+            "input_hostnames": len(raw_hostnames),
+            "input_regex_rules": len(raw_regexes) // 3,
+        }
+    )
+
+    eligible: dict[int, str] = {}
+    for index, selector in enumerate(raw_selectors):
+        if not isinstance(selector, str):
+            stats["skipped_invalid_selectors"] += 1
+        elif selector.startswith("{"):
+            stats["skipped_procedural_selectors"] += 1
+        elif "</style" in selector.lower():
+            stats["skipped_unsafe_selectors"] += 1
+        else:
+            eligible[index] = selector
+
+    selectors: list[str] = []
+    selector_indices: dict[int, int] = {}
+    selector_lists: list[str] = []
+    selector_list_indices: dict[tuple[int, ...], int] = {}
+    list_ref_map: dict[int, int] = {}
+
+    for old_list_index, encoded in enumerate(raw_lists):
+        if not isinstance(encoded, str):
+            stats["skipped_invalid_selector_lists"] += 1
+            continue
+        try:
+            old_indices = json.loads(f"[{encoded}]")
+        except (json.JSONDecodeError, TypeError):
+            stats["skipped_invalid_selector_lists"] += 1
+            continue
+
+        new_indices: list[int] = []
+        for signed_index in old_indices:
+            if not isinstance(signed_index, int):
+                stats["skipped_invalid_selector_references"] += 1
+                continue
+            old_selector_index = signed_index if signed_index >= 0 else ~signed_index
+            selector = eligible.get(old_selector_index)
+            if selector is None:
+                continue
+            new_selector_index = selector_indices.get(old_selector_index)
+            if new_selector_index is None:
+                new_selector_index = len(selectors)
+                selector_indices[old_selector_index] = new_selector_index
+                selectors.append(selector)
+            new_indices.append(
+                new_selector_index if signed_index >= 0 else ~new_selector_index
+            )
+
+        if not new_indices:
+            continue
+        key = tuple(new_indices)
+        new_list_index = selector_list_indices.get(key)
+        if new_list_index is None:
+            new_list_index = len(selector_lists)
+            selector_list_indices[key] = new_list_index
+            selector_lists.append(",".join(map(str, new_indices)))
+        list_ref_map[old_list_index] = new_list_index
+
+    hostnames: list[str] = []
+    selector_list_refs: list[int] = []
+    for hostname, old_ref in zip(raw_hostnames, raw_refs, strict=False):
+        if not isinstance(hostname, str) or not isinstance(old_ref, int):
+            stats["skipped_invalid_hostname_references"] += 1
+            continue
+        new_ref = list_ref_map.get(old_ref)
+        if new_ref is None:
+            continue
+        hostnames.append(hostname)
+        selector_list_refs.append(new_ref)
+
+    regexes: list[Any] = []
+    for index in range(0, len(raw_regexes) - 2, 3):
+        needle, pattern, old_ref = raw_regexes[index : index + 3]
+        if not isinstance(old_ref, int):
+            stats["skipped_invalid_regex_references"] += 1
+            continue
+        new_ref = list_ref_map.get(old_ref)
+        if new_ref is None:
+            continue
+        regexes.extend([needle, pattern, new_ref])
+
+    stats.update(
+        {
+            "eligible_plain_selectors": len(selectors),
+            "eligible_selector_lists": len(selector_lists),
+            "eligible_hostnames": len(hostnames),
+            "eligible_regex_rules": len(regexes) // 3,
+        }
+    )
+    stats.update(
+        {
+            "plain_selectors": len(selectors),
+            "selector_lists": len(selector_lists),
+            "hostnames": len(hostnames),
+            "regex_rules": len(regexes) // 3,
+        }
+    )
+    return CosmeticOutput(
+        selectors=selectors,
+        selector_lists=selector_lists,
+        selector_list_refs=selector_list_refs,
+        hostnames=hostnames,
+        has_entities=bool(document.get("hasEntities", False)),
+        regexes=regexes,
+        stats=dict(sorted(stats.items())),
+    )
 
 
 def collect_exception_domains(rules: Sequence[dict[str, Any]]) -> set[str]:
@@ -723,8 +870,14 @@ def render_combined_module(
     base_url: str,
     policy: str,
     include_url_regex: bool,
+    include_specific_css: bool,
 ) -> str:
-    profile = "完整 URL 过滤" if include_url_regex else "内存安全，仅域名/IP"
+    if include_specific_css:
+        profile = "完整 URL 过滤与站点专用 CSS 元素隐藏"
+    elif include_url_regex:
+        profile = "完整 URL 过滤"
+    else:
+        profile = "内存安全，仅域名/IP"
     ordered_items = [
         item
         for group in GROUP_ORDER
@@ -776,16 +929,32 @@ def render_combined_module(
                 f"  {argument_key(id_value)}: {meta['name']}{suffix}"
             )
 
-    if any(item["query"].operations for item in items):
+    has_query_scripts = any(item["query"].operations for item in items)
+    if has_query_scripts or include_specific_css:
+        lines.extend(["", "env_schema:"])
+    if has_query_scripts:
         lines.extend(
             [
-                "",
-                "env_schema:",
                 "  ENABLE_QUERY_CLEANING:",
                 f"    name: {yaml_quote('URL 查询参数清理')}",
                 "    description: "
                 + yaml_quote(
                     "关闭后仅停用 URL 查询参数清理，原生拦截规则不受影响。"
+                ),
+                f"    default_value: {yaml_quote('true')}",
+                "    options:",
+                f"      - {yaml_quote('true')}",
+                f"      - {yaml_quote('false')}",
+            ]
+        )
+    if include_specific_css:
+        lines.extend(
+            [
+                "  ENABLE_COSMETIC_FILTERING:",
+                f"    name: {yaml_quote('Safari 网页元素隐藏')}",
+                "    description: "
+                + yaml_quote(
+                    "注入官方列表中的站点专用纯 CSS 规则；HTTPS 站点需要 MITM。"
                 ),
                 f"    default_value: {yaml_quote('true')}",
                 "    options:",
@@ -813,7 +982,12 @@ def render_combined_module(
         )
 
     query_items = [item for item in ordered_items if item["query"].operations]
-    if query_items:
+    cosmetic_items = [
+        item
+        for item in ordered_items
+        if item["cosmetic"].hostnames or item["cosmetic"].regexes
+    ]
+    if query_items or cosmetic_items:
         lines.extend(["", "scriptings:"])
         for item in query_items:
             meta = item["meta"]
@@ -832,6 +1006,33 @@ def render_combined_module(
                     "      disabled: {{{" + argument_key(id_value) + "}}}",
                 ]
             )
+
+        for item in cosmetic_items:
+            meta = item["meta"]
+            id_value = str(meta["id"])
+            lines.extend(
+                [
+                    "  - http_response:",
+                    f"      name: {yaml_quote(str(meta['name']) + ' - Safari 网页元素隐藏')}",
+                    f"      match: {yaml_quote(DOCUMENT_RESPONSE_MATCH)}",
+                    "      script_url: "
+                    + yaml_quote(
+                        relative_or_remote(base_url, "cosmetic", f"{id_value}.js")
+                    ),
+                    "      update_interval: 86400",
+                    "      max_size: 1048576",
+                    "      timeout: 5",
+                    "      body_required: true",
+                    "      disabled: {{{" + argument_key(id_value) + "}}}",
+                ]
+            )
+
+    if include_specific_css:
+        lines.extend(["", "mitm:", "  hostnames:", "    includes:"])
+        lines.extend(
+            f"      - {yaml_quote(hostname)}"
+            for hostname in COSMETIC_MITM_HOSTNAMES
+        )
 
     return "\n".join(lines) + "\n"
 
@@ -954,6 +1155,198 @@ export default async function (ctx) {{
 """
 
 
+def render_cosmetic_script(
+    source: SourceInfo, ruleset_id: str, output: CosmeticOutput
+) -> str:
+    constants = "\n".join(
+        [
+            "const RULESET_ID = " + json.dumps(ruleset_id) + ";",
+            "const SELECTORS = "
+            + json.dumps(output.selectors, ensure_ascii=False, separators=(",", ":"))
+            + ";",
+            "const SELECTOR_LISTS = "
+            + json.dumps(
+                output.selector_lists, ensure_ascii=False, separators=(",", ":")
+            )
+            + ";",
+            "const HOSTNAMES = "
+            + json.dumps(output.hostnames, ensure_ascii=False, separators=(",", ":"))
+            + ";",
+            "const SELECTOR_LIST_REFS = "
+            + json.dumps(output.selector_list_refs, separators=(",", ":"))
+            + ";",
+            "const HAS_ENTITIES = "
+            + ("true" if output.has_entities else "false")
+            + ";",
+            "const REGEXES = "
+            + json.dumps(output.regexes, ensure_ascii=False, separators=(",", ":"))
+            + ";",
+        ]
+    )
+    runtime = r'''
+
+function hostnameIndex(needle) {
+  let left = 0;
+  let right = HOSTNAMES.length;
+  while (left < right) {
+    const index = (left + right) >>> 1;
+    const candidate = HOSTNAMES[index];
+    let order = needle.length - candidate.length;
+    if (order === 0) {
+      if (needle === candidate) {
+        return index;
+      }
+      order = needle < candidate ? -1 : 1;
+    }
+    if (order < 0) {
+      right = index;
+    } else {
+      left = index + 1;
+    }
+  }
+  return -1;
+}
+
+function addSelectorList(reference, selectors, exceptions) {
+  const encoded = SELECTOR_LISTS[reference];
+  if (encoded === undefined) {
+    return;
+  }
+  for (const part of encoded.split(",")) {
+    const signedIndex = Number(part);
+    const selector = SELECTORS[signedIndex >= 0 ? signedIndex : ~signedIndex];
+    if (selector === undefined) {
+      continue;
+    }
+    (signedIndex >= 0 ? selectors : exceptions).add(selector);
+  }
+}
+
+function hostnameContexts(hostname) {
+  const contexts = [hostname];
+  for (let offset = 0; ; ) {
+    offset = hostname.indexOf(".", offset) + 1;
+    if (offset === 0) {
+      break;
+    }
+    contexts.push(hostname.slice(offset));
+  }
+  contexts.push("*");
+  return contexts;
+}
+
+export function selectorsForHostname(input) {
+  const hostname = String(input || "").toLowerCase().replace(/\.$/, "");
+  if (hostname === "") {
+    return [];
+  }
+
+  const selectors = new Set();
+  const exceptions = new Set();
+  const contexts = hostnameContexts(hostname);
+  for (const context of contexts) {
+    const index = hostnameIndex(context);
+    if (index !== -1) {
+      addSelectorList(SELECTOR_LIST_REFS[index], selectors, exceptions);
+    }
+  }
+
+  if (HAS_ENTITIES) {
+    for (const context of contexts) {
+      let entity = context;
+      for (;;) {
+        const offset = entity.lastIndexOf(".");
+        if (offset === -1) {
+          break;
+        }
+        entity = entity.slice(0, offset);
+        const index = hostnameIndex(`${entity}.*`);
+        if (index !== -1) {
+          addSelectorList(SELECTOR_LIST_REFS[index], selectors, exceptions);
+        }
+      }
+    }
+  }
+
+  for (let index = 0; index + 2 < REGEXES.length; index += 3) {
+    const needle = REGEXES[index];
+    if (typeof needle !== "string" || !hostname.includes(needle)) {
+      continue;
+    }
+    try {
+      if (new RegExp(REGEXES[index + 1]).test(hostname)) {
+        addSelectorList(REGEXES[index + 2], selectors, exceptions);
+      }
+    } catch {
+      // Ignore an upstream regular expression unsupported by this JS engine.
+    }
+  }
+
+  for (const selector of exceptions) {
+    selectors.delete(selector);
+  }
+  return Array.from(selectors);
+}
+
+export function injectCss(html, selectors) {
+  if (selectors.length === 0) {
+    return html;
+  }
+  const marker = `data-egern-ubol="${RULESET_ID}"`;
+  if (html.includes(marker)) {
+    return html;
+  }
+  const css = `${selectors.join(",\n")}{display:none!important;}`;
+  const style = `<style ${marker}>${css}</style>`;
+  if (/<\/head\s*>/i.test(html)) {
+    return html.replace(/<\/head\s*>/i, (closing) => style + closing);
+  }
+  if (/<body\b[^>]*>/i.test(html)) {
+    return html.replace(/<body\b[^>]*>/i, (opening) => opening + style);
+  }
+  return style + html;
+}
+
+function responseContentType(ctx) {
+  const headers = ctx.response?.headers;
+  if (typeof headers?.get === "function") {
+    return headers.get("content-type") || "";
+  }
+  return headers?.["content-type"] || headers?.["Content-Type"] || "";
+}
+
+export default async function (ctx) {
+  if (ctx.env?.ENABLE_COSMETIC_FILTERING === "false") {
+    return undefined;
+  }
+  if (!/(?:text\/html|application\/xhtml\+xml)/i.test(responseContentType(ctx))) {
+    return undefined;
+  }
+
+  let parsed;
+  try {
+    parsed = new URL(ctx.request?.url);
+  } catch {
+    return undefined;
+  }
+  const selectors = selectorsForHostname(parsed.hostname);
+  if (selectors.length === 0) {
+    return undefined;
+  }
+
+  const html = await ctx.response.text();
+  const body = injectCss(html, selectors);
+  return body === html ? undefined : { body };
+}
+'''
+    return (
+        f"// Generated from official uBO Lite {source.version}.\n"
+        "// Plain site-specific cosmetic selectors only; procedural rules are omitted.\n\n"
+        + constants
+        + runtime
+    )
+
+
 def effective_group(meta: dict[str, Any]) -> str:
     group = meta.get("group")
     return str(group) if group in GROUP_ORDER else "misc"
@@ -967,24 +1360,25 @@ def load_selection(path: Path) -> set[str]:
     return set(enabled)
 
 
-def render_reference_example(base_url: str) -> str:
+def render_reference_example(base_url: str, include_specific_css: bool) -> str:
     if base_url == ".":
         module_url = "./ubol.yaml"
     else:
         module_url = f"{base_url.rstrip('/')}/ubol.yaml"
-    return "\n".join(
-        [
-            "# 将这一个模块引用添加到 Egern 主配置。",
-            "# 56 个布尔 compat_arguments 已在 ubol.yaml 内定义。",
-            "modules:",
-            f"  - name: {yaml_quote('uBlock Origin Lite 规则')}",
-            f"    url: {yaml_quote(module_url)}",
-            "    enabled: true",
-            "    update_interval: 86400",
-            "    env:",
-            f"      ENABLE_QUERY_CLEANING: {yaml_quote('true')}",
-        ]
-    ) + "\n"
+    lines = [
+        "# 将这一个模块引用添加到 Egern 主配置。",
+        "# 56 个布尔 compat_arguments 已在 ubol.yaml 内定义。",
+        "modules:",
+        f"  - name: {yaml_quote('uBlock Origin Lite 规则')}",
+        f"    url: {yaml_quote(module_url)}",
+        "    enabled: true",
+        "    update_interval: 86400",
+        "    env:",
+        f"      ENABLE_QUERY_CLEANING: {yaml_quote('true')}",
+    ]
+    if include_specific_css:
+        lines.append(f"      ENABLE_COSMETIC_FILTERING: {yaml_quote('true')}")
+    return "\n".join(lines) + "\n"
 
 
 def action_counts(rules: Sequence[dict[str, Any]]) -> dict[str, int]:
@@ -1026,6 +1420,7 @@ def generate(
     base_url: str,
     policy: str,
     include_url_regex: bool = False,
+    include_specific_css: bool = False,
 ) -> dict[str, Any]:
     ruleset_root = extension_root / "rulesets"
     details: list[dict[str, Any]] = read_json(ruleset_root / "ruleset-details.json")
@@ -1060,17 +1455,32 @@ def generate(
                 include_url_regex=include_url_regex,
             )
             query = convert_query_rules(rules)
+            cosmetic = convert_specific_cosmetic_rules(
+                ruleset_root,
+                id_value,
+                include_specific_css=include_specific_css,
+            )
             counts = action_counts(rules)
             total_actions.update(counts)
-            total_output.update(
-                {
-                    "domain_suffixes": len(network.domain_suffixes),
-                    "ipv4_cidrs": len(network.ipv4_cidrs),
-                    "ipv6_cidrs": len(network.ipv6_cidrs),
-                    "url_regexes": len(network.url_regexes),
-                    "query_operations": len(query.operations),
-                }
-            )
+            output_counts = {
+                "domain_suffixes": len(network.domain_suffixes),
+                "ipv4_cidrs": len(network.ipv4_cidrs),
+                "ipv6_cidrs": len(network.ipv6_cidrs),
+                "url_regexes": len(network.url_regexes),
+                "query_operations": len(query.operations),
+            }
+            if include_specific_css:
+                output_counts.update(
+                    {
+                        "cosmetic_selectors": len(cosmetic.selectors),
+                        "cosmetic_hostnames": len(cosmetic.hostnames),
+                        "cosmetic_regex_rules": len(cosmetic.regexes) // 3,
+                        "cosmetic_scripts": int(
+                            bool(cosmetic.hostnames or cosmetic.regexes)
+                        ),
+                    }
+                )
+            total_output.update(output_counts)
 
             write_text(
                 staging / "rulesets" / f"{id_value}.yaml",
@@ -1081,12 +1491,18 @@ def generate(
                     staging / "scripts" / f"{id_value}.js",
                     render_query_script(source, query.operations),
                 )
+            if cosmetic.hostnames or cosmetic.regexes:
+                write_text(
+                    staging / "cosmetic" / f"{id_value}.js",
+                    render_cosmetic_script(source, id_value, cosmetic),
+                )
 
             module_items.append(
                 {
                     "meta": item,
                     "network": network,
                     "query": query,
+                    "cosmetic": cosmetic,
                 }
             )
 
@@ -1113,9 +1529,23 @@ def generate(
                         "url_regexes": len(network.url_regexes),
                         "query_operations": len(query.operations),
                         "query_cleaning_sample": query.sample,
+                        **(
+                            {
+                                "cosmetic_selectors": len(cosmetic.selectors),
+                                "cosmetic_hostnames": len(cosmetic.hostnames),
+                                "cosmetic_regex_rules": len(cosmetic.regexes) // 3,
+                            }
+                            if include_specific_css
+                            else {}
+                        ),
                     },
                     "network_conversion": network.stats,
                     "query_conversion": query.stats,
+                    **(
+                        {"cosmetic_conversion": cosmetic.stats}
+                        if include_specific_css
+                        else {}
+                    ),
                 }
             )
 
@@ -1128,19 +1558,32 @@ def generate(
                 base_url=base_url,
                 policy=policy,
                 include_url_regex=include_url_regex,
+                include_specific_css=include_specific_css,
             ),
         )
         write_text(
-            staging / "config.example.yaml", render_reference_example(base_url)
+            staging / "config.example.yaml",
+            render_reference_example(base_url, include_specific_css),
         )
         write_text(staging / "VERSION", source.version + "\n")
         report = {
-            "schema_version": 1,
+            "schema_version": 2 if include_specific_css else 1,
             "source": asdict(source),
             "base_url": base_url,
             "build_options": {
                 "include_url_regex": include_url_regex,
-                "profile": "full-url" if include_url_regex else "memory-safe",
+                **(
+                    {"include_specific_css": True}
+                    if include_specific_css
+                    else {}
+                ),
+                "profile": (
+                    "full-url-css"
+                    if include_specific_css
+                    else "full-url"
+                    if include_url_regex
+                    else "memory-safe"
+                ),
             },
             "preset": {
                 "enabled": [
@@ -1156,8 +1599,17 @@ def generate(
                 "input_actions": dict(sorted(total_actions.items())),
                 **dict(sorted(total_output.items())),
             },
-            "limitations": [
-                "Cosmetic filters, scriptlets, popup handling, and strict-block UI are browser-only and are not emitted.",
+            "limitations": (
+                [
+                    "Plain site-specific cosmetic CSS is injected into HTML responses; generic selectors, procedural cosmetic filters, scriptlets, and popup handling are omitted.",
+                    "HTTPS cosmetic filtering only runs for MITM-covered hostnames; the module adds iplark.com but never enables wildcard MITM.",
+                ]
+                if include_specific_css
+                else [
+                    "Cosmetic filters, scriptlets, popup handling, and strict-block UI are browser-only and are not emitted.",
+                ]
+            )
+            + [
                 "Block rules requiring initiator, first/third-party, resource-type, method, or header context are omitted.",
                 "Allow-rule target domains are conservatively removed from native domain output to avoid unrepresentable exceptions.",
                 "Extension-resource redirects and header modifications are omitted.",
@@ -1221,6 +1673,14 @@ def parse_args(argv: Sequence[str]) -> argparse.Namespace:
             "iOS Network Extension memory footprint bounded"
         ),
     )
+    parser.add_argument(
+        "--include-specific-css",
+        action="store_true",
+        help=(
+            "emit HTML response scripts for plain site-specific cosmetic CSS; "
+            "HTTPS pages require matching Egern MITM coverage"
+        ),
+    )
     return parser.parse_args(argv)
 
 
@@ -1247,6 +1707,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             base_url=args.base_url.rstrip("/") or ".",
             policy=args.policy,
             include_url_regex=args.include_url_regex,
+            include_specific_css=args.include_specific_css,
         )
 
     totals = report["totals"]
@@ -1254,7 +1715,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"Generated one module with {report['preset']['available_count']} list switches from uBO Lite "
         f"{report['source']['version']}: {totals['domain_suffixes']} domains, "
         f"{totals['url_regexes']} URL rules, "
-        f"{totals['query_operations']} query cleaners."
+        f"{totals['query_operations']} query cleaners, "
+        f"{totals['cosmetic_selectors']} cosmetic selectors."
     )
     return 0
 

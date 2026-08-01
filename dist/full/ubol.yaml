@@ -1,5 +1,5 @@
 name: "uBlock Origin Lite 规则"
-description: "一个 Egern 模块，包含 56 个可独立配置的 uBO Lite 2026.729.1529 过滤列表开关（完整 URL 过滤）。"
+description: "一个 Egern 模块，包含 56 个可独立配置的 uBO Lite 2026.729.1529 过滤列表开关（完整 URL 过滤与站点专用 CSS 元素隐藏）。"
 author: "Raymond Hill 与各上游过滤列表维护者"
 homepage: "https://github.com/uBlockOrigin/uBOL-home"
 manual: "https://github.com/uBlockOrigin/uBOL-home"
@@ -134,6 +134,13 @@ env_schema:
   ENABLE_QUERY_CLEANING:
     name: "URL 查询参数清理"
     description: "关闭后仅停用 URL 查询参数清理，原生拦截规则不受影响。"
+    default_value: "true"
+    options:
+      - "true"
+      - "false"
+  ENABLE_COSMETIC_FILTERING:
+    name: "Safari 网页元素隐藏"
+    description: "注入官方列表中的站点专用纯 CSS 规则；HTTPS 站点需要 MITM。"
     default_value: "true"
     options:
       - "true"
@@ -583,3 +590,468 @@ scriptings:
       update_interval: 86400
       timeout: 5
       disabled: {{{禁用AdGuard乌克兰语}}}
+  - http_response:
+      name: "uBlock filters – Ads, trackers, and more - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/ublock-filters.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用uBlock主规则}}}
+  - http_response:
+      name: "EasyList - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/easylist.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用EasyList}}}
+  - http_response:
+      name: "AdGuard/uBO – Mobile Ads - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/adguard-mobile.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用移动广告}}}
+  - http_response:
+      name: "AdGuard/uBO – URL Tracking Protection - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/adguard-spyware-url.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用网址跟踪保护}}}
+  - http_response:
+      name: "uBlock filters – Badware risks - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/ublock-badware.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用uBlock恶意软件}}}
+  - http_response:
+      name: "EasyList – AI Widgets - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/annoyances-ai.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用AI组件}}}
+  - http_response:
+      name: "EasyList/uBO – Cookie Notices - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/annoyances-cookies.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用Cookie提示}}}
+  - http_response:
+      name: "EasyList/uBO – Overlay Notices - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/annoyances-overlays.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用浮层提示}}}
+  - http_response:
+      name: "EasyList – Social Widgets - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/annoyances-social.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用社交组件}}}
+  - http_response:
+      name: "EasyList – Chat Widgets - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/annoyances-widgets.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用聊天组件}}}
+  - http_response:
+      name: "EasyList – Other Annoyances - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/annoyances-others.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用其他烦扰}}}
+  - http_response:
+      name: "EasyList – Notifications - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/annoyances-notifications.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用通知提示}}}
+  - http_response:
+      name: "uBlock filters – Experimental - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/ublock-experimental.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用uBlock实验规则}}}
+  - http_response:
+      name: "uBO Lite Test Filters - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/ubol-tests.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用uBOLite测试规则}}}
+  - http_response:
+      name: "🇦🇱al 🇽🇰xk: Adblock List for Albania - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/alb-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用阿尔巴尼亚列表}}}
+  - http_response:
+      name: "🇪🇬eg 🇸🇦sa 🇲🇦ma 🇩🇿dz: Liste AR - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/ara-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用阿拉伯语列表}}}
+  - http_response:
+      name: "🇧🇬bg: Bulgarian Adblock list - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/bgr-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用保加利亚语列表}}}
+  - http_response:
+      name: "🇨🇳cn 🇹🇼tw: AdGuard Chinese (中文) - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/chn-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用AdGuard中文}}}
+  - http_response:
+      name: "🇨🇿cz 🇸🇰sk: EasyList Czech and Slovak - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/cze-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用捷克斯洛伐克列表}}}
+  - http_response:
+      name: "🇩🇪de 🇨🇭ch 🇦🇹at: EasyList Germany - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/deu-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用EasyList德国}}}
+  - http_response:
+      name: "🇪🇪ee: Eesti saitidele kohandatud filter - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/est-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用爱沙尼亚语列表}}}
+  - http_response:
+      name: "🇫🇮fi: Adblock List for Finland - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/fin-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用芬兰语列表}}}
+  - http_response:
+      name: "🇫🇷fr 🇧🇪be 🇨🇦ca: AdGuard Français - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/fra-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用AdGuard法语}}}
+  - http_response:
+      name: "🇬🇷gr 🇨🇾cy: Greek AdBlock Filter - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/grc-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用希腊语列表}}}
+  - http_response:
+      name: "🇭🇷hr 🇷🇸rs: Dandelion Sprout's Serbo-Croatian filters - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/hrv-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用塞尔维亚克罗地亚语}}}
+  - http_response:
+      name: "🇭🇺hu: hufilter - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/hun-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用匈牙利语列表}}}
+  - http_response:
+      name: "🇮🇩id 🇲🇾my: ABPindo - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/idn-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用ABPindo}}}
+  - http_response:
+      name: "🇮🇳in 🇱🇰lk 🇳🇵np: IndianList - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/ind-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用IndianList}}}
+  - http_response:
+      name: "🇮🇷ir: PersianBlocker - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/irn-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用PersianBlocker}}}
+  - http_response:
+      name: "🇮🇸is: Icelandic ABP List - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/isl-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用冰岛语列表}}}
+  - http_response:
+      name: "🇮🇱il: EasyList Hebrew - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/isr-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用EasyList希伯来语}}}
+  - http_response:
+      name: "🇮🇹it: EasyList Italy - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/ita-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用EasyList意大利}}}
+  - http_response:
+      name: "🇯🇵jp: AdGuard Japanese - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/jpn-1.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用AdGuard日语}}}
+  - http_response:
+      name: "🇰🇷kr: List-KR Classic - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/kor-1.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用ListKRClassic}}}
+  - http_response:
+      name: "🇱🇹lt: EasyList Lithuania - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/ltu-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用EasyList立陶宛}}}
+  - http_response:
+      name: "🇱🇻lv: Latvian List - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/lva-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用拉脱维亚语列表}}}
+  - http_response:
+      name: "🇲🇰mk: Macedonian adBlock Filters - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/mkd-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用马其顿语列表}}}
+  - http_response:
+      name: "🇳🇱nl 🇧🇪be: AdGuard Dutch - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/nld-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用AdGuard荷兰语}}}
+  - http_response:
+      name: "🇳🇴no 🇩🇰dk 🇮🇸is: Dandelion Sprouts nordiske filtre - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/nor-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用北欧语列表}}}
+  - http_response:
+      name: "🇵🇱pl: Oficjalne Polskie Filtry do uBlocka Origin - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/pol-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用波兰语官方列表}}}
+  - http_response:
+      name: "🇷🇴ro 🇲🇩md: Romanian Ad (ROad) Block List Light - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/rou-1.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用罗马尼亚语列表}}}
+  - http_response:
+      name: "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/rus-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用RUAdList}}}
+  - http_response:
+      name: "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList: Counters - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/rus-1.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用RUAdList计数器}}}
+  - http_response:
+      name: "🇪🇸es 🇦🇷ar 🇲🇽mx 🇨🇴co: EasyList Spanish - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/spa-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用EasyList西班牙语}}}
+  - http_response:
+      name: "🇪🇸es 🇦🇷ar 🇧🇷br 🇵🇹pt: AdGuard Spanish/Portuguese - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/spa-1.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用AdGuard西葡语}}}
+  - http_response:
+      name: "🇸🇮si: Slovenian List - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/svn-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用斯洛文尼亚语列表}}}
+  - http_response:
+      name: "🇸🇪se: Frellwit's Swedish Filter - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/swe-1.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用瑞典语列表}}}
+  - http_response:
+      name: "🇹🇭th: EasyList Thailand - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/tha-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用EasyList泰语}}}
+  - http_response:
+      name: "🇹🇷tr: AdGuard Turkish - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/tur-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用AdGuard土耳其语}}}
+  - http_response:
+      name: "🇺🇦ua: AdGuard Ukrainian - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/ukr-0.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用AdGuard乌克兰语}}}
+  - http_response:
+      name: "🇻🇳vn: ABPVN List - Safari 网页元素隐藏"
+      match: "^https?://(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/vie-1.js"
+      update_interval: 86400
+      max_size: 1048576
+      timeout: 5
+      body_required: true
+      disabled: {{{禁用ABPVN}}}
+
+mitm:
+  hostnames:
+    includes:
+      - "iplark.com"
+      - "*.iplark.com"

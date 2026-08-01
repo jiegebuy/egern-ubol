@@ -7,3 +7,4 @@ modules:
     update_interval: 86400
     env:
       ENABLE_QUERY_CLEANING: "true"
+      ENABLE_COSMETIC_FILTERING: "true"

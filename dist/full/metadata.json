@@ -1,11 +1,13 @@
 {
   "base_url": "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full",
   "build_options": {
+    "include_specific_css": true,
     "include_url_regex": true,
-    "profile": "full-url"
+    "profile": "full-url-css"
   },
   "limitations": [
-    "Cosmetic filters, scriptlets, popup handling, and strict-block UI are browser-only and are not emitted.",
+    "Plain site-specific cosmetic CSS is injected into HTML responses; generic selectors, procedural cosmetic filters, scriptlets, and popup handling are omitted.",
+    "HTTPS cosmetic filtering only runs for MITM-covered hostnames; the module adds iplark.com but never enables wildcard MITM.",
     "Block rules requiring initiator, first/third-party, resource-type, method, or header context are omitted.",
     "Allow-rule target domains are conservatively removed from native domain output to avoid unrepresentable exceptions.",
     "Extension-resource redirects and header modifications are omitted.",
@@ -29,6 +31,21 @@
   },
   "rulesets": [
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 4469,
+        "eligible_plain_selectors": 4885,
+        "eligible_regex_rules": 1,
+        "eligible_selector_lists": 2906,
+        "hostnames": 4469,
+        "input_hostnames": 5242,
+        "input_regex_rules": 3,
+        "input_selector_lists": 3419,
+        "input_selectors": 6132,
+        "plain_selectors": 4885,
+        "regex_rules": 1,
+        "selector_lists": 2906,
+        "skipped_procedural_selectors": 1247
+      },
       "enabled_in_preset": true,
       "enabled_upstream_by_default": true,
       "group": "default",
@@ -73,6 +90,9 @@
         "url_regexes": 975
       },
       "output": {
+        "cosmetic_hostnames": 4469,
+        "cosmetic_regex_rules": 1,
+        "cosmetic_selectors": 4885,
         "domain_suffixes": 132,
         "ipv4_cidrs": 2,
         "ipv6_cidrs": 0,
@@ -93,6 +113,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 8122,
+        "eligible_plain_selectors": 10265,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 5503,
+        "hostnames": 8122,
+        "input_hostnames": 8183,
+        "input_regex_rules": 0,
+        "input_selector_lists": 5574,
+        "input_selectors": 10572,
+        "plain_selectors": 10265,
+        "regex_rules": 0,
+        "selector_lists": 5503,
+        "skipped_procedural_selectors": 307
+      },
       "enabled_in_preset": true,
       "enabled_upstream_by_default": true,
       "group": "default",
@@ -137,6 +172,9 @@
         "url_regexes": 1998
       },
       "output": {
+        "cosmetic_hostnames": 8122,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 10265,
         "domain_suffixes": 50625,
         "ipv4_cidrs": 104,
         "ipv6_cidrs": 0,
@@ -150,6 +188,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 0,
+        "eligible_plain_selectors": 0,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 0,
+        "hostnames": 0,
+        "input_hostnames": 4,
+        "input_regex_rules": 0,
+        "input_selector_lists": 3,
+        "input_selectors": 3,
+        "plain_selectors": 0,
+        "regex_rules": 0,
+        "selector_lists": 0,
+        "skipped_procedural_selectors": 3
+      },
       "enabled_in_preset": true,
       "enabled_upstream_by_default": true,
       "group": "default",
@@ -193,6 +246,9 @@
         "url_regexes": 7308
       },
       "output": {
+        "cosmetic_hostnames": 0,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 0,
         "domain_suffixes": 42669,
         "ipv4_cidrs": 9,
         "ipv6_cidrs": 0,
@@ -206,6 +262,7 @@
       }
     },
     {
+      "cosmetic_conversion": {},
       "enabled_in_preset": true,
       "enabled_upstream_by_default": true,
       "group": "default",
@@ -244,6 +301,9 @@
         "url_regexes": 0
       },
       "output": {
+        "cosmetic_hostnames": 0,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 0,
         "domain_suffixes": 3430,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -257,6 +317,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 201,
+        "eligible_plain_selectors": 40,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 34,
+        "hostnames": 201,
+        "input_hostnames": 207,
+        "input_regex_rules": 0,
+        "input_selector_lists": 40,
+        "input_selectors": 54,
+        "plain_selectors": 40,
+        "regex_rules": 0,
+        "selector_lists": 34,
+        "skipped_procedural_selectors": 14
+      },
       "enabled_in_preset": true,
       "enabled_upstream_by_default": true,
       "group": "malware",
@@ -299,6 +374,9 @@
         "url_regexes": 308
       },
       "output": {
+        "cosmetic_hostnames": 201,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 40,
         "domain_suffixes": 1131,
         "ipv4_cidrs": 4,
         "ipv6_cidrs": 0,
@@ -312,6 +390,7 @@
       }
     },
     {
+      "cosmetic_conversion": {},
       "enabled_in_preset": true,
       "enabled_upstream_by_default": true,
       "group": "malware",
@@ -350,6 +429,9 @@
         "url_regexes": 0
       },
       "output": {
+        "cosmetic_hostnames": 0,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 0,
         "domain_suffixes": 9447,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -363,6 +445,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 4332,
+        "eligible_plain_selectors": 5548,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 3130,
+        "hostnames": 4332,
+        "input_hostnames": 4536,
+        "input_regex_rules": 0,
+        "input_selector_lists": 3297,
+        "input_selectors": 6123,
+        "plain_selectors": 5548,
+        "regex_rules": 0,
+        "selector_lists": 3130,
+        "skipped_procedural_selectors": 575
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "ads",
@@ -406,6 +503,9 @@
         "url_regexes": 333
       },
       "output": {
+        "cosmetic_hostnames": 4332,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 5548,
         "domain_suffixes": 904,
         "ipv4_cidrs": 3,
         "ipv6_cidrs": 0,
@@ -419,6 +519,7 @@
       }
     },
     {
+      "cosmetic_conversion": {},
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "privacy",
@@ -457,6 +558,9 @@
         "url_regexes": 0
       },
       "output": {
+        "cosmetic_hostnames": 0,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 0,
         "domain_suffixes": 0,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -470,6 +574,20 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 3,
+        "eligible_plain_selectors": 1,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 1,
+        "hostnames": 3,
+        "input_hostnames": 3,
+        "input_regex_rules": 0,
+        "input_selector_lists": 1,
+        "input_selectors": 1,
+        "plain_selectors": 1,
+        "regex_rules": 0,
+        "selector_lists": 1
+      },
       "enabled_in_preset": true,
       "enabled_upstream_by_default": false,
       "group": "privacy",
@@ -509,6 +627,9 @@
         "url_regexes": 1
       },
       "output": {
+        "cosmetic_hostnames": 3,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 1,
         "domain_suffixes": 0,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -529,6 +650,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 127,
+        "eligible_plain_selectors": 185,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 100,
+        "hostnames": 127,
+        "input_hostnames": 138,
+        "input_regex_rules": 0,
+        "input_selector_lists": 111,
+        "input_selectors": 214,
+        "plain_selectors": 185,
+        "regex_rules": 0,
+        "selector_lists": 100,
+        "skipped_procedural_selectors": 29
+      },
       "enabled_in_preset": true,
       "enabled_upstream_by_default": false,
       "group": "annoyances",
@@ -569,6 +705,9 @@
         "url_regexes": 2
       },
       "output": {
+        "cosmetic_hostnames": 127,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 185,
         "domain_suffixes": 4,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -582,6 +721,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 19365,
+        "eligible_plain_selectors": 7099,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 6867,
+        "hostnames": 19365,
+        "input_hostnames": 19682,
+        "input_regex_rules": 0,
+        "input_selector_lists": 7037,
+        "input_selectors": 7221,
+        "plain_selectors": 7099,
+        "regex_rules": 0,
+        "selector_lists": 6867,
+        "skipped_procedural_selectors": 122
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "annoyances",
@@ -623,6 +777,9 @@
         "url_regexes": 1255
       },
       "output": {
+        "cosmetic_hostnames": 19365,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 7099,
         "domain_suffixes": 174,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -636,6 +793,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 5471,
+        "eligible_plain_selectors": 4091,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 3362,
+        "hostnames": 5471,
+        "input_hostnames": 6146,
+        "input_regex_rules": 0,
+        "input_selector_lists": 3732,
+        "input_selectors": 4658,
+        "plain_selectors": 4091,
+        "regex_rules": 0,
+        "selector_lists": 3362,
+        "skipped_procedural_selectors": 567
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "annoyances",
@@ -680,6 +852,9 @@
         "url_regexes": 147
       },
       "output": {
+        "cosmetic_hostnames": 5471,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 4091,
         "domain_suffixes": 12,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -699,6 +874,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 4968,
+        "eligible_plain_selectors": 3131,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 2582,
+        "hostnames": 4968,
+        "input_hostnames": 4984,
+        "input_regex_rules": 0,
+        "input_selector_lists": 2598,
+        "input_selectors": 3181,
+        "plain_selectors": 3131,
+        "regex_rules": 0,
+        "selector_lists": 2582,
+        "skipped_procedural_selectors": 50
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "annoyances",
@@ -738,6 +928,9 @@
         "url_regexes": 417
       },
       "output": {
+        "cosmetic_hostnames": 4968,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 3131,
         "domain_suffixes": 0,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -751,6 +944,20 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 14,
+        "eligible_plain_selectors": 22,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 14,
+        "hostnames": 14,
+        "input_hostnames": 14,
+        "input_regex_rules": 0,
+        "input_selector_lists": 14,
+        "input_selectors": 22,
+        "plain_selectors": 22,
+        "regex_rules": 0,
+        "selector_lists": 14
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "annoyances",
@@ -791,6 +998,9 @@
         "url_regexes": 45
       },
       "output": {
+        "cosmetic_hostnames": 14,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 22,
         "domain_suffixes": 22,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -804,6 +1014,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 2567,
+        "eligible_plain_selectors": 2160,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 1668,
+        "hostnames": 2567,
+        "input_hostnames": 2611,
+        "input_regex_rules": 0,
+        "input_selector_lists": 1695,
+        "input_selectors": 2247,
+        "plain_selectors": 2160,
+        "regex_rules": 0,
+        "selector_lists": 1668,
+        "skipped_procedural_selectors": 87
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "annoyances",
@@ -845,6 +1070,9 @@
         "url_regexes": 275
       },
       "output": {
+        "cosmetic_hostnames": 2567,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 2160,
         "domain_suffixes": 21,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -858,6 +1086,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 1234,
+        "eligible_plain_selectors": 729,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 533,
+        "hostnames": 1234,
+        "input_hostnames": 1251,
+        "input_regex_rules": 0,
+        "input_selector_lists": 551,
+        "input_selectors": 781,
+        "plain_selectors": 729,
+        "regex_rules": 0,
+        "selector_lists": 533,
+        "skipped_procedural_selectors": 52
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "annoyances",
@@ -899,6 +1142,9 @@
         "url_regexes": 222
       },
       "output": {
+        "cosmetic_hostnames": 1234,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 729,
         "domain_suffixes": 24,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -912,6 +1158,20 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 1,
+        "eligible_plain_selectors": 1,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 1,
+        "hostnames": 1,
+        "input_hostnames": 1,
+        "input_regex_rules": 0,
+        "input_selector_lists": 1,
+        "input_selectors": 1,
+        "plain_selectors": 1,
+        "regex_rules": 0,
+        "selector_lists": 1
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "misc",
@@ -945,6 +1205,9 @@
         "url_regexes": 0
       },
       "output": {
+        "cosmetic_hostnames": 1,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 1,
         "domain_suffixes": 0,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -958,6 +1221,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 2,
+        "eligible_plain_selectors": 13,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 2,
+        "hostnames": 2,
+        "input_hostnames": 2,
+        "input_regex_rules": 0,
+        "input_selector_lists": 2,
+        "input_selectors": 30,
+        "plain_selectors": 13,
+        "regex_rules": 0,
+        "selector_lists": 2,
+        "skipped_procedural_selectors": 17
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "misc",
@@ -999,6 +1277,9 @@
         "url_regexes": 1
       },
       "output": {
+        "cosmetic_hostnames": 2,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 13,
         "domain_suffixes": 0,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1015,6 +1296,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 107,
+        "eligible_plain_selectors": 247,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 105,
+        "hostnames": 107,
+        "input_hostnames": 109,
+        "input_regex_rules": 0,
+        "input_selector_lists": 108,
+        "input_selectors": 254,
+        "plain_selectors": 247,
+        "regex_rules": 0,
+        "selector_lists": 105,
+        "skipped_procedural_selectors": 7
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1056,6 +1352,9 @@
         "url_regexes": 6
       },
       "output": {
+        "cosmetic_hostnames": 107,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 247,
         "domain_suffixes": 1,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1069,6 +1368,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 243,
+        "eligible_plain_selectors": 313,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 206,
+        "hostnames": 243,
+        "input_hostnames": 244,
+        "input_regex_rules": 0,
+        "input_selector_lists": 208,
+        "input_selectors": 319,
+        "plain_selectors": 313,
+        "regex_rules": 0,
+        "selector_lists": 206,
+        "skipped_procedural_selectors": 6
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1110,6 +1424,9 @@
         "url_regexes": 803
       },
       "output": {
+        "cosmetic_hostnames": 243,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 313,
         "domain_suffixes": 7,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1123,6 +1440,20 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 185,
+        "eligible_plain_selectors": 414,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 180,
+        "hostnames": 185,
+        "input_hostnames": 185,
+        "input_regex_rules": 0,
+        "input_selector_lists": 180,
+        "input_selectors": 414,
+        "plain_selectors": 414,
+        "regex_rules": 0,
+        "selector_lists": 180
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1164,6 +1495,9 @@
         "url_regexes": 672
       },
       "output": {
+        "cosmetic_hostnames": 185,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 414,
         "domain_suffixes": 5,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1177,6 +1511,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 3267,
+        "eligible_plain_selectors": 7281,
+        "eligible_regex_rules": 3,
+        "eligible_selector_lists": 2794,
+        "hostnames": 3267,
+        "input_hostnames": 3302,
+        "input_regex_rules": 3,
+        "input_selector_lists": 2834,
+        "input_selectors": 7501,
+        "plain_selectors": 7281,
+        "regex_rules": 3,
+        "selector_lists": 2794,
+        "skipped_procedural_selectors": 220
+      },
       "enabled_in_preset": true,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1221,6 +1570,9 @@
         "url_regexes": 5192
       },
       "output": {
+        "cosmetic_hostnames": 3267,
+        "cosmetic_regex_rules": 3,
+        "cosmetic_selectors": 7281,
         "domain_suffixes": 5946,
         "ipv4_cidrs": 5,
         "ipv6_cidrs": 0,
@@ -1237,6 +1589,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 212,
+        "eligible_plain_selectors": 309,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 173,
+        "hostnames": 212,
+        "input_hostnames": 223,
+        "input_regex_rules": 0,
+        "input_selector_lists": 182,
+        "input_selectors": 351,
+        "plain_selectors": 309,
+        "regex_rules": 0,
+        "selector_lists": 173,
+        "skipped_procedural_selectors": 42
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1281,6 +1648,9 @@
         "url_regexes": 87
       },
       "output": {
+        "cosmetic_hostnames": 212,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 309,
         "domain_suffixes": 22,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1294,6 +1664,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 2108,
+        "eligible_plain_selectors": 3109,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 1593,
+        "hostnames": 2108,
+        "input_hostnames": 2128,
+        "input_regex_rules": 0,
+        "input_selector_lists": 1616,
+        "input_selectors": 3222,
+        "plain_selectors": 3109,
+        "regex_rules": 0,
+        "selector_lists": 1593,
+        "skipped_procedural_selectors": 113
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1337,6 +1722,9 @@
         "url_regexes": 1472
       },
       "output": {
+        "cosmetic_hostnames": 2108,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 3109,
         "domain_suffixes": 69,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1350,6 +1738,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 69,
+        "eligible_plain_selectors": 175,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 67,
+        "hostnames": 69,
+        "input_hostnames": 69,
+        "input_regex_rules": 0,
+        "input_selector_lists": 67,
+        "input_selectors": 188,
+        "plain_selectors": 175,
+        "regex_rules": 0,
+        "selector_lists": 67,
+        "skipped_procedural_selectors": 13
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1392,6 +1795,9 @@
         "url_regexes": 45
       },
       "output": {
+        "cosmetic_hostnames": 69,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 175,
         "domain_suffixes": 1,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1411,6 +1817,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 541,
+        "eligible_plain_selectors": 1018,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 404,
+        "hostnames": 541,
+        "input_hostnames": 556,
+        "input_regex_rules": 0,
+        "input_selector_lists": 419,
+        "input_selectors": 1177,
+        "plain_selectors": 1018,
+        "regex_rules": 0,
+        "selector_lists": 404,
+        "skipped_procedural_selectors": 159
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1451,6 +1872,9 @@
         "url_regexes": 32
       },
       "output": {
+        "cosmetic_hostnames": 541,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 1018,
         "domain_suffixes": 0,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1468,6 +1892,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 1672,
+        "eligible_plain_selectors": 2362,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 1225,
+        "hostnames": 1672,
+        "input_hostnames": 1707,
+        "input_regex_rules": 0,
+        "input_selector_lists": 1262,
+        "input_selectors": 2538,
+        "plain_selectors": 2362,
+        "regex_rules": 0,
+        "selector_lists": 1225,
+        "skipped_procedural_selectors": 176
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1511,6 +1950,9 @@
         "url_regexes": 3230
       },
       "output": {
+        "cosmetic_hostnames": 1672,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 2362,
         "domain_suffixes": 4106,
         "ipv4_cidrs": 1,
         "ipv6_cidrs": 0,
@@ -1527,6 +1969,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 206,
+        "eligible_plain_selectors": 707,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 202,
+        "hostnames": 206,
+        "input_hostnames": 208,
+        "input_regex_rules": 0,
+        "input_selector_lists": 205,
+        "input_selectors": 717,
+        "plain_selectors": 707,
+        "regex_rules": 0,
+        "selector_lists": 202,
+        "skipped_procedural_selectors": 10
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1569,6 +2026,9 @@
         "url_regexes": 321
       },
       "output": {
+        "cosmetic_hostnames": 206,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 707,
         "domain_suffixes": 23,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1582,6 +2042,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 181,
+        "eligible_plain_selectors": 353,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 163,
+        "hostnames": 181,
+        "input_hostnames": 183,
+        "input_regex_rules": 0,
+        "input_selector_lists": 165,
+        "input_selectors": 364,
+        "plain_selectors": 353,
+        "regex_rules": 0,
+        "selector_lists": 163,
+        "skipped_procedural_selectors": 11
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1623,6 +2098,9 @@
         "url_regexes": 34
       },
       "output": {
+        "cosmetic_hostnames": 181,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 353,
         "domain_suffixes": 13,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1636,6 +2114,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 491,
+        "eligible_plain_selectors": 1152,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 403,
+        "hostnames": 491,
+        "input_hostnames": 498,
+        "input_regex_rules": 0,
+        "input_selector_lists": 411,
+        "input_selectors": 1218,
+        "plain_selectors": 1152,
+        "regex_rules": 0,
+        "selector_lists": 403,
+        "skipped_procedural_selectors": 66
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1678,6 +2171,9 @@
         "url_regexes": 60
       },
       "output": {
+        "cosmetic_hostnames": 491,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 1152,
         "domain_suffixes": 94,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1691,6 +2187,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 707,
+        "eligible_plain_selectors": 1325,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 555,
+        "hostnames": 707,
+        "input_hostnames": 711,
+        "input_regex_rules": 0,
+        "input_selector_lists": 559,
+        "input_selectors": 1351,
+        "plain_selectors": 1325,
+        "regex_rules": 0,
+        "selector_lists": 555,
+        "skipped_procedural_selectors": 26
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1733,6 +2244,9 @@
         "url_regexes": 66
       },
       "output": {
+        "cosmetic_hostnames": 707,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 1325,
         "domain_suffixes": 7,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1746,6 +2260,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 5938,
+        "eligible_plain_selectors": 4931,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 4102,
+        "hostnames": 5938,
+        "input_hostnames": 5986,
+        "input_regex_rules": 0,
+        "input_selector_lists": 4172,
+        "input_selectors": 5068,
+        "plain_selectors": 4931,
+        "regex_rules": 0,
+        "selector_lists": 4102,
+        "skipped_procedural_selectors": 137
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1785,6 +2314,9 @@
         "url_regexes": 4816
       },
       "output": {
+        "cosmetic_hostnames": 5938,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 4931,
         "domain_suffixes": 0,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1798,6 +2330,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 495,
+        "eligible_plain_selectors": 857,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 480,
+        "hostnames": 495,
+        "input_hostnames": 560,
+        "input_regex_rules": 0,
+        "input_selector_lists": 543,
+        "input_selectors": 1355,
+        "plain_selectors": 857,
+        "regex_rules": 0,
+        "selector_lists": 480,
+        "skipped_procedural_selectors": 498
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1842,6 +2389,9 @@
         "url_regexes": 281
       },
       "output": {
+        "cosmetic_hostnames": 495,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 857,
         "domain_suffixes": 261,
         "ipv4_cidrs": 1,
         "ipv6_cidrs": 0,
@@ -1862,6 +2412,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 35,
+        "eligible_plain_selectors": 64,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 32,
+        "hostnames": 35,
+        "input_hostnames": 35,
+        "input_regex_rules": 0,
+        "input_selector_lists": 32,
+        "input_selectors": 65,
+        "plain_selectors": 64,
+        "regex_rules": 0,
+        "selector_lists": 32,
+        "skipped_procedural_selectors": 1
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1901,6 +2466,9 @@
         "url_regexes": 10
       },
       "output": {
+        "cosmetic_hostnames": 35,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 64,
         "domain_suffixes": 2,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1914,6 +2482,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 379,
+        "eligible_plain_selectors": 791,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 200,
+        "hostnames": 379,
+        "input_hostnames": 381,
+        "input_regex_rules": 0,
+        "input_selector_lists": 204,
+        "input_selectors": 803,
+        "plain_selectors": 791,
+        "regex_rules": 0,
+        "selector_lists": 200,
+        "skipped_procedural_selectors": 12
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -1957,6 +2540,9 @@
         "url_regexes": 46
       },
       "output": {
+        "cosmetic_hostnames": 379,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 791,
         "domain_suffixes": 31,
         "ipv4_cidrs": 1,
         "ipv6_cidrs": 0,
@@ -1970,6 +2556,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 2787,
+        "eligible_plain_selectors": 2573,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 1753,
+        "hostnames": 2787,
+        "input_hostnames": 2798,
+        "input_regex_rules": 0,
+        "input_selector_lists": 1766,
+        "input_selectors": 2600,
+        "plain_selectors": 2573,
+        "regex_rules": 0,
+        "selector_lists": 1753,
+        "skipped_procedural_selectors": 27
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2011,6 +2612,9 @@
         "url_regexes": 895
       },
       "output": {
+        "cosmetic_hostnames": 2787,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 2573,
         "domain_suffixes": 27,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2024,6 +2628,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 5328,
+        "eligible_plain_selectors": 8320,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 3941,
+        "hostnames": 5328,
+        "input_hostnames": 5461,
+        "input_regex_rules": 0,
+        "input_selector_lists": 4109,
+        "input_selectors": 9268,
+        "plain_selectors": 8320,
+        "regex_rules": 0,
+        "selector_lists": 3941,
+        "skipped_procedural_selectors": 948
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2067,6 +2686,9 @@
         "url_regexes": 911
       },
       "output": {
+        "cosmetic_hostnames": 5328,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 8320,
         "domain_suffixes": 190,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2083,6 +2705,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 955,
+        "eligible_plain_selectors": 1711,
+        "eligible_regex_rules": 67,
+        "eligible_selector_lists": 855,
+        "hostnames": 955,
+        "input_hostnames": 1001,
+        "input_regex_rules": 68,
+        "input_selector_lists": 892,
+        "input_selectors": 2096,
+        "plain_selectors": 1711,
+        "regex_rules": 67,
+        "selector_lists": 855,
+        "skipped_procedural_selectors": 385
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2126,6 +2763,9 @@
         "url_regexes": 885
       },
       "output": {
+        "cosmetic_hostnames": 955,
+        "cosmetic_regex_rules": 67,
+        "cosmetic_selectors": 1711,
         "domain_suffixes": 338,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2145,6 +2785,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 327,
+        "eligible_plain_selectors": 584,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 304,
+        "hostnames": 327,
+        "input_hostnames": 330,
+        "input_regex_rules": 0,
+        "input_selector_lists": 306,
+        "input_selectors": 597,
+        "plain_selectors": 584,
+        "regex_rules": 0,
+        "selector_lists": 304,
+        "skipped_procedural_selectors": 13
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2187,6 +2842,9 @@
         "url_regexes": 408
       },
       "output": {
+        "cosmetic_hostnames": 327,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 584,
         "domain_suffixes": 9,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2200,6 +2858,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 78,
+        "eligible_plain_selectors": 222,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 73,
+        "hostnames": 78,
+        "input_hostnames": 78,
+        "input_regex_rules": 0,
+        "input_selector_lists": 73,
+        "input_selectors": 224,
+        "plain_selectors": 222,
+        "regex_rules": 0,
+        "selector_lists": 73,
+        "skipped_procedural_selectors": 2
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2241,6 +2914,9 @@
         "url_regexes": 112
       },
       "output": {
+        "cosmetic_hostnames": 78,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 222,
         "domain_suffixes": 10,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2254,6 +2930,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 119,
+        "eligible_plain_selectors": 446,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 119,
+        "hostnames": 119,
+        "input_hostnames": 119,
+        "input_regex_rules": 0,
+        "input_selector_lists": 119,
+        "input_selectors": 448,
+        "plain_selectors": 446,
+        "regex_rules": 0,
+        "selector_lists": 119,
+        "skipped_procedural_selectors": 2
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2294,6 +2985,9 @@
         "url_regexes": 131
       },
       "output": {
+        "cosmetic_hostnames": 119,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 446,
         "domain_suffixes": 132,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2307,6 +3001,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 992,
+        "eligible_plain_selectors": 1196,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 677,
+        "hostnames": 992,
+        "input_hostnames": 1036,
+        "input_regex_rules": 0,
+        "input_selector_lists": 692,
+        "input_selectors": 1254,
+        "plain_selectors": 1196,
+        "regex_rules": 0,
+        "selector_lists": 677,
+        "skipped_procedural_selectors": 58
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2349,6 +3058,9 @@
         "url_regexes": 393
       },
       "output": {
+        "cosmetic_hostnames": 992,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 1196,
         "domain_suffixes": 37,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2362,6 +3074,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 741,
+        "eligible_plain_selectors": 1458,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 650,
+        "hostnames": 741,
+        "input_hostnames": 837,
+        "input_regex_rules": 0,
+        "input_selector_lists": 676,
+        "input_selectors": 1591,
+        "plain_selectors": 1458,
+        "regex_rules": 0,
+        "selector_lists": 650,
+        "skipped_procedural_selectors": 133
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2405,6 +3132,9 @@
         "url_regexes": 304
       },
       "output": {
+        "cosmetic_hostnames": 741,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 1458,
         "domain_suffixes": 274,
         "ipv4_cidrs": 18,
         "ipv6_cidrs": 0,
@@ -2418,6 +3148,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 3426,
+        "eligible_plain_selectors": 4428,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 2775,
+        "hostnames": 3426,
+        "input_hostnames": 3466,
+        "input_regex_rules": 0,
+        "input_selector_lists": 2809,
+        "input_selectors": 4667,
+        "plain_selectors": 4428,
+        "regex_rules": 0,
+        "selector_lists": 2775,
+        "skipped_procedural_selectors": 239
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2460,6 +3205,9 @@
         "url_regexes": 136
       },
       "output": {
+        "cosmetic_hostnames": 3426,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 4428,
         "domain_suffixes": 265,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2473,6 +3221,7 @@
       }
     },
     {
+      "cosmetic_conversion": {},
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2511,6 +3260,9 @@
         "url_regexes": 0
       },
       "output": {
+        "cosmetic_hostnames": 0,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 0,
         "domain_suffixes": 26432,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2524,6 +3276,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 559,
+        "eligible_plain_selectors": 1063,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 523,
+        "hostnames": 559,
+        "input_hostnames": 586,
+        "input_regex_rules": 0,
+        "input_selector_lists": 552,
+        "input_selectors": 1160,
+        "plain_selectors": 1063,
+        "regex_rules": 0,
+        "selector_lists": 523,
+        "skipped_procedural_selectors": 97
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2567,6 +3334,9 @@
         "url_regexes": 102
       },
       "output": {
+        "cosmetic_hostnames": 559,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 1063,
         "domain_suffixes": 71,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2580,6 +3350,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 7416,
+        "eligible_plain_selectors": 10801,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 5504,
+        "hostnames": 7416,
+        "input_hostnames": 7699,
+        "input_regex_rules": 0,
+        "input_selector_lists": 5709,
+        "input_selectors": 12076,
+        "plain_selectors": 10801,
+        "regex_rules": 0,
+        "selector_lists": 5504,
+        "skipped_procedural_selectors": 1275
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2624,6 +3409,9 @@
         "url_regexes": 3261
       },
       "output": {
+        "cosmetic_hostnames": 7416,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 10801,
         "domain_suffixes": 1253,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2644,6 +3432,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 59,
+        "eligible_plain_selectors": 47,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 37,
+        "hostnames": 59,
+        "input_hostnames": 108,
+        "input_regex_rules": 0,
+        "input_selector_lists": 63,
+        "input_selectors": 210,
+        "plain_selectors": 47,
+        "regex_rules": 0,
+        "selector_lists": 37,
+        "skipped_procedural_selectors": 163
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2686,6 +3489,9 @@
         "url_regexes": 399
       },
       "output": {
+        "cosmetic_hostnames": 59,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 47,
         "domain_suffixes": 117,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2706,6 +3512,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 1428,
+        "eligible_plain_selectors": 1619,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 1011,
+        "hostnames": 1428,
+        "input_hostnames": 1435,
+        "input_regex_rules": 0,
+        "input_selector_lists": 1019,
+        "input_selectors": 1646,
+        "plain_selectors": 1619,
+        "regex_rules": 0,
+        "selector_lists": 1011,
+        "skipped_procedural_selectors": 27
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2747,6 +3568,9 @@
         "url_regexes": 458
       },
       "output": {
+        "cosmetic_hostnames": 1428,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 1619,
         "domain_suffixes": 23,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2760,6 +3584,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 1880,
+        "eligible_plain_selectors": 3374,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 1555,
+        "hostnames": 1880,
+        "input_hostnames": 1970,
+        "input_regex_rules": 1,
+        "input_selector_lists": 1620,
+        "input_selectors": 3627,
+        "plain_selectors": 3374,
+        "regex_rules": 0,
+        "selector_lists": 1555,
+        "skipped_procedural_selectors": 253
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2803,6 +3642,9 @@
         "url_regexes": 534
       },
       "output": {
+        "cosmetic_hostnames": 1880,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 3374,
         "domain_suffixes": 86,
         "ipv4_cidrs": 1,
         "ipv6_cidrs": 0,
@@ -2816,6 +3658,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 150,
+        "eligible_plain_selectors": 364,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 139,
+        "hostnames": 150,
+        "input_hostnames": 152,
+        "input_regex_rules": 0,
+        "input_selector_lists": 141,
+        "input_selectors": 366,
+        "plain_selectors": 364,
+        "regex_rules": 0,
+        "selector_lists": 139,
+        "skipped_procedural_selectors": 2
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2857,6 +3714,9 @@
         "url_regexes": 56
       },
       "output": {
+        "cosmetic_hostnames": 150,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 364,
         "domain_suffixes": 16,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2870,6 +3730,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 1466,
+        "eligible_plain_selectors": 1205,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 891,
+        "hostnames": 1466,
+        "input_hostnames": 1511,
+        "input_regex_rules": 0,
+        "input_selector_lists": 947,
+        "input_selectors": 1549,
+        "plain_selectors": 1205,
+        "regex_rules": 0,
+        "selector_lists": 891,
+        "skipped_procedural_selectors": 344
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2914,6 +3789,9 @@
         "url_regexes": 639
       },
       "output": {
+        "cosmetic_hostnames": 1466,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 1205,
         "domain_suffixes": 72,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2931,6 +3809,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 184,
+        "eligible_plain_selectors": 616,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 178,
+        "hostnames": 184,
+        "input_hostnames": 184,
+        "input_regex_rules": 0,
+        "input_selector_lists": 178,
+        "input_selectors": 630,
+        "plain_selectors": 616,
+        "regex_rules": 0,
+        "selector_lists": 178,
+        "skipped_procedural_selectors": 14
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -2973,6 +3866,9 @@
         "url_regexes": 709
       },
       "output": {
+        "cosmetic_hostnames": 184,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 616,
         "domain_suffixes": 0,
         "ipv4_cidrs": 5,
         "ipv6_cidrs": 0,
@@ -2986,6 +3882,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 3894,
+        "eligible_plain_selectors": 3371,
+        "eligible_regex_rules": 118,
+        "eligible_selector_lists": 1621,
+        "hostnames": 3894,
+        "input_hostnames": 4104,
+        "input_regex_rules": 122,
+        "input_selector_lists": 1708,
+        "input_selectors": 3716,
+        "plain_selectors": 3371,
+        "regex_rules": 118,
+        "selector_lists": 1621,
+        "skipped_procedural_selectors": 345
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -3029,6 +3940,9 @@
         "url_regexes": 1001
       },
       "output": {
+        "cosmetic_hostnames": 3894,
+        "cosmetic_regex_rules": 118,
+        "cosmetic_selectors": 3371,
         "domain_suffixes": 114,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -3042,6 +3956,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 1240,
+        "eligible_plain_selectors": 1472,
+        "eligible_regex_rules": 1,
+        "eligible_selector_lists": 688,
+        "hostnames": 1240,
+        "input_hostnames": 1283,
+        "input_regex_rules": 1,
+        "input_selector_lists": 716,
+        "input_selectors": 1587,
+        "plain_selectors": 1472,
+        "regex_rules": 1,
+        "selector_lists": 688,
+        "skipped_procedural_selectors": 115
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -3085,6 +4014,9 @@
         "url_regexes": 953
       },
       "output": {
+        "cosmetic_hostnames": 1240,
+        "cosmetic_regex_rules": 1,
+        "cosmetic_selectors": 1472,
         "domain_suffixes": 415,
         "ipv4_cidrs": 2,
         "ipv6_cidrs": 0,
@@ -3101,6 +4033,21 @@
       }
     },
     {
+      "cosmetic_conversion": {
+        "eligible_hostnames": 358,
+        "eligible_plain_selectors": 618,
+        "eligible_regex_rules": 0,
+        "eligible_selector_lists": 315,
+        "hostnames": 358,
+        "input_hostnames": 358,
+        "input_regex_rules": 0,
+        "input_selector_lists": 315,
+        "input_selectors": 627,
+        "plain_selectors": 618,
+        "regex_rules": 0,
+        "selector_lists": 315,
+        "skipped_procedural_selectors": 9
+      },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
       "group": "regions",
@@ -3144,6 +4091,9 @@
         "url_regexes": 65
       },
       "output": {
+        "cosmetic_hostnames": 358,
+        "cosmetic_regex_rules": 0,
+        "cosmetic_selectors": 618,
         "domain_suffixes": 61,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -3157,7 +4107,7 @@
       }
     }
   ],
-  "schema_version": 1,
+  "schema_version": 2,
   "source": {
     "asset_sha256": "5b0df87ad6c98f9e706724384ab0167dfdadb0d753946894079e375d5f15ec16",
     "asset_url": "https://github.com/uBlockOrigin/uBOL-home/releases/download/2026.729.1529/uBOLite_2026.729.1529.chromium.zip",
@@ -3167,6 +4117,10 @@
     "version": "2026.729.1529"
   },
   "totals": {
+    "cosmetic_hostnames": 101099,
+    "cosmetic_regex_rules": 190,
+    "cosmetic_scripts": 51,
+    "cosmetic_selectors": 109066,
     "domain_suffixes": 149125,
     "input_actions": {
       "allow": 7603,
