@@ -22,7 +22,7 @@ const cosmeticUrl = pathToFileURL(
 ).href;
 const cosmetic = await import(cosmeticUrl);
 const iplarkUrl = pathToFileURL(
-  path.join(root, "dist", "full", "cosmetic", "iplark.js"),
+  path.join(root, "dist", "full", "cosmetic", "iplark-homepage-css.js"),
 ).href;
 const iplark = await import(iplarkUrl);
 
@@ -75,6 +75,7 @@ test("dedicated IPLark response script injects the official CSS in one pass", as
   const html = "<html><head><title>IPLark</title></head><body></body></html>";
   const result = await iplark.default({
     env: {},
+    request: { url: "https://iplark.com/" },
     response: {
       headers: { get: () => "text/html; charset=utf-8" },
       text: async () => html,
@@ -82,6 +83,20 @@ test("dedicated IPLark response script injects the official CSS in one pass", as
   });
   assert.match(result.body, /data-egern-ubol="iplark"/);
   assert.match(result.body, /div\[class\^="banner"\]/);
+  assert.match(result.body, /body > #capture-area ~ div\[class\]:empty/);
+});
+
+test("dedicated IPLark response script appends CSS to the site stylesheet", async () => {
+  const stylesheet = "body{margin:0}";
+  const result = await iplark.default({
+    env: {},
+    request: { url: "https://iplark.com/static/homepage.css?v=1" },
+    response: {
+      headers: { get: () => "text/css; charset=utf-8" },
+      text: async () => stylesheet,
+    },
+  });
+  assert.match(result.body, /egern-ubol:iplark/);
   assert.match(result.body, /body > #capture-area ~ div\[class\]:empty/);
 });
 

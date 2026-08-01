@@ -25,7 +25,7 @@ Memory Safe 的全部静态产物约 4.2 MB；Full URL + CSS 的全量静态产�
 
 磁盘大小不能直接等同于 Egern 扩展进程的常驻内存，因此无法在 Windows 上承诺低于 iOS 的 50 MB 限制。建议先测 Memory Safe，再单独测 Full URL + CSS；不要同时启用两个版本。
 
-模块不会自动加入 `mitm.hostnames: ["*"]`。Full 版只自动加入 `iplark.com` 与 `*.iplark.com`，用于修复该站由 AdGuard 中文列表提供的 4 条元素隐藏规则。IPLark 由一个小型专用脚本处理，其他列表的响应脚本不会同时匹配该站；其他 HTTPS 网站只有在 Egern 主配置已覆盖对应 MITM 主机时才会注入 CSS。可通过模块设置里的 `Safari 网页元素隐藏` 总开关关闭这类响应脚本。
+模块不会自动加入 `mitm.hostnames: ["*"]`。Full 版只自动加入 `iplark.com` 与 `*.iplark.com`，用于修复该站由 AdGuard 中文列表提供的 4 条元素隐藏规则。IPLark 由一个小型专用脚本处理：规则会同时注入主页 HTML 和站点自己的 `homepage.css`，且不会匹配验证码/WAF 请求；其他列表的响应脚本不会同时匹配该站。其他 HTTPS 网站只有在 Egern 主配置已覆盖对应 MITM 主机时才会注入 CSS。可通过模块设置里的 `Safari 网页元素隐藏` 总开关关闭这类响应脚本。
 
 域名/IP 拦截不需要 MITM。URL 去参数脚本只会在 Egern 能看到完整 HTTPS URL 的主机上生效，可通过 `URL 查询参数清理` 总开关关闭。
 

@@ -84,7 +84,14 @@ class UrlFilterTests(unittest.TestCase):
 
     def test_iplark_uses_only_the_dedicated_cosmetic_match(self) -> None:
         self.assertRegex("https://iplark.com/", IPLARK_RESPONSE_MATCH)
-        self.assertRegex("https://www.iplark.com/article", IPLARK_RESPONSE_MATCH)
+        self.assertRegex(
+            "https://www.iplark.com/static/homepage.css?v=1",
+            IPLARK_RESPONSE_MATCH,
+        )
+        self.assertNotRegex(
+            "https://iplark.com/captcha/scripts/moon", IPLARK_RESPONSE_MATCH
+        )
+        self.assertNotRegex("https://www.iplark.com/article", IPLARK_RESPONSE_MATCH)
         self.assertNotRegex(
             "https://iplark.com/", NON_IPLARK_DOCUMENT_RESPONSE_MATCH
         )
@@ -207,7 +214,7 @@ class GeneratedArtifactTests(unittest.TestCase):
         )
         self.assertGreater(chinese["output"]["cosmetic_selectors"], 1_000)
         self.assertTrue((root / "cosmetic" / "chn-0.js").is_file())
-        self.assertTrue((root / "cosmetic" / "iplark.js").is_file())
+        self.assertTrue((root / "cosmetic" / "iplark-homepage-css.js").is_file())
         response_scripts = [
             entry["http_response"]
             for entry in module["scriptings"]
@@ -219,8 +226,18 @@ class GeneratedArtifactTests(unittest.TestCase):
             if re.search(entry["match"], "https://iplark.com/")
         ]
         self.assertEqual(len(matching), 1)
-        self.assertTrue(matching[0]["script_url"].endswith("/cosmetic/iplark.js"))
+        self.assertTrue(
+            matching[0]["script_url"].endswith(
+                "/cosmetic/iplark-homepage-css.js"
+            )
+        )
         self.assertFalse(matching[0]["disabled"])
+        self.assertRegex(
+            "https://iplark.com/static/homepage.css", matching[0]["match"]
+        )
+        self.assertNotRegex(
+            "https://iplark.com/captcha/scripts/moon", matching[0]["match"]
+        )
         self.assertNotIn("*", module["mitm"]["hostnames"]["includes"])
 
     def test_memory_profile_stays_compact(self) -> None:

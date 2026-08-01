@@ -35,7 +35,8 @@ NON_IPLARK_DOCUMENT_RESPONSE_MATCH = (
     r"[^?#]+\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
 )
 IPLARK_RESPONSE_MATCH = (
-    r"^https?://(?:[^/?#]+\.)?iplark\.com(?::\d+)?(?:[/?#]|$)"
+    r"^https?://(?:[^/?#]+\.)?iplark\.com(?::\d+)?"
+    r"(?:/?(?:[?#].*)?|/static/homepage\.css(?:[?#].*)?)$"
 )
 COSMETIC_MITM_HOSTNAMES = ("iplark.com", "*.iplark.com")
 IPLARK_COSMETIC_SELECTORS = (
@@ -1045,11 +1046,13 @@ def render_combined_module(
             lines.extend(
                 [
                     "  - http_response:",
-                    f"      name: {yaml_quote('AdGuard Chinese (中文) - IPLark 专用元素隐藏')}",
+                    f"      name: {yaml_quote('AdGuard Chinese (中文) - IPLark 专用广告隐藏（HTML + CSS）')}",
                     f"      match: {yaml_quote(IPLARK_RESPONSE_MATCH)}",
                     "      script_url: "
                     + yaml_quote(
-                        relative_or_remote(base_url, "cosmetic", "iplark.js")
+                        relative_or_remote(
+                            base_url, "cosmetic", "iplark-homepage-css.js"
+                        )
                     ),
                     "      update_interval: 86400",
                     "      max_size: 1048576",
@@ -1195,16 +1198,19 @@ def render_iplark_cosmetic_script(source: SourceInfo) -> str:
     )
     return f'''// Generated from official uBO Lite {source.version}.
 // Dedicated IPLark bridge for the four AdGuard Chinese cosmetic selectors.
+// The site injects its ad containers after page load, so the rules are also
+// appended to its external stylesheet as a CSP-independent path.
 
 const SELECTORS = {selectors};
-const MARKER = 'data-egern-ubol="iplark"';
+const CSS = `${{SELECTORS.join(",\\n")}}{{display:none!important;}}`;
+const HTML_MARKER = 'data-egern-ubol="iplark"';
+const STYLESHEET_MARKER = "/* egern-ubol:iplark */";
 
 export function injectCss(html) {{
-  if (html.includes(MARKER)) {{
+  if (html.includes(HTML_MARKER)) {{
     return html;
   }}
-  const css = `${{SELECTORS.join(",\\n")}}{{display:none!important;}}`;
-  const style = `<style ${{MARKER}}>${{css}}</style>`;
+  const style = `<style ${{HTML_MARKER}}>${{CSS}}</style>`;
   if (/<\\/head\\s*>/i.test(html)) {{
     return html.replace(/<\\/head\\s*>/i, (closing) => style + closing);
   }}
@@ -1212,6 +1218,13 @@ export function injectCss(html) {{
     return html.replace(/<body\\b[^>]*>/i, (opening) => opening + style);
   }}
   return style + html;
+}}
+
+export function injectStylesheet(stylesheet) {{
+  if (stylesheet.includes(STYLESHEET_MARKER)) {{
+    return stylesheet;
+  }}
+  return `${{stylesheet}}\\n${{STYLESHEET_MARKER}}\\n${{CSS}}\\n`;
 }}
 
 function responseContentType(ctx) {{
@@ -1227,11 +1240,18 @@ export default async function (ctx) {{
     return undefined;
   }}
   const contentType = responseContentType(ctx);
+  const url = ctx.request?.url || "";
+  if (/text\\/css/i.test(contentType) || /\\/static\\/homepage\\.css(?:[?#]|$)/i.test(url)) {{
+    const stylesheet = await ctx.response.text();
+    const body = injectStylesheet(stylesheet);
+    return body === stylesheet ? undefined : {{ body }};
+  }}
   if (contentType && !/(?:text\\/html|application\\/xhtml\\+xml)/i.test(contentType)) {{
     return undefined;
   }}
   const html = await ctx.response.text();
-  return {{ body: injectCss(html) }};
+  const body = injectCss(html);
+  return body === html ? undefined : {{ body }};
 }}
 '''
 
@@ -1632,7 +1652,7 @@ def generate(
 
         if include_specific_css:
             write_text(
-                staging / "cosmetic" / "iplark.js",
+                staging / "cosmetic" / "iplark-homepage-css.js",
                 render_iplark_cosmetic_script(source),
             )
 
