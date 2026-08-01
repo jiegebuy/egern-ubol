@@ -21,6 +21,10 @@ const cosmeticUrl = pathToFileURL(
   path.join(root, "dist", "full", "cosmetic", "chn-0.js"),
 ).href;
 const cosmetic = await import(cosmeticUrl);
+const iplarkUrl = pathToFileURL(
+  path.join(root, "dist", "full", "cosmetic", "iplark.js"),
+).href;
+const iplark = await import(iplarkUrl);
 
 test("generated query cleaner removes an upstream tracking parameter", () => {
   const input = `https://${sample.domain}/article?${sample.parameter}=tracker&keep=1`;
@@ -65,6 +69,20 @@ test("generated cosmetic response script injects CSS into IPLark HTML", async ()
   assert.match(result.body, /data-egern-ubol="chn-0"/);
   assert.match(result.body, /body > #capture-area ~ div\[class\]:empty/);
   assert.ok(result.body.indexOf("<style") < result.body.indexOf("</head>"));
+});
+
+test("dedicated IPLark response script injects the official CSS in one pass", async () => {
+  const html = "<html><head><title>IPLark</title></head><body></body></html>";
+  const result = await iplark.default({
+    env: {},
+    response: {
+      headers: { get: () => "text/html; charset=utf-8" },
+      text: async () => html,
+    },
+  });
+  assert.match(result.body, /data-egern-ubol="iplark"/);
+  assert.match(result.body, /div\[class\^="banner"\]/);
+  assert.match(result.body, /body > #capture-area ~ div\[class\]:empty/);
 });
 
 test("cosmetic environment switch avoids reading the response body", async () => {

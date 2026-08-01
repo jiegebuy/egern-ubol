@@ -14,6 +14,8 @@ sys.path.insert(0, str(ROOT))
 
 from scripts.update import (  # noqa: E402
     DOCUMENT_RESPONSE_MATCH,
+    IPLARK_RESPONSE_MATCH,
+    NON_IPLARK_DOCUMENT_RESPONSE_MATCH,
     RULESET_UI,
     argument_key,
     minimize_domains,
@@ -79,6 +81,16 @@ class UrlFilterTests(unittest.TestCase):
         self.assertRegex("https://example.com/article", DOCUMENT_RESPONSE_MATCH)
         self.assertRegex("https://example.com/a.html?x=1", DOCUMENT_RESPONSE_MATCH)
         self.assertNotRegex("https://example.com/static/app.js", DOCUMENT_RESPONSE_MATCH)
+
+    def test_iplark_uses_only_the_dedicated_cosmetic_match(self) -> None:
+        self.assertRegex("https://iplark.com/", IPLARK_RESPONSE_MATCH)
+        self.assertRegex("https://www.iplark.com/article", IPLARK_RESPONSE_MATCH)
+        self.assertNotRegex(
+            "https://iplark.com/", NON_IPLARK_DOCUMENT_RESPONSE_MATCH
+        )
+        self.assertRegex(
+            "https://example.com/article", NON_IPLARK_DOCUMENT_RESPONSE_MATCH
+        )
 
 
 class DomainMinimizationTests(unittest.TestCase):
@@ -195,6 +207,20 @@ class GeneratedArtifactTests(unittest.TestCase):
         )
         self.assertGreater(chinese["output"]["cosmetic_selectors"], 1_000)
         self.assertTrue((root / "cosmetic" / "chn-0.js").is_file())
+        self.assertTrue((root / "cosmetic" / "iplark.js").is_file())
+        response_scripts = [
+            entry["http_response"]
+            for entry in module["scriptings"]
+            if "http_response" in entry
+        ]
+        matching = [
+            entry
+            for entry in response_scripts
+            if re.search(entry["match"], "https://iplark.com/")
+        ]
+        self.assertEqual(len(matching), 1)
+        self.assertTrue(matching[0]["script_url"].endswith("/cosmetic/iplark.js"))
+        self.assertFalse(matching[0]["disabled"])
         self.assertNotIn("*", module["mitm"]["hostnames"]["includes"])
 
     def test_memory_profile_stays_compact(self) -> None:

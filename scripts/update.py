@@ -29,7 +29,21 @@ DOCUMENT_RESPONSE_MATCH = (
     r"^https?://(?:[^/?#]+(?:/[^?#.]*)?|"
     r"[^?#]+\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
 )
+NON_IPLARK_DOCUMENT_RESPONSE_MATCH = (
+    r"^https?://(?!(?:[^/?#]+\.)?iplark\.com(?::\d+)?(?:[/?#]|$))"
+    r"(?:[^/?#]+(?:/[^?#.]*)?|"
+    r"[^?#]+\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
+)
+IPLARK_RESPONSE_MATCH = (
+    r"^https?://(?:[^/?#]+\.)?iplark\.com(?::\d+)?(?:[/?#]|$)"
+)
 COSMETIC_MITM_HOSTNAMES = ("iplark.com", "*.iplark.com")
+IPLARK_COSMETIC_SELECTORS = (
+    'div[class^="banner"]',
+    'div[style="position: relative;"]',
+    "body > div:not([class]):not([style])",
+    "body > #capture-area ~ div[class]:empty",
+)
 
 GROUP_ORDER = (
     "default",
@@ -1014,7 +1028,7 @@ def render_combined_module(
                 [
                     "  - http_response:",
                     f"      name: {yaml_quote(str(meta['name']) + ' - Safari 网页元素隐藏')}",
-                    f"      match: {yaml_quote(DOCUMENT_RESPONSE_MATCH)}",
+                    f"      match: {yaml_quote(NON_IPLARK_DOCUMENT_RESPONSE_MATCH)}",
                     "      script_url: "
                     + yaml_quote(
                         relative_or_remote(base_url, "cosmetic", f"{id_value}.js")
@@ -1024,6 +1038,24 @@ def render_combined_module(
                     "      timeout: 5",
                     "      body_required: true",
                     "      disabled: {{{" + argument_key(id_value) + "}}}",
+                ]
+            )
+
+        if include_specific_css:
+            lines.extend(
+                [
+                    "  - http_response:",
+                    f"      name: {yaml_quote('AdGuard Chinese (中文) - IPLark 专用元素隐藏')}",
+                    f"      match: {yaml_quote(IPLARK_RESPONSE_MATCH)}",
+                    "      script_url: "
+                    + yaml_quote(
+                        relative_or_remote(base_url, "cosmetic", "iplark.js")
+                    ),
+                    "      update_interval: 86400",
+                    "      max_size: 1048576",
+                    "      timeout: 5",
+                    "      body_required: true",
+                    "      disabled: {{{" + argument_key("chn-0") + "}}}",
                 ]
             )
 
@@ -1153,6 +1185,55 @@ export default async function (ctx) {{
   return cleaned === undefined ? undefined : {{ url: cleaned }};
 }}
 """
+
+
+def render_iplark_cosmetic_script(source: SourceInfo) -> str:
+    selectors = json.dumps(
+        IPLARK_COSMETIC_SELECTORS,
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
+    return f'''// Generated from official uBO Lite {source.version}.
+// Dedicated IPLark bridge for the four AdGuard Chinese cosmetic selectors.
+
+const SELECTORS = {selectors};
+const MARKER = 'data-egern-ubol="iplark"';
+
+export function injectCss(html) {{
+  if (html.includes(MARKER)) {{
+    return html;
+  }}
+  const css = `${{SELECTORS.join(",\\n")}}{{display:none!important;}}`;
+  const style = `<style ${{MARKER}}>${{css}}</style>`;
+  if (/<\\/head\\s*>/i.test(html)) {{
+    return html.replace(/<\\/head\\s*>/i, (closing) => style + closing);
+  }}
+  if (/<body\\b[^>]*>/i.test(html)) {{
+    return html.replace(/<body\\b[^>]*>/i, (opening) => opening + style);
+  }}
+  return style + html;
+}}
+
+function responseContentType(ctx) {{
+  const headers = ctx.response?.headers;
+  if (typeof headers?.get === "function") {{
+    return headers.get("content-type") || "";
+  }}
+  return headers?.["content-type"] || headers?.["Content-Type"] || "";
+}}
+
+export default async function (ctx) {{
+  if (ctx.env?.ENABLE_COSMETIC_FILTERING === "false") {{
+    return undefined;
+  }}
+  const contentType = responseContentType(ctx);
+  if (contentType && !/(?:text\\/html|application\\/xhtml\\+xml)/i.test(contentType)) {{
+    return undefined;
+  }}
+  const html = await ctx.response.text();
+  return {{ body: injectCss(html) }};
+}}
+'''
 
 
 def render_cosmetic_script(
@@ -1547,6 +1628,12 @@ def generate(
                         else {}
                     ),
                 }
+            )
+
+        if include_specific_css:
+            write_text(
+                staging / "cosmetic" / "iplark.js",
+                render_iplark_cosmetic_script(source),
             )
 
         write_text(
