@@ -12,7 +12,13 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts.update import minimize_domains, switch_key, url_filter_to_regex  # noqa: E402
+from scripts.update import (  # noqa: E402
+    RULESET_UI,
+    argument_key,
+    minimize_domains,
+    switch_key,
+    url_filter_to_regex,
+)
 
 
 EXPECTED_ENABLED = {
@@ -81,6 +87,13 @@ class DomainMinimizationTests(unittest.TestCase):
             switch_key("adguard-spyware-url"), "DISABLE_ADGUARD_SPYWARE_URL"
         )
 
+    def test_user_facing_argument_keys_are_readable_and_unique(self) -> None:
+        labels = [entry[0] for entry in RULESET_UI.values()]
+        self.assertEqual(len(labels), 56)
+        self.assertEqual(len(set(labels)), 56)
+        self.assertEqual(argument_key("easylist"), "禁用EasyList")
+        self.assertEqual(argument_key("chn-0"), "禁用AdGuard中文")
+
 
 class GeneratedArtifactTests(unittest.TestCase):
     def profile(self, name: str) -> tuple[Path, dict, dict, dict]:
@@ -99,6 +112,22 @@ class GeneratedArtifactTests(unittest.TestCase):
                 self.assertNotIn("mitm", module)
                 self.assertTrue((root / "config.example.yaml").is_file())
 
+    def test_module_editor_text_is_localized_and_uses_list_names(self) -> None:
+        for profile_name in ("memory-safe", "full"):
+            with self.subTest(profile=profile_name):
+                root, _, module, defaults = self.profile(profile_name)
+                source = (root / "ubol.yaml").read_text(encoding="utf-8")
+                self.assertEqual(module["name"], "uBlock Origin Lite 规则")
+                self.assertIn("所有“禁用…”参数", module["compat_arguments_desc"])
+                self.assertIn("EasyList/uBO – Cookie Notices", source)
+                self.assertIn("禁用EasyList", defaults)
+                self.assertIn("禁用AdGuard中文", defaults)
+                self.assertNotIn("DISABLE_EASYLIST", defaults)
+                self.assertEqual(
+                    module["env_schema"]["ENABLE_QUERY_CLEANING"]["name"],
+                    "URL 查询参数清理",
+                )
+
     def test_preset_defaults_match_requested_selection(self) -> None:
         _, metadata, module, defaults = self.profile("memory-safe")
         selected = set(metadata["preset"]["enabled"])
@@ -106,7 +135,7 @@ class GeneratedArtifactTests(unittest.TestCase):
         disabled_values = [entry["rule_set"]["disabled"] for entry in module["rules"]]
         self.assertEqual(disabled_values.count(False), len(EXPECTED_ENABLED))
         for ruleset_id in EXPECTED_ENABLED:
-            self.assertFalse(defaults[switch_key(ruleset_id)])
+            self.assertFalse(defaults[argument_key(ruleset_id)])
 
     def test_profile_rule_counts(self) -> None:
         _, memory, _, _ = self.profile("memory-safe")

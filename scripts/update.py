@@ -36,13 +36,13 @@ GROUP_ORDER = (
     "regions",
 )
 GROUP_LABELS = {
-    "default": "Default",
-    "ads": "Ads",
-    "privacy": "Privacy",
-    "malware": "Malware protection, security",
-    "annoyances": "Annoyances",
-    "misc": "Miscellaneous",
-    "regions": "Regions, languages",
+    "default": "默认规则",
+    "ads": "广告",
+    "privacy": "隐私",
+    "malware": "恶意软件与安全",
+    "annoyances": "烦扰元素",
+    "misc": "其他",
+    "regions": "地区与语言",
 }
 GROUP_ICONS = {
     "default": "shield.lefthalf.filled",
@@ -52,6 +52,68 @@ GROUP_ICONS = {
     "annoyances": "hand.raised",
     "misc": "wrench.and.screwdriver",
     "regions": "globe",
+}
+
+# Egern displays compat_arguments keys directly in its module editor. Keep
+# these labels short enough for a phone while retaining the official list name
+# and a Chinese explanation in compat_arguments_desc.
+RULESET_UI: dict[str, tuple[str, str]] = {
+    "ublock-filters": ("禁用uBlock主规则", "广告、跟踪器等基础过滤"),
+    "easylist": ("禁用EasyList", "通用广告过滤"),
+    "easyprivacy": ("禁用EasyPrivacy", "隐私与跟踪器过滤"),
+    "pgl": ("禁用PeterLowe", "广告与跟踪器过滤"),
+    "adguard-mobile": ("禁用移动广告", "移动端广告过滤"),
+    "block-lan": ("禁用局域网入侵防护", "阻止外部网络侵入局域网"),
+    "adguard-spyware-url": ("禁用网址跟踪保护", "移除网址跟踪与间谍参数"),
+    "ublock-badware": ("禁用uBlock恶意软件", "恶意软件风险过滤"),
+    "urlhaus-full": ("禁用恶意网址列表", "已知恶意网址拦截"),
+    "annoyances-ai": ("禁用AI组件", "网页 AI 小组件"),
+    "annoyances-cookies": ("禁用Cookie提示", "Cookie 同意提示"),
+    "annoyances-overlays": ("禁用浮层提示", "弹层与遮罩提示"),
+    "annoyances-social": ("禁用社交组件", "社交分享与关注组件"),
+    "annoyances-widgets": ("禁用聊天组件", "网页聊天组件"),
+    "annoyances-others": ("禁用其他烦扰", "其他网页烦扰元素"),
+    "annoyances-notifications": ("禁用通知提示", "网页通知请求与提示"),
+    "ublock-experimental": ("禁用uBlock实验规则", "实验性过滤规则"),
+    "ubol-tests": ("禁用uBOLite测试规则", "uBO Lite 测试过滤器"),
+    "alb-0": ("禁用阿尔巴尼亚列表", "阿尔巴尼亚与科索沃地区"),
+    "ara-0": ("禁用阿拉伯语列表", "阿拉伯语地区"),
+    "bgr-0": ("禁用保加利亚语列表", "保加利亚语地区"),
+    "chn-0": ("禁用AdGuard中文", "中文网站"),
+    "cze-0": ("禁用捷克斯洛伐克列表", "捷克语与斯洛伐克语地区"),
+    "deu-0": ("禁用EasyList德国", "德语地区"),
+    "est-0": ("禁用爱沙尼亚语列表", "爱沙尼亚语地区"),
+    "fin-0": ("禁用芬兰语列表", "芬兰语地区"),
+    "fra-0": ("禁用AdGuard法语", "法语地区"),
+    "grc-0": ("禁用希腊语列表", "希腊语地区"),
+    "hrv-0": ("禁用塞尔维亚克罗地亚语", "塞尔维亚-克罗地亚语地区"),
+    "hun-0": ("禁用匈牙利语列表", "匈牙利语地区"),
+    "idn-0": ("禁用ABPindo", "印度尼西亚语与马来语地区"),
+    "ind-0": ("禁用IndianList", "印度、斯里兰卡与尼泊尔地区"),
+    "irn-0": ("禁用PersianBlocker", "波斯语地区"),
+    "isl-0": ("禁用冰岛语列表", "冰岛语地区"),
+    "isr-0": ("禁用EasyList希伯来语", "希伯来语地区"),
+    "ita-0": ("禁用EasyList意大利", "意大利语地区"),
+    "jpn-1": ("禁用AdGuard日语", "日语地区"),
+    "kor-1": ("禁用ListKRClassic", "韩语地区"),
+    "ltu-0": ("禁用EasyList立陶宛", "立陶宛语地区"),
+    "lva-0": ("禁用拉脱维亚语列表", "拉脱维亚语地区"),
+    "mkd-0": ("禁用马其顿语列表", "马其顿语地区"),
+    "nld-0": ("禁用AdGuard荷兰语", "荷兰语地区"),
+    "nor-0": ("禁用北欧语列表", "挪威、丹麦与冰岛地区"),
+    "pol-0": ("禁用波兰语官方列表", "uBlock Origin 波兰语过滤"),
+    "pol-3": ("禁用CERTPL威胁列表", "CERT.PL 安全威胁过滤"),
+    "rou-1": ("禁用罗马尼亚语列表", "罗马尼亚语与摩尔多瓦地区"),
+    "rus-0": ("禁用RUAdList", "俄语及周边地区"),
+    "rus-1": ("禁用RUAdList计数器", "俄语网站计数器过滤"),
+    "spa-0": ("禁用EasyList西班牙语", "西班牙语地区"),
+    "spa-1": ("禁用AdGuard西葡语", "西班牙语与葡萄牙语地区"),
+    "svn-0": ("禁用斯洛文尼亚语列表", "斯洛文尼亚语地区"),
+    "swe-1": ("禁用瑞典语列表", "瑞典语地区"),
+    "tha-0": ("禁用EasyList泰语", "泰语地区"),
+    "tur-0": ("禁用AdGuard土耳其语", "土耳其语地区"),
+    "ukr-0": ("禁用AdGuard乌克兰语", "乌克兰语地区"),
+    "vie-1": ("禁用ABPVN", "越南语地区"),
 }
 
 NETWORK_URL_KEYS = {
@@ -644,6 +706,16 @@ def switch_key(ruleset_id: str) -> str:
     return f"DISABLE_{normalized}"
 
 
+def argument_key(ruleset_id: str) -> str:
+    entry = RULESET_UI.get(ruleset_id)
+    return entry[0] if entry else switch_key(ruleset_id)
+
+
+def ruleset_purpose(ruleset_id: str) -> str | None:
+    entry = RULESET_UI.get(ruleset_id)
+    return entry[1] if entry else None
+
+
 def render_combined_module(
     source: SourceInfo,
     items: Sequence[dict[str, Any]],
@@ -652,33 +724,40 @@ def render_combined_module(
     policy: str,
     include_url_regex: bool,
 ) -> str:
-    profile = "full URL" if include_url_regex else "memory-safe domain/IP"
+    profile = "完整 URL 过滤" if include_url_regex else "内存安全，仅域名/IP"
+    ordered_items = [
+        item
+        for group in GROUP_ORDER
+        for item in items
+        if effective_group(item["meta"]) == group
+    ]
     lines = [
-        f"name: {yaml_quote('uBlock Origin Lite rules')}",
+        f"name: {yaml_quote('uBlock Origin Lite 规则')}",
         "description: "
         + yaml_quote(
-            f"One Egern module with {len(items)} independently configurable "
-            f"uBO Lite {source.version} filter-list switches ({profile} profile)."
+            f"一个 Egern 模块，包含 {len(items)} 个可独立配置的 uBO Lite "
+            f"{source.version} 过滤列表开关（{profile}）。"
         ),
-        f"author: {yaml_quote('Raymond Hill and upstream filter-list maintainers')}",
+        f"author: {yaml_quote('Raymond Hill 与各上游过滤列表维护者')}",
         f"homepage: {yaml_quote(UPSTREAM_HOME)}",
         f"manual: {yaml_quote(UPSTREAM_HOME)}",
         f"icon: {yaml_quote('shield.lefthalf.filled')}",
         "",
         "compat_arguments:",
-        f"  BLOCK_POLICY: {yaml_quote(policy)}",
+        f"  {yaml_quote('拦截策略')}: {yaml_quote(policy)}",
     ]
-    for item in items:
+    for item in ordered_items:
         id_value = str(item["meta"]["id"])
         lines.append(
-            f"  {switch_key(id_value)}: {'false' if id_value in enabled else 'true'}"
+            f"  {yaml_quote(argument_key(id_value))}: "
+            f"{'false' if id_value in enabled else 'true'}"
         )
 
     lines.extend(
         [
             "compat_arguments_desc: |",
-            "  Set a DISABLE_* boolean to false to enable that list, or true to disable it.",
-            "  BLOCK_POLICY controls the Egern policy used by all enabled lists.",
+            "  所有“禁用…”参数：false 表示启用该列表，true 表示禁用。",
+            "  “拦截策略”控制所有已启用列表采用的 Egern 策略。",
         ]
     )
     for group in GROUP_ORDER:
@@ -690,7 +769,12 @@ def render_combined_module(
         lines.append(f"  [{GROUP_LABELS[group]}]")
         for item in group_items:
             meta = item["meta"]
-            lines.append(f"  {switch_key(str(meta['id']))}: {meta['name']}")
+            id_value = str(meta["id"])
+            purpose = ruleset_purpose(id_value)
+            suffix = f"（{purpose}）" if purpose else ""
+            lines.append(
+                f"  {argument_key(id_value)}: {meta['name']}{suffix}"
+            )
 
     if any(item["query"].operations for item in items):
         lines.extend(
@@ -698,10 +782,10 @@ def render_combined_module(
                 "",
                 "env_schema:",
                 "  ENABLE_QUERY_CLEANING:",
-                f"    name: {yaml_quote('URL query cleaning')}",
+                f"    name: {yaml_quote('URL 查询参数清理')}",
                 "    description: "
                 + yaml_quote(
-                    "Disable only query-parameter cleaning; native blocking stays enabled."
+                    "关闭后仅停用 URL 查询参数清理，原生拦截规则不受影响。"
                 ),
                 f"    default_value: {yaml_quote('true')}",
                 "    options:",
@@ -711,7 +795,7 @@ def render_combined_module(
         )
 
     lines.extend(["", "rules:"])
-    for item in items:
+    for item in ordered_items:
         meta = item["meta"]
         id_value = str(meta["id"])
         lines.extend(
@@ -722,13 +806,13 @@ def render_combined_module(
                 + yaml_quote(
                     relative_or_remote(base_url, "rulesets", f"{id_value}.yaml")
                 ),
-                f"      policy: {yaml_quote('{{{BLOCK_POLICY}}}')}",
+                f"      policy: {yaml_quote('{{{拦截策略}}}')}",
                 "      update_interval: 86400",
-                "      disabled: {{{" + switch_key(id_value) + "}}}",
+                "      disabled: {{{" + argument_key(id_value) + "}}}",
             ]
         )
 
-    query_items = [item for item in items if item["query"].operations]
+    query_items = [item for item in ordered_items if item["query"].operations]
     if query_items:
         lines.extend(["", "scriptings:"])
         for item in query_items:
@@ -745,7 +829,7 @@ def render_combined_module(
                     ),
                     "      update_interval: 86400",
                     "      timeout: 5",
-                    "      disabled: {{{" + switch_key(id_value) + "}}}",
+                    "      disabled: {{{" + argument_key(id_value) + "}}}",
                 ]
             )
 
@@ -890,10 +974,10 @@ def render_reference_example(base_url: str) -> str:
         module_url = f"{base_url.rstrip('/')}/ubol.yaml"
     return "\n".join(
         [
-            "# Add this single module reference to the Egern main configuration.",
-            "# Its 56 boolean compat_arguments are defined inside ubol.yaml.",
+            "# 将这一个模块引用添加到 Egern 主配置。",
+            "# 56 个布尔 compat_arguments 已在 ubol.yaml 内定义。",
             "modules:",
-            f"  - name: {yaml_quote('uBlock Origin Lite rules')}",
+            f"  - name: {yaml_quote('uBlock Origin Lite 规则')}",
             f"    url: {yaml_quote(module_url)}",
             "    enabled: true",
             "    update_interval: 86400",

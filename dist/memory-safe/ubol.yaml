@@ -1,139 +1,139 @@
-name: "uBlock Origin Lite rules"
-description: "One Egern module with 56 independently configurable uBO Lite 2026.729.1529 filter-list switches (memory-safe domain/IP profile)."
-author: "Raymond Hill and upstream filter-list maintainers"
+name: "uBlock Origin Lite 规则"
+description: "一个 Egern 模块，包含 56 个可独立配置的 uBO Lite 2026.729.1529 过滤列表开关（内存安全，仅域名/IP）。"
+author: "Raymond Hill 与各上游过滤列表维护者"
 homepage: "https://github.com/uBlockOrigin/uBOL-home"
 manual: "https://github.com/uBlockOrigin/uBOL-home"
 icon: "shield.lefthalf.filled"
 
 compat_arguments:
-  BLOCK_POLICY: "REJECT"
-  DISABLE_UBLOCK_FILTERS: false
-  DISABLE_EASYLIST: false
-  DISABLE_EASYPRIVACY: false
-  DISABLE_PGL: false
-  DISABLE_UBLOCK_BADWARE: false
-  DISABLE_URLHAUS_FULL: false
-  DISABLE_ADGUARD_MOBILE: true
-  DISABLE_BLOCK_LAN: true
-  DISABLE_ADGUARD_SPYWARE_URL: false
-  DISABLE_ANNOYANCES_AI: false
-  DISABLE_ANNOYANCES_COOKIES: true
-  DISABLE_ANNOYANCES_OVERLAYS: true
-  DISABLE_ANNOYANCES_SOCIAL: true
-  DISABLE_ANNOYANCES_WIDGETS: true
-  DISABLE_ANNOYANCES_OTHERS: true
-  DISABLE_ANNOYANCES_NOTIFICATIONS: true
-  DISABLE_UBLOCK_EXPERIMENTAL: true
-  DISABLE_UBOL_TESTS: true
-  DISABLE_ALB_0: true
-  DISABLE_ARA_0: true
-  DISABLE_BGR_0: true
-  DISABLE_CHN_0: false
-  DISABLE_CZE_0: true
-  DISABLE_DEU_0: true
-  DISABLE_EST_0: true
-  DISABLE_FIN_0: true
-  DISABLE_FRA_0: true
-  DISABLE_GRC_0: true
-  DISABLE_HRV_0: true
-  DISABLE_HUN_0: true
-  DISABLE_IDN_0: true
-  DISABLE_IND_0: true
-  DISABLE_IRN_0: true
-  DISABLE_ISL_0: true
-  DISABLE_ISR_0: true
-  DISABLE_ITA_0: true
-  DISABLE_JPN_1: true
-  DISABLE_KOR_1: true
-  DISABLE_LTU_0: true
-  DISABLE_LVA_0: true
-  DISABLE_MKD_0: true
-  DISABLE_NLD_0: true
-  DISABLE_NOR_0: true
-  DISABLE_POL_0: true
-  DISABLE_POL_3: true
-  DISABLE_ROU_1: true
-  DISABLE_RUS_0: true
-  DISABLE_RUS_1: true
-  DISABLE_SPA_0: true
-  DISABLE_SPA_1: true
-  DISABLE_SVN_0: true
-  DISABLE_SWE_1: true
-  DISABLE_THA_0: true
-  DISABLE_TUR_0: true
-  DISABLE_UKR_0: true
-  DISABLE_VIE_1: true
+  "拦截策略": "REJECT"
+  "禁用uBlock主规则": false
+  "禁用EasyList": false
+  "禁用EasyPrivacy": false
+  "禁用PeterLowe": false
+  "禁用移动广告": true
+  "禁用局域网入侵防护": true
+  "禁用网址跟踪保护": false
+  "禁用uBlock恶意软件": false
+  "禁用恶意网址列表": false
+  "禁用AI组件": false
+  "禁用Cookie提示": true
+  "禁用浮层提示": true
+  "禁用社交组件": true
+  "禁用聊天组件": true
+  "禁用其他烦扰": true
+  "禁用通知提示": true
+  "禁用uBlock实验规则": true
+  "禁用uBOLite测试规则": true
+  "禁用阿尔巴尼亚列表": true
+  "禁用阿拉伯语列表": true
+  "禁用保加利亚语列表": true
+  "禁用AdGuard中文": false
+  "禁用捷克斯洛伐克列表": true
+  "禁用EasyList德国": true
+  "禁用爱沙尼亚语列表": true
+  "禁用芬兰语列表": true
+  "禁用AdGuard法语": true
+  "禁用希腊语列表": true
+  "禁用塞尔维亚克罗地亚语": true
+  "禁用匈牙利语列表": true
+  "禁用ABPindo": true
+  "禁用IndianList": true
+  "禁用PersianBlocker": true
+  "禁用冰岛语列表": true
+  "禁用EasyList希伯来语": true
+  "禁用EasyList意大利": true
+  "禁用AdGuard日语": true
+  "禁用ListKRClassic": true
+  "禁用EasyList立陶宛": true
+  "禁用拉脱维亚语列表": true
+  "禁用马其顿语列表": true
+  "禁用AdGuard荷兰语": true
+  "禁用北欧语列表": true
+  "禁用波兰语官方列表": true
+  "禁用CERTPL威胁列表": true
+  "禁用罗马尼亚语列表": true
+  "禁用RUAdList": true
+  "禁用RUAdList计数器": true
+  "禁用EasyList西班牙语": true
+  "禁用AdGuard西葡语": true
+  "禁用斯洛文尼亚语列表": true
+  "禁用瑞典语列表": true
+  "禁用EasyList泰语": true
+  "禁用AdGuard土耳其语": true
+  "禁用AdGuard乌克兰语": true
+  "禁用ABPVN": true
 compat_arguments_desc: |
-  Set a DISABLE_* boolean to false to enable that list, or true to disable it.
-  BLOCK_POLICY controls the Egern policy used by all enabled lists.
-  [Default]
-  DISABLE_UBLOCK_FILTERS: uBlock filters – Ads, trackers, and more
-  DISABLE_EASYLIST: EasyList
-  DISABLE_EASYPRIVACY: EasyPrivacy
-  DISABLE_PGL: Peter Lowe – Ads, trackers, and more
-  [Ads]
-  DISABLE_ADGUARD_MOBILE: AdGuard/uBO – Mobile Ads
-  [Privacy]
-  DISABLE_BLOCK_LAN: Block Outsider Intrusion into LAN
-  DISABLE_ADGUARD_SPYWARE_URL: AdGuard/uBO – URL Tracking Protection
-  [Malware protection, security]
-  DISABLE_UBLOCK_BADWARE: uBlock filters – Badware risks
-  DISABLE_URLHAUS_FULL: Malicious URL Blocklist
-  [Annoyances]
-  DISABLE_ANNOYANCES_AI: EasyList – AI Widgets
-  DISABLE_ANNOYANCES_COOKIES: EasyList/uBO – Cookie Notices
-  DISABLE_ANNOYANCES_OVERLAYS: EasyList/uBO – Overlay Notices
-  DISABLE_ANNOYANCES_SOCIAL: EasyList – Social Widgets
-  DISABLE_ANNOYANCES_WIDGETS: EasyList – Chat Widgets
-  DISABLE_ANNOYANCES_OTHERS: EasyList – Other Annoyances
-  DISABLE_ANNOYANCES_NOTIFICATIONS: EasyList – Notifications
-  [Miscellaneous]
-  DISABLE_UBLOCK_EXPERIMENTAL: uBlock filters – Experimental
-  DISABLE_UBOL_TESTS: uBO Lite Test Filters
-  [Regions, languages]
-  DISABLE_ALB_0: 🇦🇱al 🇽🇰xk: Adblock List for Albania
-  DISABLE_ARA_0: 🇪🇬eg 🇸🇦sa 🇲🇦ma 🇩🇿dz: Liste AR
-  DISABLE_BGR_0: 🇧🇬bg: Bulgarian Adblock list
-  DISABLE_CHN_0: 🇨🇳cn 🇹🇼tw: AdGuard Chinese (中文)
-  DISABLE_CZE_0: 🇨🇿cz 🇸🇰sk: EasyList Czech and Slovak
-  DISABLE_DEU_0: 🇩🇪de 🇨🇭ch 🇦🇹at: EasyList Germany
-  DISABLE_EST_0: 🇪🇪ee: Eesti saitidele kohandatud filter
-  DISABLE_FIN_0: 🇫🇮fi: Adblock List for Finland
-  DISABLE_FRA_0: 🇫🇷fr 🇧🇪be 🇨🇦ca: AdGuard Français
-  DISABLE_GRC_0: 🇬🇷gr 🇨🇾cy: Greek AdBlock Filter
-  DISABLE_HRV_0: 🇭🇷hr 🇷🇸rs: Dandelion Sprout's Serbo-Croatian filters
-  DISABLE_HUN_0: 🇭🇺hu: hufilter
-  DISABLE_IDN_0: 🇮🇩id 🇲🇾my: ABPindo
-  DISABLE_IND_0: 🇮🇳in 🇱🇰lk 🇳🇵np: IndianList
-  DISABLE_IRN_0: 🇮🇷ir: PersianBlocker
-  DISABLE_ISL_0: 🇮🇸is: Icelandic ABP List
-  DISABLE_ISR_0: 🇮🇱il: EasyList Hebrew
-  DISABLE_ITA_0: 🇮🇹it: EasyList Italy
-  DISABLE_JPN_1: 🇯🇵jp: AdGuard Japanese
-  DISABLE_KOR_1: 🇰🇷kr: List-KR Classic
-  DISABLE_LTU_0: 🇱🇹lt: EasyList Lithuania
-  DISABLE_LVA_0: 🇱🇻lv: Latvian List
-  DISABLE_MKD_0: 🇲🇰mk: Macedonian adBlock Filters
-  DISABLE_NLD_0: 🇳🇱nl 🇧🇪be: AdGuard Dutch
-  DISABLE_NOR_0: 🇳🇴no 🇩🇰dk 🇮🇸is: Dandelion Sprouts nordiske filtre
-  DISABLE_POL_0: 🇵🇱pl: Oficjalne Polskie Filtry do uBlocka Origin
-  DISABLE_POL_3: 🇵🇱pl: CERT.PL's Warning List
-  DISABLE_ROU_1: 🇷🇴ro 🇲🇩md: Romanian Ad (ROad) Block List Light
-  DISABLE_RUS_0: 🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList
-  DISABLE_RUS_1: 🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList: Counters
-  DISABLE_SPA_0: 🇪🇸es 🇦🇷ar 🇲🇽mx 🇨🇴co: EasyList Spanish
-  DISABLE_SPA_1: 🇪🇸es 🇦🇷ar 🇧🇷br 🇵🇹pt: AdGuard Spanish/Portuguese
-  DISABLE_SVN_0: 🇸🇮si: Slovenian List
-  DISABLE_SWE_1: 🇸🇪se: Frellwit's Swedish Filter
-  DISABLE_THA_0: 🇹🇭th: EasyList Thailand
-  DISABLE_TUR_0: 🇹🇷tr: AdGuard Turkish
-  DISABLE_UKR_0: 🇺🇦ua: AdGuard Ukrainian
-  DISABLE_VIE_1: 🇻🇳vn: ABPVN List
+  所有“禁用…”参数：false 表示启用该列表，true 表示禁用。
+  “拦截策略”控制所有已启用列表采用的 Egern 策略。
+  [默认规则]
+  禁用uBlock主规则: uBlock filters – Ads, trackers, and more（广告、跟踪器等基础过滤）
+  禁用EasyList: EasyList（通用广告过滤）
+  禁用EasyPrivacy: EasyPrivacy（隐私与跟踪器过滤）
+  禁用PeterLowe: Peter Lowe – Ads, trackers, and more（广告与跟踪器过滤）
+  [广告]
+  禁用移动广告: AdGuard/uBO – Mobile Ads（移动端广告过滤）
+  [隐私]
+  禁用局域网入侵防护: Block Outsider Intrusion into LAN（阻止外部网络侵入局域网）
+  禁用网址跟踪保护: AdGuard/uBO – URL Tracking Protection（移除网址跟踪与间谍参数）
+  [恶意软件与安全]
+  禁用uBlock恶意软件: uBlock filters – Badware risks（恶意软件风险过滤）
+  禁用恶意网址列表: Malicious URL Blocklist（已知恶意网址拦截）
+  [烦扰元素]
+  禁用AI组件: EasyList – AI Widgets（网页 AI 小组件）
+  禁用Cookie提示: EasyList/uBO – Cookie Notices（Cookie 同意提示）
+  禁用浮层提示: EasyList/uBO – Overlay Notices（弹层与遮罩提示）
+  禁用社交组件: EasyList – Social Widgets（社交分享与关注组件）
+  禁用聊天组件: EasyList – Chat Widgets（网页聊天组件）
+  禁用其他烦扰: EasyList – Other Annoyances（其他网页烦扰元素）
+  禁用通知提示: EasyList – Notifications（网页通知请求与提示）
+  [其他]
+  禁用uBlock实验规则: uBlock filters – Experimental（实验性过滤规则）
+  禁用uBOLite测试规则: uBO Lite Test Filters（uBO Lite 测试过滤器）
+  [地区与语言]
+  禁用阿尔巴尼亚列表: 🇦🇱al 🇽🇰xk: Adblock List for Albania（阿尔巴尼亚与科索沃地区）
+  禁用阿拉伯语列表: 🇪🇬eg 🇸🇦sa 🇲🇦ma 🇩🇿dz: Liste AR（阿拉伯语地区）
+  禁用保加利亚语列表: 🇧🇬bg: Bulgarian Adblock list（保加利亚语地区）
+  禁用AdGuard中文: 🇨🇳cn 🇹🇼tw: AdGuard Chinese (中文)（中文网站）
+  禁用捷克斯洛伐克列表: 🇨🇿cz 🇸🇰sk: EasyList Czech and Slovak（捷克语与斯洛伐克语地区）
+  禁用EasyList德国: 🇩🇪de 🇨🇭ch 🇦🇹at: EasyList Germany（德语地区）
+  禁用爱沙尼亚语列表: 🇪🇪ee: Eesti saitidele kohandatud filter（爱沙尼亚语地区）
+  禁用芬兰语列表: 🇫🇮fi: Adblock List for Finland（芬兰语地区）
+  禁用AdGuard法语: 🇫🇷fr 🇧🇪be 🇨🇦ca: AdGuard Français（法语地区）
+  禁用希腊语列表: 🇬🇷gr 🇨🇾cy: Greek AdBlock Filter（希腊语地区）
+  禁用塞尔维亚克罗地亚语: 🇭🇷hr 🇷🇸rs: Dandelion Sprout's Serbo-Croatian filters（塞尔维亚-克罗地亚语地区）
+  禁用匈牙利语列表: 🇭🇺hu: hufilter（匈牙利语地区）
+  禁用ABPindo: 🇮🇩id 🇲🇾my: ABPindo（印度尼西亚语与马来语地区）
+  禁用IndianList: 🇮🇳in 🇱🇰lk 🇳🇵np: IndianList（印度、斯里兰卡与尼泊尔地区）
+  禁用PersianBlocker: 🇮🇷ir: PersianBlocker（波斯语地区）
+  禁用冰岛语列表: 🇮🇸is: Icelandic ABP List（冰岛语地区）
+  禁用EasyList希伯来语: 🇮🇱il: EasyList Hebrew（希伯来语地区）
+  禁用EasyList意大利: 🇮🇹it: EasyList Italy（意大利语地区）
+  禁用AdGuard日语: 🇯🇵jp: AdGuard Japanese（日语地区）
+  禁用ListKRClassic: 🇰🇷kr: List-KR Classic（韩语地区）
+  禁用EasyList立陶宛: 🇱🇹lt: EasyList Lithuania（立陶宛语地区）
+  禁用拉脱维亚语列表: 🇱🇻lv: Latvian List（拉脱维亚语地区）
+  禁用马其顿语列表: 🇲🇰mk: Macedonian adBlock Filters（马其顿语地区）
+  禁用AdGuard荷兰语: 🇳🇱nl 🇧🇪be: AdGuard Dutch（荷兰语地区）
+  禁用北欧语列表: 🇳🇴no 🇩🇰dk 🇮🇸is: Dandelion Sprouts nordiske filtre（挪威、丹麦与冰岛地区）
+  禁用波兰语官方列表: 🇵🇱pl: Oficjalne Polskie Filtry do uBlocka Origin（uBlock Origin 波兰语过滤）
+  禁用CERTPL威胁列表: 🇵🇱pl: CERT.PL's Warning List（CERT.PL 安全威胁过滤）
+  禁用罗马尼亚语列表: 🇷🇴ro 🇲🇩md: Romanian Ad (ROad) Block List Light（罗马尼亚语与摩尔多瓦地区）
+  禁用RUAdList: 🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList（俄语及周边地区）
+  禁用RUAdList计数器: 🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList: Counters（俄语网站计数器过滤）
+  禁用EasyList西班牙语: 🇪🇸es 🇦🇷ar 🇲🇽mx 🇨🇴co: EasyList Spanish（西班牙语地区）
+  禁用AdGuard西葡语: 🇪🇸es 🇦🇷ar 🇧🇷br 🇵🇹pt: AdGuard Spanish/Portuguese（西班牙语与葡萄牙语地区）
+  禁用斯洛文尼亚语列表: 🇸🇮si: Slovenian List（斯洛文尼亚语地区）
+  禁用瑞典语列表: 🇸🇪se: Frellwit's Swedish Filter（瑞典语地区）
+  禁用EasyList泰语: 🇹🇭th: EasyList Thailand（泰语地区）
+  禁用AdGuard土耳其语: 🇹🇷tr: AdGuard Turkish（土耳其语地区）
+  禁用AdGuard乌克兰语: 🇺🇦ua: AdGuard Ukrainian（乌克兰语地区）
+  禁用ABPVN: 🇻🇳vn: ABPVN List（越南语地区）
 
 env_schema:
   ENABLE_QUERY_CLEANING:
-    name: "URL query cleaning"
-    description: "Disable only query-parameter cleaning; native blocking stays enabled."
+    name: "URL 查询参数清理"
+    description: "关闭后仅停用 URL 查询参数清理，原生拦截规则不受影响。"
     default_value: "true"
     options:
       - "true"
@@ -143,339 +143,339 @@ rules:
   - rule_set:
       name: "uBlock filters – Ads, trackers, and more"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/ublock-filters.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_UBLOCK_FILTERS}}}
+      disabled: {{{禁用uBlock主规则}}}
   - rule_set:
       name: "EasyList"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/easylist.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_EASYLIST}}}
+      disabled: {{{禁用EasyList}}}
   - rule_set:
       name: "EasyPrivacy"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/easyprivacy.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_EASYPRIVACY}}}
+      disabled: {{{禁用EasyPrivacy}}}
   - rule_set:
       name: "Peter Lowe – Ads, trackers, and more"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/pgl.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_PGL}}}
-  - rule_set:
-      name: "uBlock filters – Badware risks"
-      match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/ublock-badware.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
-      update_interval: 86400
-      disabled: {{{DISABLE_UBLOCK_BADWARE}}}
-  - rule_set:
-      name: "Malicious URL Blocklist"
-      match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/urlhaus-full.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
-      update_interval: 86400
-      disabled: {{{DISABLE_URLHAUS_FULL}}}
+      disabled: {{{禁用PeterLowe}}}
   - rule_set:
       name: "AdGuard/uBO – Mobile Ads"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/adguard-mobile.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ADGUARD_MOBILE}}}
+      disabled: {{{禁用移动广告}}}
   - rule_set:
       name: "Block Outsider Intrusion into LAN"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/block-lan.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_BLOCK_LAN}}}
+      disabled: {{{禁用局域网入侵防护}}}
   - rule_set:
       name: "AdGuard/uBO – URL Tracking Protection"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/adguard-spyware-url.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ADGUARD_SPYWARE_URL}}}
+      disabled: {{{禁用网址跟踪保护}}}
+  - rule_set:
+      name: "uBlock filters – Badware risks"
+      match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/ublock-badware.yaml"
+      policy: "{{{拦截策略}}}"
+      update_interval: 86400
+      disabled: {{{禁用uBlock恶意软件}}}
+  - rule_set:
+      name: "Malicious URL Blocklist"
+      match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/urlhaus-full.yaml"
+      policy: "{{{拦截策略}}}"
+      update_interval: 86400
+      disabled: {{{禁用恶意网址列表}}}
   - rule_set:
       name: "EasyList – AI Widgets"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/annoyances-ai.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ANNOYANCES_AI}}}
+      disabled: {{{禁用AI组件}}}
   - rule_set:
       name: "EasyList/uBO – Cookie Notices"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/annoyances-cookies.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ANNOYANCES_COOKIES}}}
+      disabled: {{{禁用Cookie提示}}}
   - rule_set:
       name: "EasyList/uBO – Overlay Notices"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/annoyances-overlays.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ANNOYANCES_OVERLAYS}}}
+      disabled: {{{禁用浮层提示}}}
   - rule_set:
       name: "EasyList – Social Widgets"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/annoyances-social.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ANNOYANCES_SOCIAL}}}
+      disabled: {{{禁用社交组件}}}
   - rule_set:
       name: "EasyList – Chat Widgets"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/annoyances-widgets.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ANNOYANCES_WIDGETS}}}
+      disabled: {{{禁用聊天组件}}}
   - rule_set:
       name: "EasyList – Other Annoyances"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/annoyances-others.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ANNOYANCES_OTHERS}}}
+      disabled: {{{禁用其他烦扰}}}
   - rule_set:
       name: "EasyList – Notifications"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/annoyances-notifications.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ANNOYANCES_NOTIFICATIONS}}}
+      disabled: {{{禁用通知提示}}}
   - rule_set:
       name: "uBlock filters – Experimental"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/ublock-experimental.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_UBLOCK_EXPERIMENTAL}}}
+      disabled: {{{禁用uBlock实验规则}}}
   - rule_set:
       name: "uBO Lite Test Filters"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/ubol-tests.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_UBOL_TESTS}}}
+      disabled: {{{禁用uBOLite测试规则}}}
   - rule_set:
       name: "🇦🇱al 🇽🇰xk: Adblock List for Albania"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/alb-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ALB_0}}}
+      disabled: {{{禁用阿尔巴尼亚列表}}}
   - rule_set:
       name: "🇪🇬eg 🇸🇦sa 🇲🇦ma 🇩🇿dz: Liste AR"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/ara-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ARA_0}}}
+      disabled: {{{禁用阿拉伯语列表}}}
   - rule_set:
       name: "🇧🇬bg: Bulgarian Adblock list"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/bgr-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_BGR_0}}}
+      disabled: {{{禁用保加利亚语列表}}}
   - rule_set:
       name: "🇨🇳cn 🇹🇼tw: AdGuard Chinese (中文)"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/chn-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_CHN_0}}}
+      disabled: {{{禁用AdGuard中文}}}
   - rule_set:
       name: "🇨🇿cz 🇸🇰sk: EasyList Czech and Slovak"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/cze-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_CZE_0}}}
+      disabled: {{{禁用捷克斯洛伐克列表}}}
   - rule_set:
       name: "🇩🇪de 🇨🇭ch 🇦🇹at: EasyList Germany"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/deu-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_DEU_0}}}
+      disabled: {{{禁用EasyList德国}}}
   - rule_set:
       name: "🇪🇪ee: Eesti saitidele kohandatud filter"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/est-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_EST_0}}}
+      disabled: {{{禁用爱沙尼亚语列表}}}
   - rule_set:
       name: "🇫🇮fi: Adblock List for Finland"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/fin-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_FIN_0}}}
+      disabled: {{{禁用芬兰语列表}}}
   - rule_set:
       name: "🇫🇷fr 🇧🇪be 🇨🇦ca: AdGuard Français"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/fra-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_FRA_0}}}
+      disabled: {{{禁用AdGuard法语}}}
   - rule_set:
       name: "🇬🇷gr 🇨🇾cy: Greek AdBlock Filter"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/grc-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_GRC_0}}}
+      disabled: {{{禁用希腊语列表}}}
   - rule_set:
       name: "🇭🇷hr 🇷🇸rs: Dandelion Sprout's Serbo-Croatian filters"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/hrv-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_HRV_0}}}
+      disabled: {{{禁用塞尔维亚克罗地亚语}}}
   - rule_set:
       name: "🇭🇺hu: hufilter"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/hun-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_HUN_0}}}
+      disabled: {{{禁用匈牙利语列表}}}
   - rule_set:
       name: "🇮🇩id 🇲🇾my: ABPindo"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/idn-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_IDN_0}}}
+      disabled: {{{禁用ABPindo}}}
   - rule_set:
       name: "🇮🇳in 🇱🇰lk 🇳🇵np: IndianList"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/ind-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_IND_0}}}
+      disabled: {{{禁用IndianList}}}
   - rule_set:
       name: "🇮🇷ir: PersianBlocker"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/irn-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_IRN_0}}}
+      disabled: {{{禁用PersianBlocker}}}
   - rule_set:
       name: "🇮🇸is: Icelandic ABP List"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/isl-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ISL_0}}}
+      disabled: {{{禁用冰岛语列表}}}
   - rule_set:
       name: "🇮🇱il: EasyList Hebrew"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/isr-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ISR_0}}}
+      disabled: {{{禁用EasyList希伯来语}}}
   - rule_set:
       name: "🇮🇹it: EasyList Italy"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/ita-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ITA_0}}}
+      disabled: {{{禁用EasyList意大利}}}
   - rule_set:
       name: "🇯🇵jp: AdGuard Japanese"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/jpn-1.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_JPN_1}}}
+      disabled: {{{禁用AdGuard日语}}}
   - rule_set:
       name: "🇰🇷kr: List-KR Classic"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/kor-1.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_KOR_1}}}
+      disabled: {{{禁用ListKRClassic}}}
   - rule_set:
       name: "🇱🇹lt: EasyList Lithuania"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/ltu-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_LTU_0}}}
+      disabled: {{{禁用EasyList立陶宛}}}
   - rule_set:
       name: "🇱🇻lv: Latvian List"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/lva-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_LVA_0}}}
+      disabled: {{{禁用拉脱维亚语列表}}}
   - rule_set:
       name: "🇲🇰mk: Macedonian adBlock Filters"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/mkd-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_MKD_0}}}
+      disabled: {{{禁用马其顿语列表}}}
   - rule_set:
       name: "🇳🇱nl 🇧🇪be: AdGuard Dutch"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/nld-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_NLD_0}}}
+      disabled: {{{禁用AdGuard荷兰语}}}
   - rule_set:
       name: "🇳🇴no 🇩🇰dk 🇮🇸is: Dandelion Sprouts nordiske filtre"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/nor-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_NOR_0}}}
+      disabled: {{{禁用北欧语列表}}}
   - rule_set:
       name: "🇵🇱pl: Oficjalne Polskie Filtry do uBlocka Origin"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/pol-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_POL_0}}}
+      disabled: {{{禁用波兰语官方列表}}}
   - rule_set:
       name: "🇵🇱pl: CERT.PL's Warning List"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/pol-3.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_POL_3}}}
+      disabled: {{{禁用CERTPL威胁列表}}}
   - rule_set:
       name: "🇷🇴ro 🇲🇩md: Romanian Ad (ROad) Block List Light"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/rou-1.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_ROU_1}}}
+      disabled: {{{禁用罗马尼亚语列表}}}
   - rule_set:
       name: "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/rus-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_RUS_0}}}
+      disabled: {{{禁用RUAdList}}}
   - rule_set:
       name: "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList: Counters"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/rus-1.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_RUS_1}}}
+      disabled: {{{禁用RUAdList计数器}}}
   - rule_set:
       name: "🇪🇸es 🇦🇷ar 🇲🇽mx 🇨🇴co: EasyList Spanish"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/spa-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_SPA_0}}}
+      disabled: {{{禁用EasyList西班牙语}}}
   - rule_set:
       name: "🇪🇸es 🇦🇷ar 🇧🇷br 🇵🇹pt: AdGuard Spanish/Portuguese"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/spa-1.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_SPA_1}}}
+      disabled: {{{禁用AdGuard西葡语}}}
   - rule_set:
       name: "🇸🇮si: Slovenian List"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/svn-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_SVN_0}}}
+      disabled: {{{禁用斯洛文尼亚语列表}}}
   - rule_set:
       name: "🇸🇪se: Frellwit's Swedish Filter"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/swe-1.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_SWE_1}}}
+      disabled: {{{禁用瑞典语列表}}}
   - rule_set:
       name: "🇹🇭th: EasyList Thailand"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/tha-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_THA_0}}}
+      disabled: {{{禁用EasyList泰语}}}
   - rule_set:
       name: "🇹🇷tr: AdGuard Turkish"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/tur-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_TUR_0}}}
+      disabled: {{{禁用AdGuard土耳其语}}}
   - rule_set:
       name: "🇺🇦ua: AdGuard Ukrainian"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/ukr-0.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_UKR_0}}}
+      disabled: {{{禁用AdGuard乌克兰语}}}
   - rule_set:
       name: "🇻🇳vn: ABPVN List"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/vie-1.yaml"
-      policy: "{{{BLOCK_POLICY}}}"
+      policy: "{{{拦截策略}}}"
       update_interval: 86400
-      disabled: {{{DISABLE_VIE_1}}}
+      disabled: {{{禁用ABPVN}}}
 
 scriptings:
   - http_request:
@@ -484,102 +484,102 @@ scriptings:
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/ublock-filters.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_UBLOCK_FILTERS}}}
+      disabled: {{{禁用uBlock主规则}}}
   - http_request:
       name: "AdGuard/uBO – URL Tracking Protection - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/adguard-spyware-url.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_ADGUARD_SPYWARE_URL}}}
+      disabled: {{{禁用网址跟踪保护}}}
   - http_request:
       name: "EasyList/uBO – Overlay Notices - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/annoyances-overlays.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_ANNOYANCES_OVERLAYS}}}
+      disabled: {{{禁用浮层提示}}}
   - http_request:
       name: "uBO Lite Test Filters - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/ubol-tests.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_UBOL_TESTS}}}
+      disabled: {{{禁用uBOLite测试规则}}}
   - http_request:
       name: "🇨🇳cn 🇹🇼tw: AdGuard Chinese (中文) - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/chn-0.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_CHN_0}}}
+      disabled: {{{禁用AdGuard中文}}}
   - http_request:
       name: "🇪🇪ee: Eesti saitidele kohandatud filter - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/est-0.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_EST_0}}}
+      disabled: {{{禁用爱沙尼亚语列表}}}
   - http_request:
       name: "🇫🇮fi: Adblock List for Finland - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/fin-0.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_FIN_0}}}
+      disabled: {{{禁用芬兰语列表}}}
   - http_request:
       name: "🇫🇷fr 🇧🇪be 🇨🇦ca: AdGuard Français - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/fra-0.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_FRA_0}}}
+      disabled: {{{禁用AdGuard法语}}}
   - http_request:
       name: "🇮🇷ir: PersianBlocker - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/irn-0.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_IRN_0}}}
+      disabled: {{{禁用PersianBlocker}}}
   - http_request:
       name: "🇯🇵jp: AdGuard Japanese - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/jpn-1.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_JPN_1}}}
+      disabled: {{{禁用AdGuard日语}}}
   - http_request:
       name: "🇰🇷kr: List-KR Classic - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/kor-1.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_KOR_1}}}
+      disabled: {{{禁用ListKRClassic}}}
   - http_request:
       name: "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/rus-0.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_RUS_0}}}
+      disabled: {{{禁用RUAdList}}}
   - http_request:
       name: "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList: Counters - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/rus-1.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_RUS_1}}}
+      disabled: {{{禁用RUAdList计数器}}}
   - http_request:
       name: "🇸🇪se: Frellwit's Swedish Filter - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/swe-1.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_SWE_1}}}
+      disabled: {{{禁用瑞典语列表}}}
   - http_request:
       name: "🇺🇦ua: AdGuard Ukrainian - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/ukr-0.js"
       update_interval: 86400
       timeout: 5
-      disabled: {{{DISABLE_UKR_0}}}
+      disabled: {{{禁用AdGuard乌克兰语}}}
