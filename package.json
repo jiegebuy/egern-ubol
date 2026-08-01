@@ -1,0 +1,8 @@
+{
+  "name": "egern-ubol",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/test_generated_scripts.mjs"
+  }
+}

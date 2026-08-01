@@ -1,0 +1,13 @@
+{
+  "enabled": [
+    "ublock-filters",
+    "easylist",
+    "easyprivacy",
+    "pgl",
+    "adguard-spyware-url",
+    "ublock-badware",
+    "urlhaus-full",
+    "annoyances-ai",
+    "chn-0"
+  ]
+}

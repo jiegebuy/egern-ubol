@@ -1,0 +1,60 @@
+name: Update official uBO Lite rules
+
+on:
+  schedule:
+    - cron: "23 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-ubol-rules
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install test dependency
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Generate both profiles from the verified official release
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          branch="${DEFAULT_BRANCH:-main}"
+          base="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${branch}/dist"
+          python scripts/update.py --latest \
+            --dist dist/memory-safe \
+            --base-url "${base}/memory-safe"
+          python scripts/update.py --latest \
+            --dist dist/full \
+            --base-url "${base}/full" \
+            --include-url-regex
+
+      - name: Validate generated YAML and scripts
+        run: |
+          python -m unittest discover -s tests -p "test_*.py"
+          npm test
+          git diff --check
+
+      - name: Commit an upstream update
+        run: |
+          if git diff --quiet -- dist; then
+            echo "Already current"
+            exit 0
+          fi
+          version="$(cat dist/memory-safe/VERSION)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist
+          git commit -m "chore: update uBO Lite rules to ${version}"
+          git push
