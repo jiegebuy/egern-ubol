@@ -27,7 +27,9 @@
       "annoyances-ai",
       "chn-0"
     ],
-    "enabled_count": 9
+    "enabled_count": 9,
+    "expose_list_switches": true,
+    "module_name": "uBlock Origin Lite 规则"
   },
   "rulesets": [
     {

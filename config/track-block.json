@@ -1,0 +1,15 @@
+{
+  "enabled": [
+    "pgl"
+  ],
+  "included": [
+    "pgl"
+  ],
+  "module": {
+    "name": "Track Block Lite",
+    "description": "轻量追踪器域名拦截，基于 Peter Lowe – Ads, trackers, and more；只包含原生域名规则，不使用 MITM、脚本、URL 重写或网页元素隐藏。",
+    "icon": "eye.slash.fill",
+    "profile": "track-block-lite",
+    "expose_list_switches": false
+  }
+}

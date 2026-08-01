@@ -188,8 +188,31 @@ class GeneratedArtifactTests(unittest.TestCase):
             full["totals"]["domain_suffixes"],
         )
 
+    def test_track_block_profile_is_actually_lightweight(self) -> None:
+        root, metadata, module, defaults = self.profile("track-block")
+        self.assertEqual(module["name"], "Track Block Lite")
+        self.assertEqual(metadata["build_options"]["profile"], "track-block-lite")
+        self.assertEqual(metadata["preset"]["available_count"], 1)
+        self.assertEqual(metadata["preset"]["enabled"], ["pgl"])
+        self.assertFalse(metadata["preset"]["expose_list_switches"])
+        self.assertEqual(defaults, {"拦截策略": "REJECT"})
+        self.assertEqual(len(module["rules"]), 1)
+        self.assertEqual(
+            module["rules"][0]["rule_set"]["name"],
+            "Peter Lowe – Ads, trackers, and more",
+        )
+        self.assertFalse(module["rules"][0]["rule_set"]["disabled"])
+        self.assertNotIn("scriptings", module)
+        self.assertNotIn("env_schema", module)
+        self.assertNotIn("mitm", module)
+        self.assertGreater(metadata["totals"]["domain_suffixes"], 3_000)
+        artifact_bytes = sum(
+            path.stat().st_size for path in root.rglob("*") if path.is_file()
+        )
+        self.assertLess(artifact_bytes, 200 * 1024)
+
     def test_referenced_artifacts_exist(self) -> None:
-        for profile_name in ("memory-safe", "full"):
+        for profile_name in ("track-block", "memory-safe", "full"):
             root, metadata, module, _ = self.profile(profile_name)
             for entry in module["rules"]:
                 url = entry["rule_set"]["match"]
@@ -205,7 +228,7 @@ class GeneratedArtifactTests(unittest.TestCase):
                     self.assertEqual(profile_name, "full")
                     self.assertIn(f"/dist/{profile_name}/cosmetic/", url)
                     self.assertTrue((root / "cosmetic" / Path(url).name).is_file())
-            self.assertEqual(len(metadata["rulesets"]), 56)
+            self.assertEqual(len(metadata["rulesets"]), len(module["rules"]))
 
     def test_full_profile_has_targeted_iplark_cosmetic_bridge(self) -> None:
         root, metadata, module, _ = self.profile("full")

@@ -1,0 +1,7 @@
+# 将这一个模块引用添加到 Egern 主配置。
+# 模块固定启用 1 个精选列表，无额外列表开关。
+modules:
+  - name: "Track Block Lite"
+    url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/track-block/ubol.yaml"
+    enabled: true
+    update_interval: 86400

@@ -1,61 +1,45 @@
-# uBO Lite rules for Egern
+# Track Block Lite for Egern
 
-把 uBlock Origin Lite 官方 Chromium 规则转换为一个 Egern 模块。模块内有 56 个布尔参数，分别控制 uBOL 设置页中的 56 个过滤列表，不会生成 56 个独立模块。
+把 uBlock Origin Lite 官方 Chromium 规则转换为 Egern 可用的原生网络规则。当前推荐入口是一个专注于跨应用追踪器拦截的轻量模块；浏览器内的广告和网页元素隐藏交给 uBO Lite 自己处理。
 
-## 两个测试版本
+## 推荐模块
 
-- **Memory Safe（推荐）**：域名/IP 规则和安全可转换的 URL 去跟踪参数。省略路径级 URL 正则与网页元素隐藏，降低 iOS Network Extension 的解析峰值和常驻内存。
-- **Full URL + CSS（压力测试）**：在相同内容上额外加入可安全转换的路径级 URL 正则，以及官方列表中的站点专用纯 CSS 元素隐藏规则。当前版本有 42,812 条 URL 正则；通用 CSS、程序化选择器和 scriptlet 仍无法由 Egern 等价执行。
+`https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/track-block/ubol.yaml`
 
-发布后的模块入口：
+**Track Block Lite** 只采用官方 uBO Lite 内置的 **Peter Lowe – Ads, trackers, and more**：
 
-- `https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/ubol.yaml`
-- `https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/ubol.yaml`
+- 当前约 3,430 条域名规则，规则文件约 78 KB。
+- 仅使用 Egern 原生域名拦截，不读取网页响应正文。
+- 不包含 MITM、脚本、URL 正则、CSS 注入、恶意网址或地区列表。
+- 没有冗余的列表开关；启用或禁用模块就是总开关。
+- 仅保留一个可选参数 `拦截策略`，默认使用 `REJECT`。
 
-模块参数使用 `DISABLE_*` 命名，因为它们直接替换 Egern 规则和脚本的 `disabled` 字段：
+Peter Lowe 比 EasyPrivacy 更适合作为轻量底座：当前 EasyPrivacy 转换后约 42,669 个域名、规则文件约 1.2 MB，而 Peter Lowe 覆盖常见广告和追踪基础设施的同时，解析量小得多。
 
-- `false`：启用该列表
-- `true`：禁用该列表
+不要同时启用 Track Block Lite 与本仓库的旧规则模块，以免重复加载相同域名。
 
-默认启用 `uBlock filters`、`EasyList`、`EasyPrivacy`、`Peter Lowe`、`URL Tracking Protection`、`Badware risks`、`Malicious URL Blocklist`、`AI Widgets` 和 `AdGuard Chinese`，与本机选择一致。
+## 旧实验版本
 
-## 内存说明
+以下产物保留用于兼容已有链接，不再作为推荐安装：
 
-Memory Safe 的全部静态产物约 4.2 MB；Full URL + CSS 的全量静态产物约 14.1 MB，其中当前默认列表实际启用 6 个 CSS 脚本，合计约 1.13 MB、22,657 条站点专用选择器。CSS 响应脚本只在目标站点命中规则且响应为 HTML 时读取正文，单个响应上限为 1 MB。
-
-磁盘大小不能直接等同于 Egern 扩展进程的常驻内存，因此无法在 Windows 上承诺低于 iOS 的 50 MB 限制。建议先测 Memory Safe，再单独测 Full URL + CSS；不要同时启用两个版本。
-
-模块不会自动加入 `mitm.hostnames: ["*"]`。Full 版只自动加入 `iplark.com` 与 `*.iplark.com`，用于修复该站由 AdGuard 中文列表提供的 4 条元素隐藏规则。IPLark 由一个小型专用脚本处理：规则会同时注入主页 HTML 和站点自己的 `homepage.css`，且不会匹配验证码/WAF 请求；其他列表的响应脚本不会同时匹配该站。其他 HTTPS 网站只有在 Egern 主配置已覆盖对应 MITM 主机时才会注入 CSS。可通过模块设置里的 `Safari 网页元素隐藏` 总开关关闭这类响应脚本。
-
-域名/IP 拦截不需要 MITM。URL 去参数脚本只会在 Egern 能看到完整 HTTPS URL 的主机上生效，可通过 `URL 查询参数清理` 总开关关闭。
+- `dist/memory-safe`：56 个可配置列表，仅生成域名/IP 和查询参数清理。
+- `dist/full`：额外包含 URL 正则和站点专用 CSS 响应脚本。
 
 ## 转换边界
 
-Egern 能原生承接无请求上下文的域名、IP 和 URL 规则。Full 版还能通过修改 HTML 响应注入站点专用纯 CSS。以下浏览器能力仍无法安全一比一转换，因此不会假装支持：
-
-- 通用元素隐藏、程序化选择器、scriptlet 和弹窗处理
-- 依赖发起方、第一方/第三方、资源类型、方法或响应头的规则
-- 重定向到扩展内置空资源和 Header 修改
-- uBOL 的 strict-block 提示页面（其中纯恶意域名会转为 `REJECT`）
-
-每个列表的输入、输出和跳过原因都在对应版本的 `metadata.json` 中。
+轻量模块只承接无需请求上下文的域名/IP 拦截。依赖第一方/第三方、资源类型、请求方法、响应头、浏览器 scriptlet 或网页 DOM 的规则不会被放入 Track Block Lite。
 
 ## 官方更新
 
-转换器从 `uBlockOrigin/uBOL-home` 的最新官方 GitHub Release 下载 Chromium ZIP，校验 GitHub 提供的 SHA-256 后生成两个版本。GitHub Actions 每天检查一次并只在官方版本或规则变化时提交。
+转换器每天从 `uBlockOrigin/uBOL-home` 的最新官方 GitHub Release 下载 Chromium ZIP，校验 GitHub 提供的 SHA-256 后重新生成模块。只有官方版本或转换结果发生变化时，GitHub Actions 才会提交更新；Egern 端的模块和规则集更新间隔均为 24 小时。
 
-本地生成：
+本地生成推荐模块：
 
 ```bash
 python scripts/update.py --latest \
-  --dist dist/memory-safe \
-  --base-url https://raw.githubusercontent.com/OWNER/REPO/main/dist/memory-safe
-
-python scripts/update.py --latest \
-  --dist dist/full \
-  --base-url https://raw.githubusercontent.com/OWNER/REPO/main/dist/full \
-  --include-url-regex \
-  --include-specific-css
+  --dist dist/track-block \
+  --selection config/track-block.json \
+  --base-url https://raw.githubusercontent.com/OWNER/REPO/main/dist/track-block
 ```
 
 验证：

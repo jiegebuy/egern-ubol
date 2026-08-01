@@ -1,0 +1,98 @@
+{
+  "base_url": "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/track-block",
+  "build_options": {
+    "include_url_regex": false,
+    "profile": "track-block-lite"
+  },
+  "limitations": [
+    "Cosmetic filters, scriptlets, popup handling, and strict-block UI are browser-only and are not emitted.",
+    "Block rules requiring initiator, first/third-party, resource-type, method, or header context are omitted.",
+    "Allow-rule target domains are conservatively removed from native domain output to avoid unrepresentable exceptions.",
+    "Extension-resource redirects and header modifications are omitted.",
+    "Query cleaners omit initiator/domain-type conditions and require HTTPS MITM coverage in Egern to see encrypted URLs.",
+    "The generated module never enables wildcard MITM automatically."
+  ],
+  "preset": {
+    "available_count": 1,
+    "enabled": [
+      "pgl"
+    ],
+    "enabled_count": 1,
+    "expose_list_switches": false,
+    "module_name": "Track Block Lite"
+  },
+  "rulesets": [
+    {
+      "enabled_in_preset": true,
+      "enabled_upstream_by_default": true,
+      "group": "default",
+      "homepage": "https://pgl.yoyo.org/adservers/",
+      "id": "pgl",
+      "input": {
+        "actions": {
+          "block": 1
+        },
+        "css": {
+          "generic": 0,
+          "specific": 0
+        },
+        "filters": {
+          "accepted": 3433,
+          "rejected": 80,
+          "total": 3513
+        },
+        "popups": 0,
+        "rules": 1,
+        "strictblock_rules": 1
+      },
+      "name": "Peter Lowe – Ads, trackers, and more",
+      "network_conversion": {
+        "candidate_domains": 3433,
+        "converted_domain_rules": 1,
+        "converted_strictblock_domain_rules": 1,
+        "domain_suffixes": 3430,
+        "domains_removed_for_exceptions": 0,
+        "eligible_url_regexes": 0,
+        "exception_domains": 0,
+        "input_block_rules": 1,
+        "input_strictblock_rules": 1,
+        "ipv4_cidrs": 0,
+        "ipv6_cidrs": 0,
+        "url_regexes": 0,
+        "url_regexes_omitted_for_memory": 0
+      },
+      "output": {
+        "domain_suffixes": 3430,
+        "ipv4_cidrs": 0,
+        "ipv6_cidrs": 0,
+        "query_cleaning_sample": null,
+        "query_operations": 0,
+        "url_regexes": 0
+      },
+      "query_conversion": {
+        "deduplicated_query_rules": 0,
+        "query_operations": 0
+      }
+    }
+  ],
+  "schema_version": 1,
+  "source": {
+    "asset_sha256": "5b0df87ad6c98f9e706724384ab0167dfdadb0d753946894079e375d5f15ec16",
+    "asset_url": "https://github.com/uBlockOrigin/uBOL-home/releases/download/2026.729.1529/uBOLite_2026.729.1529.chromium.zip",
+    "origin": "official-release",
+    "published_at": "2026-07-29T15:31:15Z",
+    "release_url": "https://github.com/uBlockOrigin/uBOL-home/releases/tag/2026.729.1529",
+    "version": "2026.729.1529"
+  },
+  "totals": {
+    "domain_suffixes": 3430,
+    "input_actions": {
+      "block": 1
+    },
+    "input_rules": 1,
+    "ipv4_cidrs": 0,
+    "ipv6_cidrs": 0,
+    "query_operations": 0,
+    "url_regexes": 0
+  }
+}

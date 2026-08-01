@@ -173,6 +173,17 @@ class SourceInfo:
     origin: str = "official-release"
 
 
+@dataclass(frozen=True)
+class ModulePreset:
+    enabled: frozenset[str]
+    included: frozenset[str] | None
+    name: str = "uBlock Origin Lite 规则"
+    description: str | None = None
+    icon: str = "shield.lefthalf.filled"
+    profile: str | None = None
+    expose_list_switches: bool = True
+
+
 @dataclass
 class NetworkOutput:
     domain_suffixes: list[str]
@@ -881,12 +892,13 @@ def ruleset_purpose(ruleset_id: str) -> str | None:
 def render_combined_module(
     source: SourceInfo,
     items: Sequence[dict[str, Any]],
-    enabled: set[str],
+    preset: ModulePreset,
     base_url: str,
     policy: str,
     include_url_regex: bool,
     include_specific_css: bool,
 ) -> str:
+    enabled = set(preset.enabled)
     if include_specific_css:
         profile = "完整 URL 过滤与站点专用 CSS 元素隐藏"
     elif include_url_regex:
@@ -899,50 +911,58 @@ def render_combined_module(
         for item in items
         if effective_group(item["meta"]) == group
     ]
+    description = preset.description or (
+        f"一个 Egern 模块，包含 {len(items)} 个可独立配置的 uBO Lite "
+        f"{source.version} 过滤列表开关（{profile}）。"
+    )
     lines = [
-        f"name: {yaml_quote('uBlock Origin Lite 规则')}",
-        "description: "
-        + yaml_quote(
-            f"一个 Egern 模块，包含 {len(items)} 个可独立配置的 uBO Lite "
-            f"{source.version} 过滤列表开关（{profile}）。"
-        ),
+        f"name: {yaml_quote(preset.name)}",
+        "description: " + yaml_quote(description),
         f"author: {yaml_quote('Raymond Hill 与各上游过滤列表维护者')}",
         f"homepage: {yaml_quote(UPSTREAM_HOME)}",
         f"manual: {yaml_quote(UPSTREAM_HOME)}",
-        f"icon: {yaml_quote('shield.lefthalf.filled')}",
+        f"icon: {yaml_quote(preset.icon)}",
         "",
         "compat_arguments:",
         f"  {yaml_quote('拦截策略')}: {yaml_quote(policy)}",
     ]
-    for item in ordered_items:
-        id_value = str(item["meta"]["id"])
-        lines.append(
-            f"  {yaml_quote(argument_key(id_value))}: "
-            f"{'false' if id_value in enabled else 'true'}"
-        )
-
-    lines.extend(
-        [
-            "compat_arguments_desc: |",
-            "  所有“禁用…”参数：false 表示启用该列表，true 表示禁用。",
-            "  “拦截策略”控制所有已启用列表采用的 Egern 策略。",
-        ]
-    )
-    for group in GROUP_ORDER:
-        group_items = [
-            item for item in items if effective_group(item["meta"]) == group
-        ]
-        if not group_items:
-            continue
-        lines.append(f"  [{GROUP_LABELS[group]}]")
-        for item in group_items:
-            meta = item["meta"]
-            id_value = str(meta["id"])
-            purpose = ruleset_purpose(id_value)
-            suffix = f"（{purpose}）" if purpose else ""
+    if preset.expose_list_switches:
+        for item in ordered_items:
+            id_value = str(item["meta"]["id"])
             lines.append(
-                f"  {argument_key(id_value)}: {meta['name']}{suffix}"
+                f"  {yaml_quote(argument_key(id_value))}: "
+                f"{'false' if id_value in enabled else 'true'}"
             )
+
+        lines.extend(
+            [
+                "compat_arguments_desc: |",
+                "  所有“禁用…”参数：false 表示启用该列表，true 表示禁用。",
+                "  “拦截策略”控制所有已启用列表采用的 Egern 策略。",
+            ]
+        )
+        for group in GROUP_ORDER:
+            group_items = [
+                item for item in items if effective_group(item["meta"]) == group
+            ]
+            if not group_items:
+                continue
+            lines.append(f"  [{GROUP_LABELS[group]}]")
+            for item in group_items:
+                meta = item["meta"]
+                id_value = str(meta["id"])
+                purpose = ruleset_purpose(id_value)
+                suffix = f"（{purpose}）" if purpose else ""
+                lines.append(
+                    f"  {argument_key(id_value)}: {meta['name']}{suffix}"
+                )
+    else:
+        lines.extend(
+            [
+                "compat_arguments_desc: |",
+                "  “拦截策略”控制本模块采用的 Egern 策略。",
+            ]
+        )
 
     has_query_scripts = any(item["query"].operations for item in items)
     if has_query_scripts or include_specific_css:
@@ -982,19 +1002,21 @@ def render_combined_module(
     for item in ordered_items:
         meta = item["meta"]
         id_value = str(meta["id"])
-        lines.extend(
-            [
-                "  - rule_set:",
-                f"      name: {yaml_quote(str(meta['name']))}",
-                "      match: "
-                + yaml_quote(
-                    relative_or_remote(base_url, "rulesets", f"{id_value}.yaml")
-                ),
-                f"      policy: {yaml_quote('{{{拦截策略}}}')}",
-                "      update_interval: 86400",
-                "      disabled: {{{" + argument_key(id_value) + "}}}",
-            ]
-        )
+        rule_lines = [
+            "  - rule_set:",
+            f"      name: {yaml_quote(str(meta['name']))}",
+            "      match: "
+            + yaml_quote(
+                relative_or_remote(base_url, "rulesets", f"{id_value}.yaml")
+            ),
+            f"      policy: {yaml_quote('{{{拦截策略}}}')}",
+            "      update_interval: 86400",
+        ]
+        if preset.expose_list_switches:
+            rule_lines.append("      disabled: {{{" + argument_key(id_value) + "}}}")
+        else:
+            rule_lines.append("      disabled: false")
+        lines.extend(rule_lines)
 
     query_items = [item for item in ordered_items if item["query"].operations]
     cosmetic_items = [
@@ -1007,42 +1029,53 @@ def render_combined_module(
         for item in query_items:
             meta = item["meta"]
             id_value = str(meta["id"])
-            lines.extend(
-                [
-                    "  - http_request:",
-                    f"      name: {yaml_quote(str(meta['name']) + ' - query cleaner')}",
-                    f"      match: {yaml_quote('^https?://')}",
-                    "      script_url: "
-                    + yaml_quote(
-                        relative_or_remote(base_url, "scripts", f"{id_value}.js")
-                    ),
-                    "      update_interval: 86400",
-                    "      timeout: 5",
-                    "      disabled: {{{" + argument_key(id_value) + "}}}",
-                ]
-            )
+            script_lines = [
+                "  - http_request:",
+                f"      name: {yaml_quote(str(meta['name']) + ' - query cleaner')}",
+                f"      match: {yaml_quote('^https?://')}",
+                "      script_url: "
+                + yaml_quote(
+                    relative_or_remote(base_url, "scripts", f"{id_value}.js")
+                ),
+                "      update_interval: 86400",
+                "      timeout: 5",
+            ]
+            if preset.expose_list_switches:
+                script_lines.append(
+                    "      disabled: {{{" + argument_key(id_value) + "}}}"
+                )
+            else:
+                script_lines.append("      disabled: false")
+            lines.extend(script_lines)
 
         for item in cosmetic_items:
             meta = item["meta"]
             id_value = str(meta["id"])
-            lines.extend(
-                [
-                    "  - http_response:",
-                    f"      name: {yaml_quote(str(meta['name']) + ' - Safari 网页元素隐藏')}",
-                    f"      match: {yaml_quote(NON_IPLARK_DOCUMENT_RESPONSE_MATCH)}",
-                    "      script_url: "
-                    + yaml_quote(
-                        relative_or_remote(base_url, "cosmetic", f"{id_value}.js")
-                    ),
-                    "      update_interval: 86400",
-                    "      max_size: 1048576",
-                    "      timeout: 5",
-                    "      body_required: true",
-                    "      disabled: {{{" + argument_key(id_value) + "}}}",
-                ]
-            )
+            script_lines = [
+                "  - http_response:",
+                f"      name: {yaml_quote(str(meta['name']) + ' - Safari 网页元素隐藏')}",
+                f"      match: {yaml_quote(NON_IPLARK_DOCUMENT_RESPONSE_MATCH)}",
+                "      script_url: "
+                + yaml_quote(
+                    relative_or_remote(base_url, "cosmetic", f"{id_value}.js")
+                ),
+                "      update_interval: 86400",
+                "      max_size: 1048576",
+                "      timeout: 5",
+                "      body_required: true",
+            ]
+            if preset.expose_list_switches:
+                script_lines.append(
+                    "      disabled: {{{" + argument_key(id_value) + "}}}"
+                )
+            else:
+                script_lines.append("      disabled: false")
+            lines.extend(script_lines)
 
-        if include_specific_css:
+        has_iplark_bridge = include_specific_css and any(
+            str(item["meta"]["id"]) == "chn-0" for item in ordered_items
+        )
+        if has_iplark_bridge:
             lines.extend(
                 [
                     "  - http_response:",
@@ -1058,11 +1091,18 @@ def render_combined_module(
                     "      max_size: 1048576",
                     "      timeout: 5",
                     "      body_required: true",
-                    "      disabled: {{{" + argument_key("chn-0") + "}}}",
                 ]
             )
+            if preset.expose_list_switches:
+                lines.append(
+                    "      disabled: {{{" + argument_key("chn-0") + "}}}"
+                )
+            else:
+                lines.append("      disabled: false")
 
-    if include_specific_css:
+    if include_specific_css and any(
+        str(item["meta"]["id"]) == "chn-0" for item in ordered_items
+    ):
         lines.extend(["", "mitm:", "  hostnames:", "    includes:"])
         lines.extend(
             f"      - {yaml_quote(hostname)}"
@@ -1453,32 +1493,78 @@ def effective_group(meta: dict[str, Any]) -> str:
     return str(group) if group in GROUP_ORDER else "misc"
 
 
-def load_selection(path: Path) -> set[str]:
+def load_selection(path: Path) -> ModulePreset:
     document = read_json(path)
     enabled = document.get("enabled")
     if not isinstance(enabled, list) or not all(isinstance(item, str) for item in enabled):
         raise RuntimeError(f"Invalid selection file: {path}")
-    return set(enabled)
+    included_value = document.get("included")
+    if included_value is not None and (
+        not isinstance(included_value, list)
+        or not all(isinstance(item, str) for item in included_value)
+    ):
+        raise RuntimeError(f"Invalid included list in selection file: {path}")
+    module = document.get("module", {})
+    if not isinstance(module, dict):
+        raise RuntimeError(f"Invalid module settings in selection file: {path}")
+    name = module.get("name", "uBlock Origin Lite 规则")
+    description = module.get("description")
+    icon = module.get("icon", "shield.lefthalf.filled")
+    profile = module.get("profile")
+    expose_list_switches = module.get("expose_list_switches", True)
+    if not isinstance(name, str) or not name:
+        raise RuntimeError(f"Invalid module name in selection file: {path}")
+    if description is not None and not isinstance(description, str):
+        raise RuntimeError(f"Invalid module description in selection file: {path}")
+    if not isinstance(icon, str) or not icon:
+        raise RuntimeError(f"Invalid module icon in selection file: {path}")
+    if profile is not None and not isinstance(profile, str):
+        raise RuntimeError(f"Invalid module profile in selection file: {path}")
+    if not isinstance(expose_list_switches, bool):
+        raise RuntimeError(f"Invalid module switch setting in selection file: {path}")
+    return ModulePreset(
+        enabled=frozenset(enabled),
+        included=(
+            frozenset(included_value) if included_value is not None else None
+        ),
+        name=name,
+        description=description,
+        icon=icon,
+        profile=profile,
+        expose_list_switches=expose_list_switches,
+    )
 
 
-def render_reference_example(base_url: str, include_specific_css: bool) -> str:
+def render_reference_example(
+    base_url: str,
+    include_specific_css: bool,
+    has_query_scripts: bool,
+    item_count: int,
+    preset: ModulePreset,
+) -> str:
     if base_url == ".":
         module_url = "./ubol.yaml"
     else:
         module_url = f"{base_url.rstrip('/')}/ubol.yaml"
     lines = [
         "# 将这一个模块引用添加到 Egern 主配置。",
-        "# 56 个布尔 compat_arguments 已在 ubol.yaml 内定义。",
+        (
+            f"# {item_count} 个列表开关已在 ubol.yaml 内定义。"
+            if preset.expose_list_switches
+            else f"# 模块固定启用 {item_count} 个精选列表，无额外列表开关。"
+        ),
         "modules:",
-        f"  - name: {yaml_quote('uBlock Origin Lite 规则')}",
+        f"  - name: {yaml_quote(preset.name)}",
         f"    url: {yaml_quote(module_url)}",
         "    enabled: true",
         "    update_interval: 86400",
-        "    env:",
-        f"      ENABLE_QUERY_CLEANING: {yaml_quote('true')}",
     ]
-    if include_specific_css:
-        lines.append(f"      ENABLE_COSMETIC_FILTERING: {yaml_quote('true')}")
+    if has_query_scripts or include_specific_css:
+        lines.append("    env:")
+        if has_query_scripts:
+            lines.append(f"      ENABLE_QUERY_CLEANING: {yaml_quote('true')}")
+        if include_specific_css:
+            lines.append(f"      ENABLE_COSMETIC_FILTERING: {yaml_quote('true')}")
     return "\n".join(lines) + "\n"
 
 
@@ -1524,15 +1610,26 @@ def generate(
     include_specific_css: bool = False,
 ) -> dict[str, Any]:
     ruleset_root = extension_root / "rulesets"
-    details: list[dict[str, Any]] = read_json(ruleset_root / "ruleset-details.json")
-    enabled = load_selection(selection_path)
-    known_ids = {str(item["id"]) for item in details}
-    unknown_ids = enabled - known_ids
+    all_details: list[dict[str, Any]] = read_json(
+        ruleset_root / "ruleset-details.json"
+    )
+    preset = load_selection(selection_path)
+    enabled = set(preset.enabled)
+    known_ids = {str(item["id"]) for item in all_details}
+    included = set(preset.included) if preset.included is not None else known_ids
+    unknown_ids = (enabled | included) - known_ids
     if unknown_ids:
         raise RuntimeError(
             "Selected uBO Lite list IDs are missing upstream: "
             + ", ".join(sorted(unknown_ids))
         )
+    if not enabled <= included:
+        raise RuntimeError("Enabled rulesets must also be included in the module")
+    if not preset.expose_list_switches and enabled != included:
+        raise RuntimeError(
+            "A module without list switches must enable every included ruleset"
+        )
+    details = [item for item in all_details if str(item["id"]) in included]
 
     destination = destination.resolve()
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -1650,7 +1747,7 @@ def generate(
                 }
             )
 
-        if include_specific_css:
+        if include_specific_css and "chn-0" in included:
             write_text(
                 staging / "cosmetic" / "iplark-homepage-css.js",
                 render_iplark_cosmetic_script(source),
@@ -1661,7 +1758,7 @@ def generate(
             render_combined_module(
                 source=source,
                 items=module_items,
-                enabled=enabled,
+                preset=preset,
                 base_url=base_url,
                 policy=policy,
                 include_url_regex=include_url_regex,
@@ -1670,7 +1767,15 @@ def generate(
         )
         write_text(
             staging / "config.example.yaml",
-            render_reference_example(base_url, include_specific_css),
+            render_reference_example(
+                base_url=base_url,
+                include_specific_css=include_specific_css,
+                has_query_scripts=any(
+                    item["query"].operations for item in module_items
+                ),
+                item_count=len(module_items),
+                preset=preset,
+            ),
         )
         write_text(staging / "VERSION", source.version + "\n")
         report = {
@@ -1684,7 +1789,8 @@ def generate(
                     if include_specific_css
                     else {}
                 ),
-                "profile": (
+                "profile": preset.profile
+                or (
                     "full-url-css"
                     if include_specific_css
                     else "full-url"
@@ -1700,6 +1806,8 @@ def generate(
                 ],
                 "enabled_count": len(enabled),
                 "available_count": len(details),
+                "expose_list_switches": preset.expose_list_switches,
+                "module_name": preset.name,
             },
             "totals": {
                 "input_rules": sum(item["input"]["rules"] for item in report_items),
@@ -1818,12 +1926,18 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
 
     totals = report["totals"]
+    preset = report["preset"]
+    list_mode = (
+        f"{preset['available_count']} list switches"
+        if preset["expose_list_switches"]
+        else f"{preset['available_count']} fixed rulesets"
+    )
     print(
-        f"Generated one module with {report['preset']['available_count']} list switches from uBO Lite "
+        f"Generated one module with {list_mode} from uBO Lite "
         f"{report['source']['version']}: {totals['domain_suffixes']} domains, "
         f"{totals['url_regexes']} URL rules, "
         f"{totals['query_operations']} query cleaners, "
-        f"{totals['cosmetic_selectors']} cosmetic selectors."
+        f"{totals.get('cosmetic_selectors', 0)} cosmetic selectors."
     )
     return 0
 

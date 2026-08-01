@@ -1,5 +1,5 @@
 # 将这一个模块引用添加到 Egern 主配置。
-# 56 个布尔 compat_arguments 已在 ubol.yaml 内定义。
+# 56 个列表开关已在 ubol.yaml 内定义。
 modules:
   - name: "uBlock Origin Lite 规则"
     url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/ubol.yaml"

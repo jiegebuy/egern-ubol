@@ -1,0 +1,19 @@
+name: "Track Block Lite"
+description: "轻量追踪器域名拦截，基于 Peter Lowe – Ads, trackers, and more；只包含原生域名规则，不使用 MITM、脚本、URL 重写或网页元素隐藏。"
+author: "Raymond Hill 与各上游过滤列表维护者"
+homepage: "https://github.com/uBlockOrigin/uBOL-home"
+manual: "https://github.com/uBlockOrigin/uBOL-home"
+icon: "eye.slash.fill"
+
+compat_arguments:
+  "拦截策略": "REJECT"
+compat_arguments_desc: |
+  “拦截策略”控制本模块采用的 Egern 策略。
+
+rules:
+  - rule_set:
+      name: "Peter Lowe – Ads, trackers, and more"
+      match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/track-block/rulesets/pgl.yaml"
+      policy: "{{{拦截策略}}}"
+      update_interval: 86400
+      disabled: false
