@@ -31,7 +31,7 @@ globalThis.$httpClient = {
     callback(
       null,
       { status: 200, headers: { "Content-Type": "application/json" } },
-      JSON.stringify({ code: 200, data: "你好\uE000\uE001\uE000世界" }),
+      JSON.stringify({ code: 200, data: "你好\n世界" }),
     );
   },
 };
@@ -70,7 +70,7 @@ assert.equal(
 assert.equal(capturedRequest.headers.Authorization, undefined);
 assert.equal(logMessages.join("\n").includes("test-api-key"), false);
 assert.deepEqual(JSON.parse(capturedRequest.body), {
-  text: "Hello\uE000\uE001\uE000World",
+  text: "Hello\nWorld",
   source_lang: "EN",
   target_lang: "ZH",
 });
