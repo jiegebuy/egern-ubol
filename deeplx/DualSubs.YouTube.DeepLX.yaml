@@ -1,5 +1,5 @@
 name: '🍿️ DualSubs: ▶️ YouTube'
-description: YouTube 增强及双语字幕(歌词)，增加 DeepLX Endpoint 与 Bearer Token 配置
+description: YouTube 增强及双语字幕(歌词)，增加 DeepLX Endpoint 与 API Key 配置
 compat_arguments:
   Type: '"Translate"'
   Types: '"Translate"'
@@ -17,7 +17,7 @@ compat_arguments_desc: |
   Position: [字幕] Forward 为原文在上，Reverse 为译文在上。
   Vendor: [翻译器] 支持 Google、Microsoft、DeepL、DeepLX。
   DeepLXEndpoint: DeepLX 服务地址，可填写服务根地址或完整 /translate 地址，不要附加查询参数。
-  DeepLXToken: 可选 Bearer Token；无鉴权时留空。
+  DeepLXToken: api.deeplx.org 填 API Key；其他服务可填 Bearer Token；完整路径已含 Key 时留空。
   ShowOnly: 是否只显示译文。
   LogLevel: OFF、ERROR、WARN、INFO、DEBUG 或 ALL。
 open_url: http://boxjs.com/#/app/DualSubs.YouTube

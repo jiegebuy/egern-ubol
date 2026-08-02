@@ -14,9 +14,11 @@
 - `Type`: `Translate`
 - `Vendor`: `DeepLX`
 - `DeepLXEndpoint`: DeepLX 根地址或完整的 `/translate` 地址
-- `DeepLXToken`: 可选 Bearer Token；无鉴权时留空
+- `DeepLXToken`: `api.deeplx.org` 的 API Key，或其他服务的可选 Bearer Token
 
-Endpoint 不应包含查询参数。脚本会在根地址后自动补上 `/translate`。
+`api.deeplx.org` 可填写根地址并在 `DeepLXToken` 中填写 Key，也可直接填写完整的
+`https://api.deeplx.org/<api-key>/translate` 并将 Token 留空。其他 DeepLX 服务会在
+根地址后自动补上 `/translate`，并将 Token 作为 Bearer Token 发送。
 
 ## 构建与验证
 

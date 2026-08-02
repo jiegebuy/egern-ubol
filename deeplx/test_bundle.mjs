@@ -48,7 +48,7 @@ globalThis.$response = {
   }),
 };
 globalThis.$argument =
-  'Vendor="DeepLX"&DeepLX.Endpoint="http://deeplx.test/base"&DeepLX.Auth="test-token"&Position="Forward"&ShowOnly="false"&LogLevel="ERROR"';
+  'Vendor="DeepLX"&DeepLX.Endpoint="https://api.deeplx.org/test-api-key/translate"&DeepLX.Auth="test-api-key"&Position="Forward"&ShowOnly="false"&LogLevel="ERROR"';
 globalThis.$done = value => resolveDone(value);
 
 await import("./Translate.response.deeplx.bundle.js");
@@ -63,9 +63,12 @@ for (const [method, implementation] of Object.entries(originalConsole)) {
   console[method] = implementation;
 }
 
-assert.equal(capturedRequest.url, "http://deeplx.test/base/translate");
-assert.equal(capturedRequest.headers.Authorization, "Bearer test-token");
-assert.equal(logMessages.join("\n").includes("test-token"), false);
+assert.equal(
+  capturedRequest.url,
+  "https://api.deeplx.org/test-api-key/translate",
+);
+assert.equal(capturedRequest.headers.Authorization, undefined);
+assert.equal(logMessages.join("\n").includes("test-api-key"), false);
 assert.deepEqual(JSON.parse(capturedRequest.body), {
   text: "Hello||World",
   source_lang: "EN",
