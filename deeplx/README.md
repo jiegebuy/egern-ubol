@@ -20,6 +20,9 @@
 `https://api.deeplx.org/<api-key>/translate` 并将 Token 留空。其他 DeepLX 服务会在
 根地址后自动补上 `/translate`，并将 Token 作为 Bearer Token 发送。
 
+批量字幕使用 DeepLX 可原样保留的私用 Unicode 标记分段，不依赖会被翻译服务吞并的
+`||` 分隔符。
+
 ## 构建与验证
 
 ```bash

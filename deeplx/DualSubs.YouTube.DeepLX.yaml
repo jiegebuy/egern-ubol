@@ -83,7 +83,7 @@ scriptings:
 - http_response:
     name: 🍿️ DualSubs.YouTube.Translate.TimedText.response
     match: ^https?:\/\/(www|m)\.youtube\.com\/api\/timedtext\?(.*)subtype=Translate
-    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/Translate.response.deeplx.bundle.js?v=87c400b
+    script_url: https://github.com/jiegebuy/egern-ubol/raw/refs/heads/main/deeplx/Translate.response.deeplx.bundle.js?v=private-use-v1
     arguments:
       _compat.$argument: Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&DeepLX.Endpoint="{{{DeepLXEndpoint}}}"&DeepLX.Auth="{{{DeepLXToken}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
@@ -105,14 +105,14 @@ scriptings:
 - http_response:
     name: 🍿️ DualSubs.YouTubeMusic.Translate.Lyrics.response.json
     match: ^https?:\/\/music\.youtube\.com\/youtubei\/v1\/browse\?(.*)subtype=Translate
-    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/Translate.response.deeplx.bundle.js?v=87c400b
+    script_url: https://github.com/jiegebuy/egern-ubol/raw/refs/heads/main/deeplx/Translate.response.deeplx.bundle.js?v=private-use-v1
     arguments:
       _compat.$argument: Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&DeepLX.Endpoint="{{{DeepLXEndpoint}}}"&DeepLX.Auth="{{{DeepLXToken}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
 - http_response:
     name: 🍿️ DualSubs.YouTubeMusic.Translate.Lyrics.response.proto
     match: ^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/browse\?(.*)subtype=Translate
-    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/Translate.response.deeplx.bundle.js?v=87c400b
+    script_url: https://github.com/jiegebuy/egern-ubol/raw/refs/heads/main/deeplx/Translate.response.deeplx.bundle.js?v=private-use-v1
     arguments:
       _compat.$argument: Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&DeepLX.Endpoint="{{{DeepLXEndpoint}}}"&DeepLX.Auth="{{{DeepLXToken}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
