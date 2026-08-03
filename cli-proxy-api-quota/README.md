@@ -17,6 +17,7 @@ https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/cli-proxy-api-quota/C
 - `ACCOUNT_FILTER`：可选，按文件名或邮箱筛选账号。
 - `MAX_ACCOUNTS`：大组件最多加载 1–4 个账号。
 - `MASK_EMAIL`：默认 `true`，隐藏邮箱用户名中间部分。
+- `AUTO_REFRESH_MINUTES`：自动刷新间隔（分钟）。默认 `0`，仅手动刷新；填写正整数后启用定时自动刷新，例如 `30` 表示每 30 分钟刷新。
 
 最后进入 **分析 → 小组件画廊 → 模块小组件**，选择“CLI Proxy API 配额”，再将 Egern 小组件添加到 iOS 主屏幕或锁屏。
 
@@ -33,7 +34,7 @@ https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/cli-proxy-api-quota/C
 
 ## 显示规则
 
-- 小组件不会按时间自动刷新；只有在 Egern 中手动刷新时才会重新请求配额。
+- `AUTO_REFRESH_MINUTES` 为 `0` 时，小组件只在手动刷新时重新请求配额；设置为正整数时，将按所填分钟数自动刷新。实际执行时间可能受 iOS 小组件调度策略影响。
 - 环形和进度条显示的是**剩余额度**，不是已使用比例。
 - 有周期额度时优先将其作为账号主指标，否则使用 5 小时额度。
 - 颜色阈值：剩余 ≥ 50% 为绿色，20–49% 为橙色，低于 20% 为红色。

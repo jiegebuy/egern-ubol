@@ -13,8 +13,6 @@ const COLORS = {
 };
 
 const CODEX_USAGE_URL = 'https://chatgpt.com/backend-api/wham/usage';
-// Egern respects refreshAfter for the widget timeline. Keeping it far in the
-// future disables scheduled refreshes while preserving the manual refresh action.
 const MANUAL_REFRESH_AFTER = '2099-12-31T23:59:59Z';
 const CODEX_HEADERS = {
   Authorization: 'Bearer $TOKEN$',
@@ -53,6 +51,26 @@ function number(value) {
 function bool(value, fallback = false) {
   if (value === undefined || value === null || value === '') return fallback;
   return String(value).trim().toLowerCase() === 'true';
+}
+
+function refreshMinutes(env) {
+  const minutes = Math.trunc(number(env?.AUTO_REFRESH_MINUTES) || 0);
+  return minutes > 0 ? clamp(minutes, 1, 525600) : 0;
+}
+
+function refreshAfter(env) {
+  const minutes = refreshMinutes(env);
+  return minutes > 0
+    ? new Date(Date.now() + minutes * 60000).toISOString()
+    : MANUAL_REFRESH_AFTER;
+}
+
+function refreshLabel(env) {
+  const minutes = refreshMinutes(env);
+  if (!minutes) return '仅手动刷新';
+  if (minutes % 1440 === 0) return `每 ${minutes / 1440} 天自动刷新`;
+  if (minutes % 60 === 0) return `每 ${minutes / 60} 小时自动刷新`;
+  return `每 ${minutes} 分钟自动刷新`;
 }
 
 function apiBase(input) {
@@ -352,10 +370,10 @@ function largeAccount(account, env, width = 290) {
   });
 }
 
-function background(children, padding = 14, gap = 8) {
+function background(children, padding = 14, gap = 8, env = {}) {
   return {
     type: 'widget',
-    refreshAfter: MANUAL_REFRESH_AFTER,
+    refreshAfter: refreshAfter(env),
     backgroundGradient: {
       type: 'linear',
       colors: [COLORS.bg2, COLORS.bg, '#0F0A16'],
@@ -369,14 +387,14 @@ function background(children, padding = 14, gap = 8) {
   };
 }
 
-function errorWidget(message, family, kind) {
+function errorWidget(message, family, kind, env) {
   const compact = family?.startsWith('accessory');
   const title = kind === 'config' ? '需要配置' : kind === 'empty' ? '暂无凭证' : '连接失败';
-  if (family === 'accessoryInline') return background([text(`CLI Proxy API · ${title}`, 'caption1', COLORS.text, 'semibold')], 0, 0);
+  if (family === 'accessoryInline') return background([text(`CLI Proxy API · ${title}`, 'caption1', COLORS.text, 'semibold')], 0, 0, env);
   return background([
     stack('row', [icon(kind === 'config' ? 'key.fill' : 'exclamationmark.triangle.fill', COLORS.orange, compact ? 14 : 20), text(title, compact ? 'caption1' : 'headline', COLORS.text, 'bold')], { alignItems: 'center', gap: 7 }),
     text(message, compact ? 'caption2' : 'caption1', COLORS.muted, 'regular', { maxLines: compact ? 2 : 3, minScale: 0.65 }),
-  ], compact ? 6 : 14, 6);
+  ], compact ? 6 : 14, 6, env);
 }
 
 function render(accounts, family, env) {
@@ -385,11 +403,11 @@ function render(accounts, family, env) {
   const lowest = values.length ? Math.min(...values) : null;
 
   if (family === 'accessoryInline') {
-    return background([text(`Codex ${accounts.length} 个凭证 · 最低 ${percentLabel(lowest)}`, 'caption1', COLORS.text, 'semibold')], 0, 0);
+    return background([text(`Codex ${accounts.length} 个凭证 · 最低 ${percentLabel(lowest)}`, 'caption1', COLORS.text, 'semibold')], 0, 0, env);
   }
 
   if (family === 'accessoryCircular') {
-    return background([ringImage(lowest, 54)], 2, 0);
+    return background([ringImage(lowest, 54)], 2, 0, env);
   }
 
   if (family === 'accessoryRectangular') {
@@ -401,7 +419,7 @@ function render(accounts, family, env) {
         text(identity(first.file, bool(env.MASK_EMAIL, true)), 'caption2', COLORS.muted, 'medium', { maxLines: 1, flex: 1, minScale: 0.6 }),
         text(first.error ? '失败' : percentLabel(current?.remaining ?? null), 'caption1', first.error ? COLORS.orange : quotaColor(current?.remaining ?? null), 'bold'),
       ], { alignItems: 'center', gap: 5 }),
-    ], 7, 4);
+    ], 7, 4, env);
   }
 
   if (family === 'systemSmall') {
@@ -414,14 +432,14 @@ function render(accounts, family, env) {
       { type: 'spacer' },
       text(identity(first.file, bool(env.MASK_EMAIL, true)), 'caption1', COLORS.text, 'semibold', { maxLines: 1, minScale: 0.6 }),
       text(first.error ? first.error : `${windowLabel(current)} · ${resetLabel(current?.resetAt)}`, 'caption2', first.error ? COLORS.orange : COLORS.muted, 'regular', { maxLines: 1, minScale: 0.55 }),
-    ], 12, 4);
+    ], 12, 4, env);
   }
 
   if (family === 'systemMedium') {
     return background([
       headerRow(accounts.length),
       ...accounts.slice(0, 2).map(account => compactAccount(account, env, 275)),
-    ], 10, 5);
+    ], 10, 5, env);
   }
 
   if (family === 'systemExtraLarge') {
@@ -437,16 +455,16 @@ function render(accounts, family, env) {
       headerRow(accounts.length),
       text(`Codex · 最低剩余 ${percentLabel(lowest)}`, 'caption2', quotaColor(lowest), 'medium'),
       ...rows,
-      stack('row', [icon('hand.tap.fill', COLORS.muted, 11), text('仅手动刷新', 'caption2', COLORS.faint)], { alignItems: 'center', gap: 4 }),
-    ], 13, 8);
+      stack('row', [icon(refreshMinutes(env) ? 'arrow.clockwise' : 'hand.tap.fill', COLORS.muted, 11), text(refreshLabel(env), 'caption2', COLORS.faint)], { alignItems: 'center', gap: 4 }),
+    ], 13, 8, env);
   }
 
   return background([
     headerRow(accounts.length),
     text(`Codex · 最低剩余 ${percentLabel(lowest)}`, 'caption2', quotaColor(lowest), 'medium'),
     ...accounts.slice(0, 2).map(account => largeAccount(account, env, 290)),
-    stack('row', [icon('hand.tap.fill', COLORS.muted, 11), text('仅手动刷新', 'caption2', COLORS.faint)], { alignItems: 'center', gap: 4 }),
-  ], 13, 8);
+    stack('row', [icon(refreshMinutes(env) ? 'arrow.clockwise' : 'hand.tap.fill', COLORS.muted, 11), text(refreshLabel(env), 'caption2', COLORS.faint)], { alignItems: 'center', gap: 4 }),
+  ], 13, 8, env);
 }
 
 export default async function (ctx) {
@@ -459,6 +477,6 @@ export default async function (ctx) {
     let message = error?.message || '未知错误';
     if (error?.status === 401) message = 'MANAGEMENT_KEY 无效或已过期';
     if (error?.status === 404) message = '未找到管理接口，请检查地址及远程管理设置';
-    return errorWidget(message, family, error?.kind);
+    return errorWidget(message, family, error?.kind, env);
   }
 }

@@ -23,6 +23,7 @@ function mockContext(family = 'systemMedium') {
         MANAGEMENT_KEY: 'test-management-key',
         MAX_ACCOUNTS: '3',
         MASK_EMAIL: 'true',
+        AUTO_REFRESH_MINUTES: '0',
       },
       http: {
         async get(url, options) {
@@ -124,4 +125,17 @@ test('uses a bounded two-card layout for a large widget', async () => {
     node => node.type === 'stack' && node.borderRadius === 14 && node.backgroundColor === '#FFFFFF0D',
   );
   assert.equal(cards.length, 2);
+});
+
+test('schedules the next update from the configured refresh interval', async () => {
+  const { ctx } = mockContext('systemLarge');
+  ctx.env.AUTO_REFRESH_MINUTES = '30';
+  const before = Date.now();
+  const result = await widget(ctx);
+  const scheduled = Date.parse(result.refreshAfter);
+
+  assert.ok(scheduled >= before + 30 * 60000);
+  assert.ok(scheduled <= Date.now() + 30 * 60000);
+  const labels = collect(result, node => node.type === 'text').map(node => node.text);
+  assert.ok(labels.includes('每 30 分钟自动刷新'));
 });
