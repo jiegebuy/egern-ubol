@@ -13,6 +13,9 @@ const COLORS = {
 };
 
 const CODEX_USAGE_URL = 'https://chatgpt.com/backend-api/wham/usage';
+// Egern respects refreshAfter for the widget timeline. Keeping it far in the
+// future disables scheduled refreshes while preserving the manual refresh action.
+const MANUAL_REFRESH_AFTER = '2099-12-31T23:59:59Z';
 const CODEX_HEADERS = {
   Authorization: 'Bearer $TOKEN$',
   'Content-Type': 'application/json',
@@ -352,6 +355,7 @@ function largeAccount(account, env, width = 290) {
 function background(children, padding = 14, gap = 8) {
   return {
     type: 'widget',
+    refreshAfter: MANUAL_REFRESH_AFTER,
     backgroundGradient: {
       type: 'linear',
       colors: [COLORS.bg2, COLORS.bg, '#0F0A16'],
@@ -433,7 +437,7 @@ function render(accounts, family, env) {
       headerRow(accounts.length),
       text(`Codex · 最低剩余 ${percentLabel(lowest)}`, 'caption2', quotaColor(lowest), 'medium'),
       ...rows,
-      stack('row', [icon('arrow.clockwise', COLORS.muted, 11), text('由 Egern 自动刷新', 'caption2', COLORS.faint)], { alignItems: 'center', gap: 4 }),
+      stack('row', [icon('hand.tap.fill', COLORS.muted, 11), text('仅手动刷新', 'caption2', COLORS.faint)], { alignItems: 'center', gap: 4 }),
     ], 13, 8);
   }
 
@@ -441,7 +445,7 @@ function render(accounts, family, env) {
     headerRow(accounts.length),
     text(`Codex · 最低剩余 ${percentLabel(lowest)}`, 'caption2', quotaColor(lowest), 'medium'),
     ...accounts.slice(0, 2).map(account => largeAccount(account, env, 290)),
-    stack('row', [icon('arrow.clockwise', COLORS.muted, 11), text('由 Egern 自动刷新', 'caption2', COLORS.faint)], { alignItems: 'center', gap: 4 }),
+    stack('row', [icon('hand.tap.fill', COLORS.muted, 11), text('仅手动刷新', 'caption2', COLORS.faint)], { alignItems: 'center', gap: 4 }),
   ], 13, 8);
 }
 

@@ -85,6 +85,7 @@ test('loads Codex quota through the management proxy and renders two accounts', 
   const result = await widget(ctx);
 
   assert.equal(result.type, 'widget');
+  assert.equal(result.refreshAfter, '2099-12-31T23:59:59Z');
   assert.equal(calls[0].url, 'http://localhost:8317/v0/management/auth-files');
   assert.equal(calls.filter(call => call.method === 'POST').length, 2);
   assert.equal(calls[1].options.body.url, 'https://chatgpt.com/backend-api/wham/usage');
@@ -104,6 +105,7 @@ test('renders a useful setup state when the management key is absent', async () 
   const labels = collect(result, node => node.type === 'text').map(node => node.text);
   assert.ok(labels.includes('需要配置'));
   assert.ok(labels.some(label => label.includes('MANAGEMENT_KEY')));
+  assert.equal(result.refreshAfter, '2099-12-31T23:59:59Z');
 });
 
 test('adapts to lock-screen inline widgets', async () => {
@@ -111,6 +113,7 @@ test('adapts to lock-screen inline widgets', async () => {
   const result = await widget(ctx);
   const labels = collect(result, node => node.type === 'text').map(node => node.text);
   assert.deepEqual(labels, ['Codex 2 个凭证 · 最低 65%']);
+  assert.equal(result.refreshAfter, '2099-12-31T23:59:59Z');
 });
 
 test('uses a bounded two-card layout for a large widget', async () => {

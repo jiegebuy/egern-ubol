@@ -33,6 +33,7 @@ https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/cli-proxy-api-quota/C
 
 ## 显示规则
 
+- 小组件不会按时间自动刷新；只有在 Egern 中手动刷新时才会重新请求配额。
 - 环形和进度条显示的是**剩余额度**，不是已使用比例。
 - 有周期额度时优先将其作为账号主指标，否则使用 5 小时额度。
 - 颜色阈值：剩余 ≥ 50% 为绿色，20–49% 为橙色，低于 20% 为红色。
