@@ -1,0 +1,44 @@
+name: "CLI Proxy API 配额"
+description: "在 Egern 主屏幕与锁屏小组件中显示 CLIProxyAPI 的 Codex 账号配额。"
+author: "jiegebuy"
+homepage: "https://github.com/jiegebuy/egern-ubol/tree/main/cli-proxy-api-quota"
+icon: "gauge.with.dots.needle.50percent"
+
+env_schema:
+  API_URL:
+    name: "CLIProxyAPI 地址"
+    description: "服务根地址，例如 http://192.168.1.10:8317；也可粘贴 management.html#/quota 地址。"
+    default_value: "http://localhost:8317"
+  MANAGEMENT_KEY:
+    name: "管理密钥"
+    description: "CLIProxyAPI 配置中的 remote-management.secret-key。仅作为模块环境变量发送给管理接口。"
+    default_value: ""
+  ACCOUNT_FILTER:
+    name: "账号筛选"
+    description: "可选；只显示文件名或邮箱中包含此文字的 Codex 凭证。"
+    default_value: ""
+  MAX_ACCOUNTS:
+    name: "最多显示账号数"
+    description: "大组件最多显示的账号数；小尺寸会自动减少。"
+    options:
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+    default_value: "3"
+  MASK_EMAIL:
+    name: "隐藏邮箱"
+    description: "开启后对邮箱用户名中间部分打码。"
+    options:
+      - "true"
+      - "false"
+    default_value: "true"
+
+scriptings:
+  - generic:
+      name: "CLI Proxy API 配额"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/cli-proxy-api-quota/scripts/quota-widget.js"
+      timeout: 30
+
+widgets:
+  - name: "CLI Proxy API 配额"
