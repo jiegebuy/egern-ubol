@@ -2,6 +2,10 @@
 
 把 uBlock Origin Lite 官方 Chromium 规则转换为 Egern 可用的原生网络规则。当前推荐入口是一个专注于跨应用追踪器拦截的轻量模块；浏览器内的广告和网页元素隐藏交给 uBO Lite 自己处理。
 
+## BiliBili 模块
+
+基于 BiliUniverse ADBlock / Enhanced 的 Egern 适配，以及 BBZQ 可在网络层实现的补充功能，见 [`bilibili/README.md`](bilibili/README.md)。其中 ADBlock 模块包含独立的暂停广告拦截、首页卡片类型过滤和标题关键词过滤。
+
 ## 推荐模块
 
 `https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/track-block/ubol.yaml`

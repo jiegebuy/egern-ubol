@@ -1,0 +1,73 @@
+name: "📺 BiliBili: ⚙️ Enhanced + BBZQ"
+description: "Egern 版哔哩哔哩界面入口定制；基于 BiliUniverse Enhanced，承接 BBZQ 中可由网络响应实现的首页、分区和‘我的’页面净化。"
+author: "BiliUniverse; BBZQ; Egern port by jiegebuy"
+homepage: "https://github.com/BiliUniverse/Enhanced"
+manual: "https://github.com/jiegebuy/egern-ubol/tree/main/bilibili"
+icon: "https://github.com/BiliUniverse/Enhanced/raw/main/src/assets/icon_rounded.png"
+
+compat_arguments:
+  Home.Switch: "true"
+  Home.Tab: "直播tab,推荐tab,hottopic,bangumi,anime,film,koreavtw"
+  Home.Tab_default: "推荐tab"
+  Home.Top_left: "mine"
+  Home.Top: "消息Top"
+  Bottom: "home,dynamic,ogv,会员购Bottom,我的Bottom"
+  Region.Switch: "true"
+  Mine.Switch: "true"
+  Mine.iPad.Switch: "true"
+  Storage: "Argument"
+  LogLevel: "WARN"
+
+compat_arguments_desc: |
+  Home.Switch: 启用首页标签、顶栏与底栏定制。
+  Home.Tab: 首页标签列表；可用直播tab、推荐tab、hottopic、bangumi、anime、film、koreavtw、game、mctab、dhtr、gaoxiao、school、kj。
+  Home.Tab_default: 默认首页标签，必须包含在 Home.Tab 中。
+  Home.Top_left: 顶栏左侧按钮，可选 mine 或 videoshortcut。
+  Home.Top: 顶栏右侧按钮，可用游戏中心Top、会员购Top、消息Top。
+  Bottom: 底部导航，可用 home、频道Bottom、dynamic、publish、ogv、会员购Bottom、消息Bottom、我的Bottom，最多 6 个。
+  Region.Switch: 启用分区页面定制。
+  Mine.Switch: 启用“我的”页面服务定制。
+  Mine.iPad.Switch: 启用 iPad 版“我的”页面定制。
+  Storage: Argument、PersistentStore 或 database；Egern 推荐 Argument。
+  LogLevel: OFF、ERROR、WARN、INFO、DEBUG 或 ALL。
+
+scriptings:
+  - http_response:
+      name: "BiliBili Enhanced 首页入口"
+      match: '^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/resource\/show\/tab\/v2\?'
+      script_url: "https://github.com/BiliUniverse/Enhanced/releases/latest/download/response.bundle.js"
+      update_interval: 86400
+      arguments:
+        _compat.$argument: 'Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"'
+      body_required: true
+  - http_response:
+      name: "BiliBili Enhanced 我的"
+      match: '^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/account\/mine(\/ipad)?\?'
+      script_url: "https://github.com/BiliUniverse/Enhanced/releases/latest/download/response.bundle.js"
+      update_interval: 86400
+      arguments:
+        _compat.$argument: 'Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"'
+      body_required: true
+  - http_response:
+      name: "BiliBili Enhanced 分区索引"
+      match: '^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/region\/index\?'
+      script_url: "https://github.com/BiliUniverse/Enhanced/releases/latest/download/response.bundle.js"
+      update_interval: 86400
+      arguments:
+        _compat.$argument: 'Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"'
+      body_required: true
+  - http_response:
+      name: "BiliBili Enhanced 频道分区"
+      match: '^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/channel\/region\/list\?'
+      script_url: "https://github.com/BiliUniverse/Enhanced/releases/latest/download/response.bundle.js"
+      update_interval: 86400
+      arguments:
+        _compat.$argument: 'Home.Switch="{{{Home.Switch}}}"&Home.Tab="{{{Home.Tab}}}"&Home.Tab_default="{{{Home.Tab_default}}}"&Home.Top_left="{{{Home.Top_left}}}"&Home.Top="{{{Home.Top}}}"&Bottom="{{{Bottom}}}"&Region.Switch="{{{Region.Switch}}}"&Mine.Switch="{{{Mine.Switch}}}"&Mine.iPad.Switch="{{{Mine.iPad.Switch}}}"&Storage="{{{Storage}}}"&LogLevel="{{{LogLevel}}}"'
+      body_required: true
+
+mitm:
+  hostnames:
+    includes:
+      - app.bilibili.com
+      - app.biliapi.net
+  h2: true
