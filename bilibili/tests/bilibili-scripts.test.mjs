@@ -83,3 +83,80 @@ test("Surge-compatible feed filter handles Egern legacy globals", () => {
   });
   assert.deepEqual(JSON.parse(completed.body).data.items.map((item) => item.title), ["ordinary"]);
 });
+
+test("Surge-compatible share purifier expands short links and removes tracking", () => {
+  const source = fs.readFileSync(
+    path.join(import.meta.dirname, "..", "scripts", "share-link-purify.compat.js"),
+    "utf8",
+  );
+  let completed;
+  vm.runInNewContext(source, {
+    URL,
+    BigInt,
+    console,
+    $argument: 'Share.Purify="true"&Share.BV2AV="false"',
+    $response: {
+      body: JSON.stringify({
+        code: 0,
+        data: {
+          content: "标题 https://b23.tv/AbCd123。",
+          link: "https://www.bilibili.com/video/BV1GJ411x7h7?spm_id_from=333.1&p=2",
+        },
+      }),
+    },
+    $httpClient: {
+      get(request, callback) {
+        assert.equal(request.url, "https://b23.tv/AbCd123");
+        assert.equal(request["auto-redirect"], false);
+        callback(null, {
+          status: 302,
+          headers: {
+            Location:
+              "https://www.bilibili.com/video/BV1GJ411x7h7?share_source=copy_web&start_progress=65000#reply1",
+          },
+        });
+      },
+    },
+    $done(value) {
+      completed = value;
+    },
+  });
+
+  const data = JSON.parse(completed.body).data;
+  assert.equal(
+    data.content,
+    "标题 https://www.bilibili.com/video/BV1GJ411x7h7?start_progress=65000&t=65&unique_k=2333。",
+  );
+  assert.equal(
+    data.link,
+    "https://www.bilibili.com/video/BV1GJ411x7h7?p=2&unique_k=2333",
+  );
+});
+
+test("Surge-compatible share purifier can apply BBZQ BV-to-av conversion", () => {
+  const source = fs.readFileSync(
+    path.join(import.meta.dirname, "..", "scripts", "share-link-purify.compat.js"),
+    "utf8",
+  );
+  let completed;
+  vm.runInNewContext(source, {
+    URL,
+    BigInt,
+    console,
+    $argument: 'Share.Purify="true"&Share.BV2AV="true"',
+    $response: {
+      body: JSON.stringify({
+        code: 0,
+        data: { content: "https://www.bilibili.com/video/BV1GJ411x7h7?from=share" },
+      }),
+    },
+    $done(value) {
+      completed = value;
+    },
+  });
+
+  assert.equal(
+    JSON.parse(completed.body).data.content,
+    "https://www.bilibili.com/video/av80433022?unique_k=2333",
+  );
+});

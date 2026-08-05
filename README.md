@@ -4,7 +4,7 @@
 
 ## BiliBili 模块
 
-基于 BiliUniverse ADBlock / Enhanced 的 Surge 模块，以及 BBZQ 可在网络层实现的补充功能，见 [`bilibili/README.md`](bilibili/README.md)。Egern 可直接导入其中的 `.sgmodule` 文件；ADBlock 模块包含暂停广告拦截、首页卡片类型过滤和标题关键词过滤。
+基于 BiliUniverse ADBlock / Enhanced 的 Surge 模块，以及 BBZQ 可在网络层实现的补充功能，见 [`bilibili/README.md`](bilibili/README.md)。Egern 可直接导入其中的 `.sgmodule` 文件；ADBlock 模块包含暂停广告拦截、首页卡片类型与标题关键词过滤，Enhanced 模块包含分享短链展开和追踪参数净化。
 
 ## 推荐模块
 

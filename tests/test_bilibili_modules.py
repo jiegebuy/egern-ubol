@@ -37,6 +37,15 @@ class BiliBiliModuleTests(unittest.TestCase):
         self.assertIn("Feed.Filter", source)
         self.assertIn("feed-filter.compat.js", source)
 
+    def test_surge_enhanced_purifies_share_short_links(self) -> None:
+        source = (BILIBILI / "BiliBili.Enhanced.sgmodule").read_text(encoding="utf-8")
+        self.assertIn("Share.Purify:true", source)
+        self.assertIn("Share.BV2AV:false", source)
+        self.assertIn("/x\\/share\\/click", source)
+        self.assertIn("share-link-purify.compat.js", source)
+        self.assertIn("api.bilibili.com", source)
+        self.assertIn("api.biliapi.net", source)
+
     def test_modules_are_valid_yaml_after_argument_substitution(self) -> None:
         for name in ("BiliBili.ADBlock.yaml", "BiliBili.Enhanced.yaml"):
             with self.subTest(name=name):
