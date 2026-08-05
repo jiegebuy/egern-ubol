@@ -7,26 +7,26 @@ icon: "https://github.com/BiliUniverse/ADBlock/raw/main/src/assets/icon_rounded.
 
 compat_arguments:
   Splash: "true"
-  Feed.AD: "true"
-  Feed.Activity: "false"
-  Feed.Vertical: "false"
-  Feed.BlockUpLiveList: ""
-  Feed.Story: "true"
-  Feed.Filter: "false"
-  Feed.FilterTypes: "picture,game,live,ketang,vertical,large"
-  Feed.TitleKeywords: ""
-  Search.AD: "true"
-  Search.HotSearch: "true"
-  PGC.AD: "true"
-  Xlive.AD: "true"
-  Dynamic.HotTopics: "true"
-  Dynamic.MostVisited: "false"
-  Dynamic.MostVisitedLiveOnly: "false"
-  Dynamic.AdCard: "true"
-  View.AD: "true"
-  DM.Command: "false"
-  DM.Colorful: "false"
-  Reply.AD: "true"
+  FeedAD: "true"
+  FeedActivity: "false"
+  FeedVertical: "false"
+  FeedBlockUpLiveList: ""
+  FeedStory: "true"
+  FeedFilter: "false"
+  FeedFilterTypes: "picture,game,live,ketang,vertical,large"
+  FeedTitleKeywords: ""
+  SearchAD: "true"
+  SearchHotSearch: "true"
+  PGCAD: "true"
+  XliveAD: "true"
+  DynamicHotTopics: "true"
+  DynamicMostVisited: "false"
+  DynamicMostVisitedLiveOnly: "false"
+  DynamicAdCard: "true"
+  ViewAD: "true"
+  DMCommand: "false"
+  DMColorful: "false"
+  ReplyAD: "true"
   LogLevel: "WARN"
 
 compat_arguments_desc: |
@@ -84,14 +84,14 @@ scriptings:
       script_url: "https://github.com/BiliUniverse/ADBlock/releases/latest/download/request.bundle.js"
       update_interval: 86400
       arguments:
-        _compat.$argument: 'Splash="{{{Splash}}}"&Feed.AD="{{{Feed.AD}}}"&Feed.Activity="{{{Feed.Activity}}}"&Feed.Vertical="{{{Feed.Vertical}}}"&Feed.BlockUpLiveList="{{{Feed.BlockUpLiveList}}}"&Feed.Story="{{{Feed.Story}}}"&Search.AD="{{{Search.AD}}}"&Search.HotSearch="{{{Search.HotSearch}}}"&PGC.AD="{{{PGC.AD}}}"&Xlive.AD="{{{Xlive.AD}}}"&Dynamic.HotTopics="{{{Dynamic.HotTopics}}}"&Dynamic.MostVisited="{{{Dynamic.MostVisited}}}"&Dynamic.MostVisitedLiveOnly="{{{Dynamic.MostVisitedLiveOnly}}}"&Dynamic.AdCard="{{{Dynamic.AdCard}}}"&View.AD="{{{View.AD}}}"&DM.Command="{{{DM.Command}}}"&DM.Colorful="{{{DM.Colorful}}}"&Reply.AD="{{{Reply.AD}}}"&LogLevel="{{{LogLevel}}}"'
+        _compat.$argument: 'Splash="{{{Splash}}}"&Feed.AD="{{{FeedAD}}}"&Feed.Activity="{{{FeedActivity}}}"&Feed.Vertical="{{{FeedVertical}}}"&Feed.BlockUpLiveList="{{{FeedBlockUpLiveList}}}"&Feed.Story="{{{FeedStory}}}"&Search.AD="{{{SearchAD}}}"&Search.HotSearch="{{{SearchHotSearch}}}"&PGC.AD="{{{PGCAD}}}"&Xlive.AD="{{{XliveAD}}}"&Dynamic.HotTopics="{{{DynamicHotTopics}}}"&Dynamic.MostVisited="{{{DynamicMostVisited}}}"&Dynamic.MostVisitedLiveOnly="{{{DynamicMostVisitedLiveOnly}}}"&Dynamic.AdCard="{{{DynamicAdCard}}}"&View.AD="{{{ViewAD}}}"&DM.Command="{{{DMCommand}}}"&DM.Colorful="{{{DMColorful}}}"&Reply.AD="{{{ReplyAD}}}"&LogLevel="{{{LogLevel}}}"'
   - http_response:
       name: "BiliBili ADBlock JSON"
       match: '^https?:\/\/app\.bili(bili\.com|api\.net)\/x\/v2\/(splash\/(brand\/list|event\/list2|list|show)|feed\/index(\/story)?|search\/square)'
       script_url: "https://github.com/BiliUniverse/ADBlock/releases/latest/download/response.bundle.js"
       update_interval: 86400
       arguments:
-        _compat.$argument: 'Splash="{{{Splash}}}"&Feed.AD="{{{Feed.AD}}}"&Feed.Activity="{{{Feed.Activity}}}"&Feed.Vertical="{{{Feed.Vertical}}}"&Feed.BlockUpLiveList="{{{Feed.BlockUpLiveList}}}"&Feed.Story="{{{Feed.Story}}}"&Search.AD="{{{Search.AD}}}"&Search.HotSearch="{{{Search.HotSearch}}}"&PGC.AD="{{{PGC.AD}}}"&Xlive.AD="{{{Xlive.AD}}}"&Dynamic.HotTopics="{{{Dynamic.HotTopics}}}"&Dynamic.MostVisited="{{{Dynamic.MostVisited}}}"&Dynamic.MostVisitedLiveOnly="{{{Dynamic.MostVisitedLiveOnly}}}"&Dynamic.AdCard="{{{Dynamic.AdCard}}}"&View.AD="{{{View.AD}}}"&DM.Command="{{{DM.Command}}}"&DM.Colorful="{{{DM.Colorful}}}"&Reply.AD="{{{Reply.AD}}}"&LogLevel="{{{LogLevel}}}"'
+        _compat.$argument: 'Splash="{{{Splash}}}"&Feed.AD="{{{FeedAD}}}"&Feed.Activity="{{{FeedActivity}}}"&Feed.Vertical="{{{FeedVertical}}}"&Feed.BlockUpLiveList="{{{FeedBlockUpLiveList}}}"&Feed.Story="{{{FeedStory}}}"&Search.AD="{{{SearchAD}}}"&Search.HotSearch="{{{SearchHotSearch}}}"&PGC.AD="{{{PGCAD}}}"&Xlive.AD="{{{XliveAD}}}"&Dynamic.HotTopics="{{{DynamicHotTopics}}}"&Dynamic.MostVisited="{{{DynamicMostVisited}}}"&Dynamic.MostVisitedLiveOnly="{{{DynamicMostVisitedLiveOnly}}}"&Dynamic.AdCard="{{{DynamicAdCard}}}"&View.AD="{{{ViewAD}}}"&DM.Command="{{{DMCommand}}}"&DM.Colorful="{{{DMColorful}}}"&Reply.AD="{{{ReplyAD}}}"&LogLevel="{{{LogLevel}}}"'
       body_required: true
   - http_response:
       name: "BiliBili ADBlock 首页附加过滤"
@@ -99,7 +99,7 @@ scriptings:
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/bilibili/scripts/feed-filter.js"
       update_interval: 86400
       arguments:
-        _compat.$argument: 'Feed.Filter="{{{Feed.Filter}}}"&Feed.FilterTypes="{{{Feed.FilterTypes}}}"&Feed.TitleKeywords="{{{Feed.TitleKeywords}}}"'
+        _compat.$argument: 'Feed.Filter="{{{FeedFilter}}}"&Feed.FilterTypes="{{{FeedFilterTypes}}}"&Feed.TitleKeywords="{{{FeedTitleKeywords}}}"'
       body_required: true
       max_size: 1048576
   - http_response:
@@ -108,7 +108,7 @@ scriptings:
       script_url: "https://github.com/BiliUniverse/ADBlock/releases/latest/download/response.bundle.js"
       update_interval: 86400
       arguments:
-        _compat.$argument: 'Feed.AD="{{{Feed.AD}}}"&Feed.Activity="{{{Feed.Activity}}}"&Feed.Vertical="{{{Feed.Vertical}}}"&LogLevel="{{{LogLevel}}}"'
+        _compat.$argument: 'Feed.AD="{{{FeedAD}}}"&Feed.Activity="{{{FeedActivity}}}"&Feed.Vertical="{{{FeedVertical}}}"&LogLevel="{{{LogLevel}}}"'
       body_required: true
   - http_response:
       name: "BiliBili ADBlock PGC 页面"
@@ -116,7 +116,7 @@ scriptings:
       script_url: "https://github.com/BiliUniverse/ADBlock/releases/latest/download/response.bundle.js"
       update_interval: 86400
       arguments:
-        _compat.$argument: 'PGC.AD="{{{PGC.AD}}}"&LogLevel="{{{LogLevel}}}"'
+        _compat.$argument: 'PGC.AD="{{{PGCAD}}}"&LogLevel="{{{LogLevel}}}"'
       body_required: true
   - http_response:
       name: "BiliBili ADBlock 直播间"
@@ -124,7 +124,7 @@ scriptings:
       script_url: "https://github.com/BiliUniverse/ADBlock/releases/latest/download/response.bundle.js"
       update_interval: 86400
       arguments:
-        _compat.$argument: 'Xlive.AD="{{{Xlive.AD}}}"&LogLevel="{{{LogLevel}}}"'
+        _compat.$argument: 'Xlive.AD="{{{XliveAD}}}"&LogLevel="{{{LogLevel}}}"'
       body_required: true
   - http_response:
       name: "BiliBili ADBlock 视频详情 gRPC"
@@ -132,7 +132,7 @@ scriptings:
       script_url: "https://github.com/BiliUniverse/ADBlock/releases/latest/download/response.bundle.js"
       update_interval: 86400
       arguments:
-        _compat.$argument: 'View.AD="{{{View.AD}}}"&LogLevel="{{{LogLevel}}}"'
+        _compat.$argument: 'View.AD="{{{ViewAD}}}"&LogLevel="{{{LogLevel}}}"'
       body_required: true
       binary_body: true
       max_size: 262144
@@ -142,7 +142,7 @@ scriptings:
       script_url: "https://github.com/BiliUniverse/ADBlock/releases/latest/download/response.bundle.js"
       update_interval: 86400
       arguments:
-        _compat.$argument: 'Dynamic.HotTopics="{{{Dynamic.HotTopics}}}"&Dynamic.MostVisited="{{{Dynamic.MostVisited}}}"&Dynamic.MostVisitedLiveOnly="{{{Dynamic.MostVisitedLiveOnly}}}"&Dynamic.AdCard="{{{Dynamic.AdCard}}}"&LogLevel="{{{LogLevel}}}"'
+        _compat.$argument: 'Dynamic.HotTopics="{{{DynamicHotTopics}}}"&Dynamic.MostVisited="{{{DynamicMostVisited}}}"&Dynamic.MostVisitedLiveOnly="{{{DynamicMostVisitedLiveOnly}}}"&Dynamic.AdCard="{{{DynamicAdCard}}}"&LogLevel="{{{LogLevel}}}"'
       body_required: true
       binary_body: true
   - http_response:
@@ -151,7 +151,7 @@ scriptings:
       script_url: "https://github.com/BiliUniverse/ADBlock/releases/latest/download/response.bundle.js"
       update_interval: 86400
       arguments:
-        _compat.$argument: 'View.AD="{{{View.AD}}}"&LogLevel="{{{LogLevel}}}"'
+        _compat.$argument: 'View.AD="{{{ViewAD}}}"&LogLevel="{{{LogLevel}}}"'
       body_required: true
       binary_body: true
   - http_response:
@@ -160,7 +160,7 @@ scriptings:
       script_url: "https://github.com/BiliUniverse/ADBlock/releases/latest/download/response.bundle.js"
       update_interval: 86400
       arguments:
-        _compat.$argument: 'Search.AD="{{{Search.AD}}}"&Search.HotSearch="{{{Search.HotSearch}}}"&LogLevel="{{{LogLevel}}}"'
+        _compat.$argument: 'Search.AD="{{{SearchAD}}}"&Search.HotSearch="{{{SearchHotSearch}}}"&LogLevel="{{{LogLevel}}}"'
       body_required: true
       binary_body: true
   - http_response:
@@ -169,7 +169,7 @@ scriptings:
       script_url: "https://github.com/BiliUniverse/ADBlock/releases/latest/download/response.bundle.js"
       update_interval: 86400
       arguments:
-        _compat.$argument: 'DM.Command="{{{DM.Command}}}"&DM.Colorful="{{{DM.Colorful}}}"&LogLevel="{{{LogLevel}}}"'
+        _compat.$argument: 'DM.Command="{{{DMCommand}}}"&DM.Colorful="{{{DMColorful}}}"&LogLevel="{{{LogLevel}}}"'
       body_required: true
       binary_body: true
   - http_response:
@@ -187,7 +187,7 @@ scriptings:
       script_url: "https://github.com/BiliUniverse/ADBlock/releases/latest/download/response.bundle.js"
       update_interval: 86400
       arguments:
-        _compat.$argument: 'Reply.AD="{{{Reply.AD}}}"&LogLevel="{{{LogLevel}}}"'
+        _compat.$argument: 'Reply.AD="{{{ReplyAD}}}"&LogLevel="{{{LogLevel}}}"'
       body_required: true
       binary_body: true
   - http_response:
@@ -196,7 +196,7 @@ scriptings:
       script_url: "https://github.com/BiliUniverse/ADBlock/releases/latest/download/response.bundle.js"
       update_interval: 86400
       arguments:
-        _compat.$argument: 'PGC.AD="{{{PGC.AD}}}"&LogLevel="{{{LogLevel}}}"'
+        _compat.$argument: 'PGC.AD="{{{PGCAD}}}"&LogLevel="{{{LogLevel}}}"'
       body_required: true
       binary_body: true
 
@@ -212,4 +212,3 @@ mitm:
       - api.biliapi.net
       - grpc.bilibili.com
       - grpc.biliapi.net
-  h2: true

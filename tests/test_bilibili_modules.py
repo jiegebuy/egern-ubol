@@ -27,7 +27,18 @@ class BiliBiliModuleTests(unittest.TestCase):
             with self.subTest(name=name):
                 module = load_module(BILIBILI / name)
                 self.assertIsInstance(module["scriptings"], list)
-                self.assertTrue(module["mitm"]["h2"])
+                self.assertTrue(module["mitm"]["hostnames"]["includes"])
+
+    def test_compat_argument_names_use_egern_safe_identifiers(self) -> None:
+        for name in ("BiliBili.ADBlock.yaml", "BiliBili.Enhanced.yaml"):
+            with self.subTest(name=name):
+                source = (BILIBILI / name).read_text(encoding="utf-8")
+                module = yaml.safe_load(source)
+                self.assertTrue(
+                    all(re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", key) for key in module["compat_arguments"])
+                )
+                placeholders = set(re.findall(r"\{\{\{([^}]+)\}\}\}", source))
+                self.assertLessEqual(placeholders, set(module["compat_arguments"]))
 
     def test_adblock_has_explicit_pause_ad_protection(self) -> None:
         module = load_module(BILIBILI / "BiliBili.ADBlock.yaml")
