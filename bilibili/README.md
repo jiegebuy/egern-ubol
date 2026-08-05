@@ -1,18 +1,25 @@
 # BiliBili + BBZQ for Egern
 
-这里提供两个需要同时启用的 Egern 模块：
+这里提供两个基于 Surge `.sgmodule` 的模块，Egern 可以直接导入；两个模块建议同时启用：
 
-- `BiliBili.ADBlock.yaml`：广告、运营卡片、弹幕和评论广告净化。
-- `BiliBili.Enhanced.yaml`：首页标签、顶栏、底栏、分区和“我的”页面定制。
+- `BiliBili.ADBlock.sgmodule`：广告、运营卡片、弹幕、评论广告和暂停广告净化。
+- `BiliBili.Enhanced.sgmodule`：首页标签、顶栏、底栏、分区和“我的”页面定制。
+
+直接导入：
+
+- `https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/bilibili/BiliBili.ADBlock.sgmodule`
+- `https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/bilibili/BiliBili.Enhanced.sgmodule`
+
+仓库内的 `.yaml` 文件是早期 Egern 原生格式实验版；如果 Egern 提示 YAML 格式不正确，请使用上面两个 `.sgmodule` 地址。
 
 模块直接调用 BiliUniverse 最新 Release 的脚本，并补充 BBZQ 中能在网络层可靠实现的功能。首次启用 MITM 后，需要在 iOS 系统设置中安装并信任 Egern 证书，然后强制退出并重新打开哔哩哔哩。
 
 ## 暂停广告
 
-暂停广告拦截是 ADBlock 模块的固定功能，采用两层拦截：
+暂停广告拦截是 ADBlock Surge 模块的固定功能，采用两层拦截：
 
 1. 直接拒绝哔哩哔哩广告配置域名 `cm.bilibili.com` 和 `cm.biliapi.net`。
-2. 对 Bili API 中路径明确含有 `pause`、`paused`、`pause_page`、`pausedpage`、`pause_ad` 或 `ad_pause` 的请求返回成功空数据，阻止暂停页广告面板创建。
+2. 拒绝 Bili API 中路径明确含有 `pause`、`paused`、`pause_page`、`pausedpage`、`pause_ad` 或 `ad_pause` 的暂停页广告请求。
 
 BBZQ 原版通过 Xposed 在应用进程内拦截 `requestPausedPage()` 并令暂停广告面板返回 `null`。Egern 无法调用 Android 方法，因此网络版只能拦截实际发出的广告请求；如果新版客户端改用不含上述特征的新端点，需要先用 Egern HTTP 抓包确认 URL，再补充规则。
 

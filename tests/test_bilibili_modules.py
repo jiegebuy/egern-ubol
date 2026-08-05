@@ -22,6 +22,21 @@ def load_module(path: Path) -> dict:
 
 
 class BiliBiliModuleTests(unittest.TestCase):
+    def test_surge_modules_are_the_primary_import_format(self) -> None:
+        for name in ("BiliBili.ADBlock.sgmodule", "BiliBili.Enhanced.sgmodule"):
+            with self.subTest(name=name):
+                source = (BILIBILI / name).read_text(encoding="utf-8")
+                self.assertIn("[Script]", source)
+                self.assertIn("[MITM]", source)
+                self.assertNotIn("{{{", source.split("#!arguments-desc", 1)[0])
+
+    def test_surge_adblock_keeps_pause_and_extra_feed_rules(self) -> None:
+        source = (BILIBILI / "BiliBili.ADBlock.sgmodule").read_text(encoding="utf-8")
+        self.assertIn("cm\\.bili(bili\\.com|api\\.net)", source)
+        self.assertIn("pause_page", source)
+        self.assertIn("Feed.Filter", source)
+        self.assertIn("feed-filter.compat.js", source)
+
     def test_modules_are_valid_yaml_after_argument_substitution(self) -> None:
         for name in ("BiliBili.ADBlock.yaml", "BiliBili.Enhanced.yaml"):
             with self.subTest(name=name):

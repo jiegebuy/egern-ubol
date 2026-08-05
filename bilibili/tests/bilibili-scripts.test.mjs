@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 import test from "node:test";
+import vm from "node:vm";
 
 import feedMain, { filterFeed } from "../scripts/feed-filter.js";
 import staticMain, { responseForUrl } from "../scripts/static-response.js";
@@ -51,4 +54,32 @@ test("local response adapter preserves the original ADBlock map-local behavior",
     request: { url: "https://api.vc.bilibili.com/search_svr/v1/Search/recommend_words" },
   });
   assert.deepEqual(JSON.parse(search.response.body), {});
+});
+
+test("Surge-compatible feed filter handles Egern legacy globals", () => {
+  const source = fs.readFileSync(
+    path.join(import.meta.dirname, "..", "scripts", "feed-filter.compat.js"),
+    "utf8",
+  );
+  let completed;
+  const response = {
+    body: JSON.stringify({
+      data: {
+        items: [
+          { title: "ordinary", card_goto: "av" },
+          { title: "live", card_goto: "live" },
+          { title: "blocked title", card_goto: "av" },
+        ],
+      },
+    }),
+  };
+  vm.runInNewContext(source, {
+    console,
+    $argument: 'Feed.Filter="true"&Feed.FilterTypes="live"&Feed.TitleKeywords="blocked"',
+    $response: response,
+    $done: (value) => {
+      completed = value;
+    },
+  });
+  assert.deepEqual(JSON.parse(completed.body).data.items.map((item) => item.title), ["ordinary"]);
 });
