@@ -34,6 +34,25 @@ class BiliBiliModuleTests(unittest.TestCase):
         source = (BILIBILI / "BiliBili.ADBlock.sgmodule").read_text(encoding="utf-8")
         self.assertIn("cm\\.bili(bili\\.com|api\\.net)", source)
         self.assertIn("pause_page", source)
+        self.assertIn("grpc\\.bili(bili\\.com|api\\.net)", source)
+        self.assertIn('data-type=text data="{\\"code\\":0', source)
+        map_pattern = next(
+            line.split(" data-type=", 1)[0]
+            for line in source.splitlines()
+            if "pause_page" in line and "data-type=" in line
+        )
+        grpc_pattern = next(
+            line.rsplit(" - reject", 1)[0]
+            for line in source.splitlines()
+            if "grpc\\.bili" in line and "pause_page" in line
+        )
+        self.assertRegex(
+            "https://app.bilibili.com/x/v2/view/Paused_Page?aid=1", map_pattern
+        )
+        self.assertRegex(
+            "https://grpc.bilibili.com/bilibili.ad.v1.PausedPage/RequestPausedPage",
+            grpc_pattern,
+        )
         self.assertIn("Feed.Filter", source)
         self.assertIn("feed-filter.compat.js", source)
 

@@ -2,7 +2,7 @@
 
 这里提供两个基于 Surge `.sgmodule` 的模块，Egern 可以直接导入；两个模块建议同时启用：
 
-- `BiliBili.ADBlock.sgmodule`：广告、运营卡片、弹幕、评论广告和暂停广告净化。
+- `BiliBili.ADBlock.sgmodule`：广告、运营卡片、弹幕、评论广告和已知暂停广告网络请求净化。
 - `BiliBili.Enhanced.sgmodule`：首页标签、顶栏、底栏、分区、“我的”页面定制和分享短链净化。
 
 直接导入：
@@ -16,12 +16,13 @@
 
 ## 暂停广告
 
-暂停广告拦截是 ADBlock Surge 模块的固定功能，采用两层拦截：
+暂停广告的网络层拦截是 ADBlock Surge 模块的固定功能：
 
 1. 直接拒绝哔哩哔哩广告配置域名 `cm.bilibili.com` 和 `cm.biliapi.net`。
-2. 拒绝 Bili API 中路径明确含有 `pause`、`paused`、`pause_page`、`pausedpage`、`pause_ad` 或 `ad_pause` 的暂停页广告请求。
+2. 对 API 中路径明确含有 `pause`、`paused`、`pause_page`、`pausedpage`、`pause_ad` 或 `ad_pause` 的 JSON 请求返回成功空数据，避免客户端因请求失败回退到广告面板。
+3. 拒绝 gRPC 中名称明确包含上述特征的暂停页服务请求；匹配不区分大小写，因此覆盖 `RequestPausedPage` 一类服务名。
 
-BBZQ 原版通过 Xposed 在应用进程内拦截 `requestPausedPage()` 并令暂停广告面板返回 `null`。Egern 无法调用 Android 方法，因此网络版只能拦截实际发出的广告请求；如果新版客户端改用不含上述特征的新端点，需要先用 Egern HTTP 抓包确认 URL，再补充规则。
+这不是 BBZQ 暂停广告功能的完整迁移。BBZQ 原版通过 Xposed 在应用进程内同时拦截 `requestPausedPage()`、`getPausedPagePanel()` 和 `getBrandPausedPagePanel()`，直接阻止暂停广告面板创建；Egern 不能 Hook Android 对象或隐藏客户端 View，只能处理实际经过代理的请求。若新版客户端使用名称不含上述特征的接口、已缓存广告或本地创建面板，仍可能出现暂停广告，需要用 Egern HTTP 抓包提供暂停瞬间新增的请求 URL 后才能继续补规则。
 
 ## 分享短链净化
 
@@ -39,7 +40,7 @@ BBZQ 原版通过 Xposed 在应用进程内拦截 `requestPausedPage()` 并令�
 - 青少年模式提示数据清理。
 - 首页图文、游戏、直播、课堂、竖屏、大卡片以及标题关键词过滤。
 - 首页标签、顶部/底部入口、分区和“我的”页面定制。
-- 暂停广告请求与广告配置域名拦截。
+- 已知暂停广告网络请求与广告配置域名拦截（不等同于 BBZQ 的客户端 Hook）。
 - 标准“分享 → 复制链接”的 `b23.tv` / `bili2233.cn` 展开与追踪参数净化。
 
 ## 无法由 Egern 原样迁移
