@@ -4,8 +4,8 @@
 
 - `DualSubs.YouTube.DeepLX.yaml`：Egern 模块，提供 DeepLX 与 Gemini 参数。
 - `Translate.response.deeplx.bundle.js`：基于 DualSubs Universal v1.7.5 生成的翻译补丁。
-- `YouTube.*.official.bundle.js`：缓存 YouTube 自带的英/中字幕轨道，并自动选择官方合成或机器翻译。
-- `Composite.Subtitles.response.official.bundle.js`：使用真实英文与中文轨道合成双语字幕。
+- `YouTube.*.official.v2.bundle.js`：缓存 YouTube 自带的英/中字幕轨道，并自动选择官方合成或机器翻译。v2 实体文件名用于避免 Egern 复用旧脚本缓存。
+- `Composite.Subtitles.response.official.v2.bundle.js`：使用真实英文与中文轨道合成双语字幕。验证过的官方合成如果缺失英文轨道或拉取失败，会明确返回错误，不会静默放行成单语字幕。
 - `patch_bundle.mjs`：下载固定的上游发布包并注入 DeepLX 与 YouTube XML 兼容实现，同时隐藏初始化日志中的 API 密钥。
 - `patch_youtube_official.mjs`：从固定的 DualSubs 版本生成官方字幕优先补丁。
 - `test_bundle.mjs`：模拟 Egern 与 DeepLX 响应的集成测试。

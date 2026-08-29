@@ -9,10 +9,10 @@ const SOURCES = {
 };
 
 const OUTPUTS = {
-  request: new URL("./YouTube.request.official.bundle.js", import.meta.url),
-  response: new URL("./YouTube.response.official.bundle.js", import.meta.url),
+  request: new URL("./YouTube.request.official.v2.bundle.js", import.meta.url),
+  response: new URL("./YouTube.response.official.v2.bundle.js", import.meta.url),
   composite: new URL(
-    "./Composite.Subtitles.response.official.bundle.js",
+    "./Composite.Subtitles.response.official.v2.bundle.js",
     import.meta.url,
   ),
 };
@@ -62,7 +62,7 @@ requestSource =
 
 const compositeMarker =
   'else{a.info("生成双语字幕"),d.searchParams.set("lang",i.Playlists.Subtitle.get(d.searchParams.get("v"))||d.searchParams.get("lang")),d.searchParams.delete("tlang");let e={url:d.toString(),headers:$request.headers};x.push(e)}';
-const compositePatch = String.raw`else{a.info("生成双语字幕");let e,t=d.searchParams.get("fmt"),n=d.searchParams.get("format"),l=d.searchParams.get("v"),r;try{let e=globalThis.$persistentStore?.read?.("${CACHE_KEY}"),t=new Map(JSON.parse(e||"[]"));r=t.get(l)}catch(e){a.warn("Official track cache read failed: "+e)}if(r?.englishUrl){let l=new d.constructor(r.englishUrl);t&&l.searchParams.set("fmt",t),n&&l.searchParams.set("format",n),e={url:l.toString(),headers:$request.headers}}else d.searchParams.set("lang",i.Playlists.Subtitle.get(l)||d.searchParams.get("lang")),d.searchParams.delete("tlang"),e={url:d.toString(),headers:$request.headers};x.push(e)}`;
+const compositePatch = String.raw`else{a.info("生成双语字幕");let e,t=d.searchParams.get("fmt"),n=d.searchParams.get("format"),l=d.searchParams.get("v"),r;try{let e=globalThis.$persistentStore?.read?.("${CACHE_KEY}"),t=new Map(JSON.parse(e||"[]"));r=t.get(l)}catch(e){throw Error("Official track cache read failed: "+e)}if(!r?.englishUrl)throw Error("Verified official English track missing for video "+l);let i=new d.constructor(r.englishUrl);t&&i.searchParams.set("fmt",t),n&&i.searchParams.set("format",n),e={url:i.toString(),headers:$request.headers},x.push(e)}`;
 
 let compositeSource = await download(SOURCES.composite);
 compositeSource = replaceOnce(
@@ -82,6 +82,12 @@ compositeSource = replaceOnce(
   compositeMarker,
   compositePatch,
   "Universal YouTube composite request",
+);
+compositeSource = replaceOnce(
+  compositeSource,
+  "})().catch(e=>a.error(e)).finally(",
+  '})().catch(e=>{a.error(e);if(new URL($request.url).searchParams.has("dualsubs_tlang")){$response.status=502;$response.headers={...$response.headers,"Content-Type":"application/json; charset=utf-8"};$response.body=JSON.stringify({error:"DualSubs official composition failed",detail:String(e?.message??e)})}}).finally(',
+  "strict official composite failure",
 );
 compositeSource =
   "// Official Chinese-track preference patch for Egern. Based on DualSubs Universal.\n" +

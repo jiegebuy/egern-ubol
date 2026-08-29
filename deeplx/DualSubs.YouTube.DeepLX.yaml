@@ -36,21 +36,21 @@ scriptings:
 - http_request:
     name: 🍿️ DualSubs.YouTube.Player.request.json
     match: ^https?:\/\/(www|m|tv)\.youtube\.com\/youtubei\/v1\/player(\?.+)?$
-    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.request.official.bundle.js
+    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.request.official.v2.bundle.js
     arguments:
       _compat.$argument: Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
 - http_response:
     name: 🍿️ DualSubs.YouTube.Player.response.json
     match: ^https?:\/\/(www|m|tv)\.youtube\.com\/youtubei\/v1\/player(\?.+)?$
-    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.response.official.bundle.js
+    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.response.official.v2.bundle.js
     arguments:
       _compat.$argument: Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
 - http_request:
     name: 🍿️ DualSubs.YouTube.Player.request.proto
     match: ^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/player(\?.+)?$
-    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.request.official.bundle.js
+    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.request.official.v2.bundle.js
     arguments:
       _compat.$argument: Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
@@ -58,7 +58,7 @@ scriptings:
 - http_response:
     name: 🍿️ DualSubs.YouTube.Player.response.proto
     match: ^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/player(\?.+)?$
-    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.response.official.bundle.js
+    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.response.official.v2.bundle.js
     arguments:
       _compat.$argument: Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
@@ -66,7 +66,7 @@ scriptings:
 - http_response:
     name: 🍿️ DualSubs.YouTube.GetWatch.response.proto
     match: ^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/get_watch(\?.+)?$
-    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.response.official.bundle.js
+    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.response.official.v2.bundle.js
     arguments:
       _compat.$argument: Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
@@ -74,13 +74,13 @@ scriptings:
 - http_request:
     name: 🍿️ DualSubs.YouTube.TimedText.request
     match: ^https?:\/\/(www|m)\.youtube\.com\/api\/timedtext(\?.+)?$
-    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.request.official.bundle.js
+    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.request.official.v2.bundle.js
     arguments:
       _compat.$argument: Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
 - http_response:
     name: 🍿️ DualSubs.YouTube.Composite.TimedText.response
     match: ^https?:\/\/(www|m)\.youtube\.com\/api\/timedtext\?(.*)subtype=(Official|External)
-    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/Composite.Subtitles.response.official.bundle.js?v=3975ef0
+    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/Composite.Subtitles.response.official.v2.bundle.js
     arguments:
       _compat.$argument: Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
@@ -94,14 +94,14 @@ scriptings:
 - http_request:
     name: 🍿️ DualSubs.YouTubeMusic.Browse.request.json
     match: ^https?:\/\/music\.youtube\.com\/youtubei\/v1\/browse(\?.+)?$
-    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.request.official.bundle.js
+    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.request.official.v2.bundle.js
     arguments:
       _compat.$argument: Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
 - http_request:
     name: 🍿️ DualSubs.YouTube.Browse.request.proto
     match: ^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/browse(\?.+)?$
-    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.request.official.bundle.js
+    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/YouTube.request.official.v2.bundle.js
     arguments:
       _compat.$argument: Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true

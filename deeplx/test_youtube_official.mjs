@@ -8,15 +8,15 @@ const BASE_ARGUMENT =
 
 const sources = {
   request: await readFile(
-    new URL("./YouTube.request.official.bundle.js", import.meta.url),
+    new URL("./YouTube.request.official.v2.bundle.js", import.meta.url),
     "utf8",
   ),
   response: await readFile(
-    new URL("./YouTube.response.official.bundle.js", import.meta.url),
+    new URL("./YouTube.response.official.v2.bundle.js", import.meta.url),
     "utf8",
   ),
   composite: await readFile(
-    new URL("./Composite.Subtitles.response.official.bundle.js", import.meta.url),
+    new URL("./Composite.Subtitles.response.official.v2.bundle.js", import.meta.url),
     "utf8",
   ),
 };
@@ -218,6 +218,31 @@ assert.equal(fetchedUrls[0].searchParams.get("sig"), "en");
 const bilingual = JSON.parse(compositeResult.body);
 assert.equal(bilingual.events[0].segs[0].utf8, "Hello\n你好");
 
+const failedOfficialResult = await runBundle({
+  source: sources.composite,
+  filename: "Composite.Subtitles.response.official.v2.bundle.js#strict-failure",
+  request: {
+    url: simplifiedRequest.toString(),
+    method: "GET",
+    headers: {},
+  },
+  response: {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(chineseCaption),
+  },
+  store: simplifiedStore,
+  httpGet() {
+    throw new Error("simulated English-track fetch failure");
+  },
+});
+assert.equal(failedOfficialResult.status, 502);
+assert.equal(
+  JSON.parse(failedOfficialResult.body).detail,
+  "simulated English-track fetch failure",
+);
+assert.notEqual(failedOfficialResult.body, JSON.stringify(chineseCaption));
+
 console.log(
   JSON.stringify(
     {
@@ -329,7 +354,7 @@ if (process.argv.includes("--live")) {
     },
     response: {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: Object.fromEntries(liveChineseResponse.headers.entries()),
       body: liveChineseText,
     },
     store: liveStore,
