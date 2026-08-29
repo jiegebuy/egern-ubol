@@ -9,10 +9,10 @@ const SOURCES = {
 };
 
 const OUTPUTS = {
-  request: new URL("./YouTube.request.official.v3.bundle.js", import.meta.url),
-  response: new URL("./YouTube.response.official.v3.bundle.js", import.meta.url),
+  request: new URL("./YouTube.request.official.v4.bundle.js", import.meta.url),
+  response: new URL("./YouTube.response.official.v4.bundle.js", import.meta.url),
   composite: new URL(
-    "./Composite.Subtitles.response.official.v3.bundle.js",
+    "./Composite.Subtitles.response.official.v4.bundle.js",
     import.meta.url,
   ),
 };
@@ -59,7 +59,7 @@ requestSource = replaceOnce(
   "YouTube timedtext request finalization",
 );
 requestSource =
-  "// Strict verified English/Chinese track composition patch for Egern. Based on DualSubs YouTube.\n" +
+  '// Strict verified English/Chinese track composition patch v4 for Egern. Based on DualSubs YouTube.\nconsole.log("DualSubs official strict patch: v4");\n' +
   requestSource;
 
 requestSource = replaceOnce(
@@ -99,7 +99,7 @@ compositeSource = replaceOnce(
   "strict official composite failure",
 );
 compositeSource =
-  "// Official Chinese-track preference patch for Egern. Based on DualSubs Universal.\n" +
+  '// Official Chinese-track preference patch v4 for Egern. Based on DualSubs Universal.\nconsole.log("DualSubs official composite patch: v4");\n' +
   compositeSource;
 
 await Promise.all([

@@ -8,18 +8,27 @@ const BASE_ARGUMENT =
 
 const sources = {
   request: await readFile(
-    new URL("./YouTube.request.official.v3.bundle.js", import.meta.url),
+    new URL("./YouTube.request.official.v4.bundle.js", import.meta.url),
     "utf8",
   ),
   response: await readFile(
-    new URL("./YouTube.response.official.v3.bundle.js", import.meta.url),
+    new URL("./YouTube.response.official.v4.bundle.js", import.meta.url),
     "utf8",
   ),
   composite: await readFile(
-    new URL("./Composite.Subtitles.response.official.v3.bundle.js", import.meta.url),
+    new URL("./Composite.Subtitles.response.official.v4.bundle.js", import.meta.url),
     "utf8",
   ),
 };
+
+const subscription = await readFile(
+  new URL("./DualSubs.YouTube.DeepLX.yaml", import.meta.url),
+  "utf8",
+);
+assert.match(subscription, /name: '\ud83c\udf7f\ufe0f DualSubs: \u25b6\ufe0f YouTube Official v4'/u);
+assert.match(subscription, /TimedText\.request\.official\.v4/);
+assert.match(subscription, /Composite\.TimedText\.response\.official\.v4/);
+assert.doesNotMatch(subscription, /official\.v3\.bundle\.js/);
 
 function createStore() {
   const data = new Map();
@@ -194,7 +203,7 @@ assert.equal(translationRequest.searchParams.get("subtype"), "Translate");
 
 const failedDiscoveryResult = await runBundle({
   source: sources.request,
-  filename: "YouTube.request.official.v3.bundle.js#strict-discovery-failure",
+  filename: "YouTube.request.official.v4.bundle.js#strict-discovery-failure",
   request: {
     url: `${captionUrl("probe-failure", "en")}&tlang=zh`,
     method: "GET",
