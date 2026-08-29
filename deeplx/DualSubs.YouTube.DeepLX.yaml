@@ -22,7 +22,7 @@ compat_arguments_desc: |
   DeepLXToken: api.deeplx.org 填 API Key；其他服务可填 Bearer Token；完整路径已含 Key 时留空。
   GeminiAPIKey: Google AI Studio API Key，仅在 Vendor=Gemini 时使用。
   GeminiModel: Gemini 模型 ID，默认 gemini-3.7-flash，也可填写其他 generateContent 模型。
-  ShowOnly: 是否只显示译文。
+  ShowOnly: 机器翻译时是否只显示译文；命中自带英中轨道时始终合成双语。
   LogLevel: OFF、ERROR、WARN、INFO、DEBUG 或 ALL。
 open_url: http://boxjs.com/#/app/DualSubs.YouTube
 author: VirgilClyne[https://github.com/VirgilClyne]; DeepLX patch by Codex

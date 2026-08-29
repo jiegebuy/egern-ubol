@@ -35,10 +35,18 @@ function createStore() {
   };
 }
 
-async function runBundle({ source, filename, request, response, store, httpGet }) {
+async function runBundle({
+  source,
+  filename,
+  request,
+  response,
+  store,
+  httpGet,
+  argument = BASE_ARGUMENT,
+}) {
   globalThis.Egern = {};
   globalThis.$request = request;
-  globalThis.$argument = BASE_ARGUMENT;
+  globalThis.$argument = argument;
   globalThis.$persistentStore = store;
   if (response) globalThis.$response = response;
   else delete globalThis.$response;
@@ -192,6 +200,7 @@ const compositeResult = await runBundle({
     body: JSON.stringify(chineseCaption),
   },
   store: simplifiedStore,
+  argument: BASE_ARGUMENT.replace('ShowOnly="false"', 'ShowOnly="true"'),
   httpGet(options) {
     fetchedUrls.push(new URL(options.url));
     return {
@@ -324,6 +333,7 @@ if (process.argv.includes("--live")) {
       body: liveChineseText,
     },
     store: liveStore,
+    argument: BASE_ARGUMENT.replace('ShowOnly="false"', 'ShowOnly="true"'),
     async httpGet(options) {
       officialFetches += 1;
       const response = await fetch(options.url, { headers: options.headers });
@@ -351,6 +361,122 @@ if (process.argv.includes("--live")) {
         machineTranslationRequests: 0,
         bilingualCues: liveLines.length,
         sample: liveLines.slice(0, 2),
+      },
+      null,
+      2,
+    ),
+  );
+}
+
+if (process.argv.includes("--live-proto")) {
+  const concatBytes = (...parts) => {
+    const output = new Uint8Array(parts.reduce((sum, part) => sum + part.length, 0));
+    let offset = 0;
+    for (const part of parts) {
+      output.set(part, offset);
+      offset += part.length;
+    }
+    return output;
+  };
+  const varint = value => {
+    const bytes = [];
+    do {
+      let byte = value & 0x7f;
+      value >>>= 7;
+      if (value) byte |= 0x80;
+      bytes.push(byte);
+    } while (value);
+    return Uint8Array.from(bytes);
+  };
+  const fieldTag = (number, wireType) => varint((number << 3) | wireType);
+  const byteField = (number, bytes) =>
+    concatBytes(fieldTag(number, 2), varint(bytes.length), bytes);
+  const stringField = (number, value) =>
+    byteField(number, new TextEncoder().encode(value));
+  const integerField = (number, value) =>
+    concatBytes(fieldTag(number, 0), varint(value));
+
+  const clientVersion = "20.10.4";
+  const userAgent =
+    "com.google.ios.youtube/20.10.4 (iPhone16,2; U; CPU iOS 18_3 like Mac OS X;)";
+  const client = concatBytes(
+    stringField(1, "en"),
+    stringField(2, "US"),
+    stringField(12, "Apple"),
+    stringField(13, "iPhone16,2"),
+    integerField(16, 5),
+    stringField(17, clientVersion),
+    stringField(18, "iOS"),
+    stringField(19, "18.3"),
+    stringField(80, "America/Denver"),
+  );
+  const playerRequestBody = concatBytes(
+    byteField(1, byteField(1, client)),
+    stringField(2, exampleVideoId),
+  );
+  const watchResponse = await fetch(
+    `https://www.youtube.com/watch?v=${exampleVideoId}&hl=en`,
+  );
+  const watchHTML = await watchResponse.text();
+  const apiKey = watchHTML.match(/"INNERTUBE_API_KEY":"([^"]+)/)?.[1];
+  assert.ok(apiKey, "YouTube watch page did not expose an Innertube API key");
+
+  const protoRequest = {
+    url: `https://youtubei.googleapis.com/youtubei/v1/player?key=${apiKey}&prettyPrint=false&alt=proto`,
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-protobuf",
+      "X-Goog-Api-Format-Version": "2",
+      "X-YouTube-Client-Name": "5",
+      "X-YouTube-Client-Version": clientVersion,
+      "User-Agent": userAgent,
+    },
+    body: playerRequestBody,
+  };
+  const protoRequestPatch = await runBundle({
+    source: sources.request,
+    filename: "YouTube.request.official.bundle.js#live-proto",
+    request: protoRequest,
+    store: createStore(),
+  });
+  const protoResponse = await fetch(protoRequestPatch.url ?? protoRequest.url, {
+    method: "POST",
+    headers: protoRequestPatch.headers ?? protoRequest.headers,
+    body: protoRequestPatch.body ?? protoRequest.body,
+  });
+  const protoResponseBody = new Uint8Array(await protoResponse.arrayBuffer());
+  assert.equal(protoResponse.status, 200);
+  assert.match(
+    protoResponse.headers.get("content-type") ?? "",
+    /application\/x-protobuf/,
+  );
+
+  const protoStore = createStore();
+  await runBundle({
+    source: sources.response,
+    filename: "YouTube.response.official.bundle.js#live-proto",
+    request: protoRequest,
+    response: {
+      status: 200,
+      headers: { "Content-Type": "application/x-protobuf" },
+      body: protoResponseBody,
+    },
+    store: protoStore,
+  });
+  const protoOfficialTracks = new Map(
+    JSON.parse(protoStore.read(CACHE_KEY) ?? "[]"),
+  ).get(exampleVideoId);
+  assert.ok(
+    protoOfficialTracks,
+    "Protobuf player response did not cache official English and Chinese tracks",
+  );
+  console.log(
+    JSON.stringify(
+      {
+        liveProtoVideo: exampleVideoId,
+        responseBytes: protoResponseBody.length,
+        englishLanguageCode: protoOfficialTracks.englishLanguageCode,
+        chineseLanguageCode: protoOfficialTracks.chineseLanguageCode,
       },
       null,
       2,

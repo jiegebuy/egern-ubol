@@ -68,8 +68,14 @@ let compositeSource = await download(SOURCES.composite);
 compositeSource = replaceOnce(
   compositeSource,
   "let d=new o($request.url);",
-  'let d=new o($request.url);if("Official"===d.searchParams.get("subtype")&&d.searchParams.get("dualsubs_tlang")){d.searchParams.set("tlang",d.searchParams.get("dualsubs_tlang")),d.searchParams.delete("dualsubs_tlang")}',
+  'let d=new o($request.url);if("Official"===d.searchParams.get("subtype")&&d.searchParams.get("dualsubs_tlang"))d.searchParams.set("tlang",d.searchParams.get("dualsubs_tlang"));',
   "Universal request URL setup",
+);
+compositeSource = replaceOnce(
+  compositeSource,
+  "a.logLevel=s.LogLevel;let f=d.searchParams?.get(\"subtype\")??s.Type",
+  'a.logLevel=s.LogLevel;d.searchParams.get("dualsubs_tlang")&&(s.ShowOnly=!1,d.searchParams.delete("dualsubs_tlang"));let f=d.searchParams?.get("subtype")??s.Type',
+  "Universal composite settings setup",
 );
 compositeSource = replaceOnce(
   compositeSource,
