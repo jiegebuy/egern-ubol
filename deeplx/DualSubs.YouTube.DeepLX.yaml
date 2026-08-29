@@ -80,7 +80,7 @@ scriptings:
 - http_response:
     name: 🍿️ DualSubs.YouTube.Composite.TimedText.response
     match: ^https?:\/\/(www|m)\.youtube\.com\/api\/timedtext\?(.*)subtype=(Official|External)
-    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/Composite.Subtitles.response.official.bundle.js
+    script_url: https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/deeplx/Composite.Subtitles.response.official.bundle.js?v=3975ef0
     arguments:
       _compat.$argument: Type="{{{Type}}}"&Types="{{{Types}}}"&AutoCC="{{{AutoCC}}}"&Position="{{{Position}}}"&Vendor="{{{Vendor}}}"&ShowOnly="{{{ShowOnly}}}"&LogLevel="{{{LogLevel}}}"
     body_required: true
