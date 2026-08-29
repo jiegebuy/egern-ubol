@@ -8,15 +8,15 @@ const BASE_ARGUMENT =
 
 const sources = {
   request: await readFile(
-    new URL("./YouTube.request.official.v2.bundle.js", import.meta.url),
+    new URL("./YouTube.request.official.v3.bundle.js", import.meta.url),
     "utf8",
   ),
   response: await readFile(
-    new URL("./YouTube.response.official.v2.bundle.js", import.meta.url),
+    new URL("./YouTube.response.official.v3.bundle.js", import.meta.url),
     "utf8",
   ),
   composite: await readFile(
-    new URL("./Composite.Subtitles.response.official.v2.bundle.js", import.meta.url),
+    new URL("./Composite.Subtitles.response.official.v3.bundle.js", import.meta.url),
     "utf8",
   ),
 };
@@ -123,7 +123,13 @@ async function cacheTracks(store, videoId, languages) {
   });
 }
 
-async function routeTimedtext(store, videoId, language = "en", target = "zh") {
+async function routeTimedtext(
+  store,
+  videoId,
+  language = "en",
+  target = "zh",
+  httpGet,
+) {
   const original = {
     url: `${captionUrl(videoId, language)}${target ? `&tlang=${target}` : ""}`,
     method: "GET",
@@ -134,6 +140,7 @@ async function routeTimedtext(store, videoId, language = "en", target = "zh") {
     filename: `YouTube.request.official.bundle.js#${videoId}`,
     request: original,
     store,
+    httpGet,
   });
   return new URL(result.url ?? original.url);
 }
@@ -174,10 +181,35 @@ assert.equal(traditionalRequest.searchParams.get("subtype"), "Official");
 const translationStore = createStore();
 await cacheTracks(translationStore, "translate", ["en", "fr"]);
 assert.equal(new Map(JSON.parse(translationStore.read(CACHE_KEY) ?? "[]")).size, 0);
-const translationRequest = await routeTimedtext(translationStore, "translate");
+const translationRequest = await routeTimedtext(
+  translationStore,
+  "translate",
+  "en",
+  "zh",
+  () => ({ status: 200, body: "" }),
+);
 assert.equal(translationRequest.searchParams.get("lang"), "en");
 assert.equal(translationRequest.searchParams.get("tlang"), null);
 assert.equal(translationRequest.searchParams.get("subtype"), "Translate");
+
+const failedDiscoveryResult = await runBundle({
+  source: sources.request,
+  filename: "YouTube.request.official.v3.bundle.js#strict-discovery-failure",
+  request: {
+    url: `${captionUrl("probe-failure", "en")}&tlang=zh`,
+    method: "GET",
+    headers: {},
+  },
+  store: createStore(),
+  httpGet() {
+    throw new Error("simulated track probe failure");
+  },
+});
+assert.equal(failedDiscoveryResult.response.status, 502);
+assert.match(
+  JSON.parse(failedDiscoveryResult.response.body).detail,
+  /simulated track probe failure/,
+);
 
 const chineseCaption = {
   events: [{ tStartMs: 0, dDurationMs: 1000, segs: [{ utf8: "你好" }] }],
@@ -337,6 +369,42 @@ if (process.argv.includes("--live")) {
   assert.equal(liveCaptionURL.searchParams.get("subtype"), "Official");
   assert.equal(liveCaptionURL.searchParams.get("tlang"), null);
 
+  const uncachedLiveStore = createStore();
+  const uncachedSrv3URL = new URL(initialLiveCaptionURL);
+  uncachedSrv3URL.searchParams.delete("fmt");
+  uncachedSrv3URL.searchParams.set("format", "srv3");
+  uncachedSrv3URL.searchParams.set("tlang", "zh-Hans");
+  const uncachedLiveRequestPatch = await runBundle({
+    source: sources.request,
+    filename: "YouTube.request.official.bundle.js#live-cache-miss",
+    request: {
+      url: uncachedSrv3URL.toString(),
+      method: "GET",
+      headers: { "User-Agent": userAgent },
+    },
+    store: uncachedLiveStore,
+    async httpGet(options) {
+      const response = await fetch(options.url, { headers: options.headers });
+      return {
+        status: response.status,
+        statusCode: response.status,
+        headers: Object.fromEntries(response.headers.entries()),
+        body: await response.text(),
+      };
+    },
+  });
+  const uncachedLiveCaptionURL = new URL(uncachedLiveRequestPatch.url);
+  assert.equal(uncachedLiveCaptionURL.searchParams.get("lang"), "zh");
+  assert.equal(uncachedLiveCaptionURL.searchParams.get("subtype"), "Official");
+  assert.equal(uncachedLiveCaptionURL.searchParams.get("tlang"), null);
+  assert.equal(uncachedLiveCaptionURL.searchParams.get("format"), "srv3");
+  assert.equal(
+    new Map(JSON.parse(uncachedLiveStore.read(CACHE_KEY) ?? "[]")).get(
+      exampleVideoId,
+    )?.chineseLanguageCode,
+    "zh",
+  );
+
   const liveChineseResponse = await fetch(liveCaptionURL, {
     headers: { "User-Agent": userAgent },
   });
@@ -376,6 +444,41 @@ if (process.argv.includes("--live")) {
     .filter(line => line?.includes("\n"));
   assert.equal(officialFetches, 1);
   assert.ok(liveLines.length > 0, "Live result contains no bilingual cues");
+
+  const liveSrv3ChineseResponse = await fetch(uncachedLiveCaptionURL, {
+    headers: { "User-Agent": userAgent },
+  });
+  const liveSrv3ChineseText = await liveSrv3ChineseResponse.text();
+  assert.equal(liveSrv3ChineseResponse.status, 200);
+  let liveSrv3OfficialFetches = 0;
+  const liveSrv3Composite = await runBundle({
+    source: sources.composite,
+    filename: "Composite.Subtitles.response.official.bundle.js#live-srv3",
+    request: {
+      url: uncachedLiveCaptionURL.toString(),
+      method: "GET",
+      headers: { "User-Agent": userAgent },
+    },
+    response: {
+      status: 200,
+      headers: Object.fromEntries(liveSrv3ChineseResponse.headers.entries()),
+      body: liveSrv3ChineseText,
+    },
+    store: uncachedLiveStore,
+    async httpGet(options) {
+      liveSrv3OfficialFetches += 1;
+      const response = await fetch(options.url, { headers: options.headers });
+      return {
+        status: response.status,
+        statusCode: response.status,
+        headers: Object.fromEntries(response.headers.entries()),
+        body: await response.text(),
+      };
+    },
+  });
+  assert.equal(liveSrv3OfficialFetches, 1);
+  assert.match(liveSrv3Composite.body, /The voice that came to me in a dream/);
+  assert.match(liveSrv3Composite.body, /那曾在梦中向我传来的声音/);
   console.log(
     JSON.stringify(
       {
@@ -383,8 +486,11 @@ if (process.argv.includes("--live")) {
         officialTracks: liveTracks.filter(track => !track.kind).length,
         selected: "en + zh",
         routedSubtype: liveCaptionURL.searchParams.get("subtype"),
+        uncachedRoutedSubtype:
+          uncachedLiveCaptionURL.searchParams.get("subtype"),
         machineTranslationRequests: 0,
         bilingualCues: liveLines.length,
+        srv3Bilingual: true,
         sample: liveLines.slice(0, 2),
       },
       null,

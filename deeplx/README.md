@@ -4,8 +4,8 @@
 
 - `DualSubs.YouTube.DeepLX.yaml`：Egern 模块，提供 DeepLX 与 Gemini 参数。
 - `Translate.response.deeplx.bundle.js`：基于 DualSubs Universal v1.7.5 生成的翻译补丁。
-- `YouTube.*.official.v2.bundle.js`：缓存 YouTube 自带的英/中字幕轨道，并自动选择官方合成或机器翻译。v2 实体文件名用于避免 Egern 复用旧脚本缓存。
-- `Composite.Subtitles.response.official.v2.bundle.js`：使用真实英文与中文轨道合成双语字幕。验证过的官方合成如果缺失英文轨道或拉取失败，会明确返回错误，不会静默放行成单语字幕。
+- `YouTube.*.official.v3.bundle.js`：缓存 YouTube 自带的英/中字幕轨道，并自动选择官方合成或机器翻译。缓存未命中时会直接验证当前签名 URL 下的 `en`、`zh`、`zh-Hant` 轨道，避免播放器响应缓存导致误入翻译流程。v3 实体文件名用于避免 Egern 复用旧脚本缓存。
+- `Composite.Subtitles.response.official.v3.bundle.js`：使用真实英文与中文轨道合成双语字幕。轨道验证或官方合成失败时会明确返回 502，不会静默放行成单语字幕或继续机器翻译。
 - `patch_bundle.mjs`：下载固定的上游发布包并注入 DeepLX 与 YouTube XML 兼容实现，同时隐藏初始化日志中的 API 密钥。
 - `patch_youtube_official.mjs`：从固定的 DualSubs 版本生成官方字幕优先补丁。
 - `test_bundle.mjs`：模拟 Egern 与 DeepLX 响应的集成测试。
@@ -34,7 +34,7 @@
 ## 官方中文字幕优先
 
 播放器响应包含英文和自带中文字幕时，模块不会调用 DeepLX 或 Gemini，而会直接合成
-两条真实字幕轨道。自动官方合成始终输出双语，不受机器翻译的 `ShowOnly` 参数影响。
+两条真实字幕轨道。播放器轨道缓存缺失时会现场请求并验证轨道内容；只有确认不存在官方中英轨组合后才进入机器翻译。自动官方合成始终输出双语，不受机器翻译的 `ShowOnly` 参数影响。
 选择顺序是：
 
 1. 英文 + 简体中文（`zh`、`zh-Hans`、`zh-CN`）

@@ -9,10 +9,10 @@ const SOURCES = {
 };
 
 const OUTPUTS = {
-  request: new URL("./YouTube.request.official.v2.bundle.js", import.meta.url),
-  response: new URL("./YouTube.response.official.v2.bundle.js", import.meta.url),
+  request: new URL("./YouTube.request.official.v3.bundle.js", import.meta.url),
+  response: new URL("./YouTube.response.official.v3.bundle.js", import.meta.url),
   composite: new URL(
-    "./Composite.Subtitles.response.official.v2.bundle.js",
+    "./Composite.Subtitles.response.official.v3.bundle.js",
     import.meta.url,
   ),
 };
@@ -47,18 +47,27 @@ responseSource =
   responseSource;
 
 const requestMarker = "$request.url=a1.toString()";
-const requestPatch = String.raw`if("/api/timedtext"===a1.pathname){try{let t=a1.searchParams.get("v"),n=a1.searchParams.get("lang"),s=e?.Languages?.[1],r=globalThis.$persistentStore?.read?.("${CACHE_KEY}"),i=new Map(JSON.parse(r||"[]")),o=i.get(t);if(t&&/^(?:en|zh)(?:[-_]|$)/i.test(n||"")&&/^zh(?:[-_]|$)/i.test(s||"")&&o?.englishUrl&&o?.chineseUrl){let e=a1.searchParams.get("fmt"),n=a1.searchParams.get("format");a1=new a1.constructor(o.chineseUrl),e&&a1.searchParams.set("fmt",e),n&&a1.searchParams.set("format",n),a1.searchParams.set("v",t),a1.searchParams.set("dualsubs_tlang",o.chineseLanguageCode||"zh"),a1.searchParams.set("subtype","Official")}}catch(e){p.warn("Official track routing failed: "+e)}}$request.url=a1.toString()`;
+const requestPatch = String.raw`if("/api/timedtext"===a1.pathname){try{let t=a1.searchParams.get("v"),s=e?.Languages?.[1],r=globalThis.$persistentStore?.read?.("${CACHE_KEY}"),i=new Map(JSON.parse(r||"[]")),o=i.get(t);if(t&&/^zh(?:[-_]|$)/i.test(s||"")){if(!o?.englishUrl||!o?.chineseUrl){p.warn("Official track cache miss; verifying timedtext tracks for "+t);o=await __dualSubsVerifyOfficialPair(a1);if(o){i.set(t,o),globalThis.$persistentStore?.write?.(JSON.stringify(Array.from(i).slice(-50)),"${CACHE_KEY}"),p.warn("Official tracks verified: "+o.englishLanguageCode+" + "+o.chineseLanguageCode)}else p.info("No verified English/Chinese official pair: "+t)}if(o?.englishUrl&&o?.chineseUrl){let e=a1.searchParams.get("fmt"),n=a1.searchParams.get("format");a1=new a1.constructor(o.chineseUrl),e&&a1.searchParams.set("fmt",e),n&&a1.searchParams.set("format",n),a1.searchParams.set("v",t),a1.searchParams.set("dualsubs_tlang",o.chineseLanguageCode||"zh"),a1.searchParams.set("subtype","Official")}}}catch(e){let t=Error("Official track verification failed: "+(e?.message??e));throw t.dualSubsOfficialDiscovery=!0,t}}$request.url=a1.toString()`;
+
+const requestDiscoveryHelper = String.raw`function __dualSubsHTTPGet(e){return new Promise((t,a)=>{if(!globalThis.$httpClient?.get)return a(Error("$httpClient.get unavailable"));$httpClient.get({url:e,headers:$request.headers},(e,n,s)=>{if(e)return a(e);let r=n?.status??n?.statusCode??200;if(200!==Number(r))return a(Error("HTTP "+r));if(null==s)s=n?.body;if(s instanceof ArrayBuffer)s=new TextDecoder().decode(new Uint8Array(s));else if(ArrayBuffer.isView(s))s=new TextDecoder().decode(s);t(String(s??""))})})}function __dualSubsHasCues(e){if(!e?.trim())return!1;try{let t=JSON.parse(e);if(Array.isArray(t?.events)&&t.events.some(e=>e?.segs?.some?.(e=>e?.utf8?.trim?.())))return!0}catch(e){}return /WEBVTT[\s\S]*-->|<(?:text|p)\b/i.test(e)}async function __dualSubsProbeTrack(e,t){let a=new e.constructor(e);a.searchParams.delete("tlang"),a.searchParams.delete("subtype"),a.searchParams.delete("dualsubs_tlang"),a.searchParams.set("lang",t);let n=await __dualSubsHTTPGet(a.toString());return __dualSubsHasCues(n)?a.toString():null}async function __dualSubsVerifyOfficialPair(e){let t=String(e.searchParams.get("lang")||"").replace(/_/g,"-").toLowerCase(),a=new e.constructor(e);a.searchParams.delete("tlang"),a.searchParams.delete("subtype"),a.searchParams.delete("dualsubs_tlang");let n=t==="en"||t.startsWith("en-")?(a.searchParams.set("lang",e.searchParams.get("lang")||"en"),a.toString()):await __dualSubsProbeTrack(e,"en"),s=null,r=null,i=null;for(let t of["zh","zh-Hant"])try{if(s=await __dualSubsProbeTrack(e,t)){r=t;break}}catch(e){i=e}if(!s&&i)throw i;return n&&s?{englishUrl:n,englishLanguageCode:t==="en"||t.startsWith("en-")?e.searchParams.get("lang")||"en":"en",chineseUrl:s,chineseLanguageCode:r}:null}`;
 
 let requestSource = await download(SOURCES.request);
 requestSource = replaceOnce(
   requestSource,
   requestMarker,
-  requestPatch,
+  `${requestDiscoveryHelper}${requestPatch}`,
   "YouTube timedtext request finalization",
 );
 requestSource =
-  "// Official Chinese-track preference patch for Egern. Based on DualSubs YouTube.\n" +
+  "// Strict verified English/Chinese track composition patch for Egern. Based on DualSubs YouTube.\n" +
   requestSource;
+
+requestSource = replaceOnce(
+  requestSource,
+  "})().catch(e=>p.error(e)).finally(()=>{",
+  '})().catch(e=>{p.error(e);if(e?.dualSubsOfficialDiscovery)i={status:502,headers:{"Content-Type":"application/json; charset=utf-8"},body:JSON.stringify({error:"DualSubs official track verification failed",detail:String(e?.message??e)})}}).finally(()=>{',
+  "strict official discovery failure",
+);
 
 const compositeMarker =
   'else{a.info("生成双语字幕"),d.searchParams.set("lang",i.Playlists.Subtitle.get(d.searchParams.get("v"))||d.searchParams.get("lang")),d.searchParams.delete("tlang");let e={url:d.toString(),headers:$request.headers};x.push(e)}';
