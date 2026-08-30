@@ -1,0 +1,16 @@
+#!name = Egern LiveDebug · 实时网络诊断
+#!desc = 只观测、不修改流量：记录 Self-hosted LiveSync 与 DeepLX 的请求/响应，配合 Surge HTTP API 和 MITM 进行调试。
+#!author = jiegebuy
+#!homepage = https://github.com/jiegebuy/egern-ubol/tree/main/egern-debug
+#!icon = waveform.path.ecg
+#!category = Debug
+#!version = 1.0.0
+#!arguments = NOTIFY_ERRORS:false
+#!arguments-desc = NOTIFY_ERRORS: 当 sync.caeluses.com 或 api.deeplx.org 返回 4xx/5xx 时发送通知；默认关闭。
+
+[Script]
+Egern.LiveDebug.request = type=http-request,pattern=^https?:\/\/(?:sync\.caeluses\.com|api\.deeplx\.org)(?:\/|$),script-path=https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/egern-debug/scripts/surge-live-debug-request.js,script-update-interval=300,argument=NOTIFY_ERRORS="{{{NOTIFY_ERRORS}}}"
+Egern.LiveDebug.response = type=http-response,pattern=^https?:\/\/(?:sync\.caeluses\.com|api\.deeplx\.org)(?:\/|$),script-path=https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/egern-debug/scripts/surge-live-debug-response.js,script-update-interval=300,argument=NOTIFY_ERRORS="{{{NOTIFY_ERRORS}}}"
+
+[MITM]
+hostname = %APPEND% sync.caeluses.com, api.deeplx.org

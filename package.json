@@ -3,6 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test tests/test_generated_scripts.mjs cli-proxy-api-quota/tests/quota-widget.test.mjs bilibili/tests/bilibili-scripts.test.mjs egern-debug/tests/live-debug.test.mjs"
+    "test": "node --test tests/test_generated_scripts.mjs cli-proxy-api-quota/tests/quota-widget.test.mjs bilibili/tests/bilibili-scripts.test.mjs egern-debug/tests/live-debug.test.mjs egern-debug/tests/surge-live-debug.test.mjs"
   }
 }
