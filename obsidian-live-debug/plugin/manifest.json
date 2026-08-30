@@ -1,0 +1,9 @@
+{
+  "id": "obsidian-live-debug",
+  "name": "Obsidian LiveDebug",
+  "version": "0.1.0",
+  "minAppVersion": "1.4.0",
+  "description": "Secure, read-only remote diagnostics for Obsidian mobile and desktop.",
+  "author": "Kyojuro Rengoku",
+  "isDesktopOnly": false
+}

@@ -1,0 +1,21 @@
+[Unit]
+Description=Obsidian LiveDebug relay
+After=network.target
+
+[Service]
+Type=simple
+User=obsidian-debug
+Group=obsidian-debug
+EnvironmentFile=/etc/obsidian-live-debug.env
+WorkingDirectory=/opt/obsidian-live-debug/relay
+ExecStart=/opt/obsidian-live-debug/venv/bin/python app.py
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/obsidian-live-debug
+
+[Install]
+WantedBy=multi-user.target
