@@ -1,0 +1,68 @@
+name: "Egern LiveDebug · 实时网络诊断"
+description: "只观测、不修改流量：抓取 Self-hosted LiveSync 与 DeepLX 的请求/响应，并提供可刷新网络探针。"
+author: "jiegebuy"
+homepage: "https://egernapp.com/zh-CN/docs/configuration/modules"
+manual: "https://github.com/jiegebuy/egern-ubol/tree/main/egern-debug"
+icon: "waveform.path.ecg"
+
+env_schema:
+  SYNC_URL:
+    name: "LiveSync 探测地址"
+    description: "只用于小组件探测；默认使用当前 Self-hosted LiveSync 域名。"
+    default_value: "https://sync.caeluses.com/"
+  DEEPLX_URL:
+    name: "DeepLX 探测地址"
+    description: "只用于小组件探测；不要在这里填写带密钥的 translate 地址。"
+    default_value: "https://api.deeplx.org/"
+  PROBE_TIMEOUT:
+    name: "探测超时（秒）"
+    description: "小组件每次探测的最大等待时间。"
+    options:
+      - "3"
+      - "5"
+      - "10"
+      - "20"
+    default_value: "5"
+  NOTIFY_ERRORS:
+    name: "错误时通知"
+    description: "响应状态为 4xx/5xx 或请求异常时发送系统通知；默认关闭，避免调试期间通知过多。"
+    options:
+      - "false"
+      - "true"
+    default_value: "false"
+
+scriptings:
+  - http_request:
+      name: "Egern LiveDebug · 请求记录"
+      match: '^https?:\/\/(?:sync\.caeluses\.com|api\.deeplx\.org)(?:\/|$)'
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/egern-debug/scripts/live-debug-request.js"
+      update_interval: 300
+      timeout: 5
+      body_required: false
+  - http_response:
+      name: "Egern LiveDebug · 响应记录"
+      match: '^https?:\/\/(?:sync\.caeluses\.com|api\.deeplx\.org)(?:\/|$)'
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/egern-debug/scripts/live-debug-response.js"
+      update_interval: 300
+      timeout: 5
+      body_required: false
+
+  - generic:
+      name: "Egern LiveDebug · 网络探针"
+      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/egern-debug/scripts/live-debug-widget.js"
+      update_interval: 300
+      timeout: 20
+
+widgets:
+  - name: "Egern LiveDebug · 网络探针"
+
+http_captures:
+  includes:
+    - "sync.caeluses.com"
+    - "api.deeplx.org"
+
+mitm:
+  hostnames:
+    includes:
+      - "sync.caeluses.com"
+      - "api.deeplx.org"
