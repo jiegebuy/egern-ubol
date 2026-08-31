@@ -1,5 +1,5 @@
 name: "uBlock Origin Lite 规则"
-description: "一个 Egern 模块，包含 56 个可独立配置的 uBO Lite 2026.729.1529 过滤列表开关（内存安全，仅域名/IP）。"
+description: "一个 Egern 模块，包含 56 个可独立配置的 uBO Lite 2026.825.1619 过滤列表开关（内存安全，仅域名/IP）。"
 author: "Raymond Hill 与各上游过滤列表维护者"
 homepage: "https://github.com/uBlockOrigin/uBOL-home"
 manual: "https://github.com/uBlockOrigin/uBOL-home"
@@ -110,7 +110,7 @@ compat_arguments_desc: |
   禁用EasyList希伯来语: 🇮🇱il: EasyList Hebrew（希伯来语地区）
   禁用EasyList意大利: 🇮🇹it: EasyList Italy（意大利语地区）
   禁用AdGuard日语: 🇯🇵jp: AdGuard Japanese（日语地区）
-  禁用ListKRClassic: 🇰🇷kr: List-KR Classic（韩语地区）
+  禁用ListKRClassic: 🇰🇷kr: 한국어 (Korean)（韩语地区）
   禁用EasyList立陶宛: 🇱🇹lt: EasyList Lithuania（立陶宛语地区）
   禁用拉脱维亚语列表: 🇱🇻lv: Latvian List（拉脱维亚语地区）
   禁用马其顿语列表: 🇲🇰mk: Macedonian adBlock Filters（马其顿语地区）
@@ -363,7 +363,7 @@ rules:
       update_interval: 86400
       disabled: {{{禁用AdGuard日语}}}
   - rule_set:
-      name: "🇰🇷kr: List-KR Classic"
+      name: "🇰🇷kr: 한국어 (Korean)"
       match: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/rulesets/kor-1.yaml"
       policy: "{{{拦截策略}}}"
       update_interval: 86400
@@ -549,7 +549,7 @@ scriptings:
       timeout: 5
       disabled: {{{禁用AdGuard日语}}}
   - http_request:
-      name: "🇰🇷kr: List-KR Classic - query cleaner"
+      name: "🇰🇷kr: 한국어 (Korean) - query cleaner"
       match: "^https?://"
       script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/memory-safe/scripts/kor-1.js"
       update_interval: 86400

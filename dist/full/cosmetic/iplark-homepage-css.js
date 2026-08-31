@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.729.1529.
+// Generated from official uBO Lite 2026.825.1619.
 // Dedicated IPLark bridge for the four AdGuard Chinese cosmetic selectors.
 // The site injects its ad containers after page load, so the rules are also
 // appended to its external stylesheet as a CSP-independent path.

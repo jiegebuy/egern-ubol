@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.729.1529.
+// Generated from official uBO Lite 2026.825.1619.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
@@ -10,8 +10,11 @@ const OPS = [
   {"d":["adultswim-vodlive.cdn.turner.com"],"p":["yo.ap"]},
   {"d":["adultswim-vodlive.cdn.turner.com"],"p":["yo.asd"]},
   {"d":["adultswim-vodlive.cdn.turner.com"],"p":["yo.po"]},
+  {"d":["adultswim.com"],"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?medium\\.ngtv\\.io/v2/media/.*(?:[^A-Za-z0-9_.%\\-]|$)ssaiProfile=","p":["ssaiProfile"]},
   {"d":["adweek.com"],"p":["traffic_source"]},
   {"d":["amazon.ae","amazon.ca","amazon.cn","amazon.co.jp","amazon.co.uk","amazon.com","amazon.com.au","amazon.de","amazon.es","amazon.fr","amazon.in","amazon.nl","amazon.sg"],"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?amazon\\..*/dp/.*(?:[^A-Za-z0-9_.%\\-]|$)ref_=","p":["ref_"]},
+  {"d":["aternos.org","htlb.casalemedia.com"],"p":["r"]},
+  {"d":["brightcove.com","player.stv.tv"],"p":["ad_config_id"]},
   {"d":["control.kochava.com"],"p":["_rt"]},
   {"d":["control.kochava.com"],"p":["device_id"]},
   {"d":["control.kochava.com"],"p":["ftag"]},
@@ -22,6 +25,7 @@ const OPS = [
   {"d":["facebook.com"],"p":["rdid"]},
   {"d":["facebook.com"],"p":["share_url"]},
   {"d":["go.xlirdr.com"],"q":true},
+  {"d":["instagram.com","threads.net"],"p":["igshid"]},
   {"d":["instagram.com"],"p":["ig_rid"]},
   {"d":["msn.com"],"p":["cvid"]},
   {"d":["msn.com"],"p":["ei"]},
