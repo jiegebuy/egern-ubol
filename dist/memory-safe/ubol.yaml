@@ -1,5 +1,5 @@
 name: "uBlock Origin Lite 规则"
-description: "一个 Egern 模块，包含 56 个可独立配置的 uBO Lite 2026.825.1619 过滤列表开关（内存安全，仅域名/IP）。"
+description: "一个 Egern 模块，包含 56 个可独立配置的 uBO Lite 2026.901.1442 过滤列表开关（内存安全，仅域名/IP）。"
 author: "Raymond Hill 与各上游过滤列表维护者"
 homepage: "https://github.com/uBlockOrigin/uBOL-home"
 manual: "https://github.com/uBlockOrigin/uBOL-home"

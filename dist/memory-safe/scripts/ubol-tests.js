@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.825.1619.
+// Generated from official uBO Lite 2026.901.1442.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
