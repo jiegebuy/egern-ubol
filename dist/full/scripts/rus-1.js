@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.901.1442.
+// Generated from official uBO Lite 2026.907.2003.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
@@ -83,6 +83,7 @@ const OPS = [
   {"d":["ozon.ru"],"p":["_bctx"]},
   {"d":["ozon.ru"],"p":["abt_att"]},
   {"d":["ozon.ru"],"p":["advert"]},
+  {"d":["ozon.ru"],"p":["af_dp"]},
   {"d":["ozon.ru"],"p":["asb"]},
   {"d":["ozon.ru"],"p":["asb2"]},
   {"d":["ozon.ru"],"p":["at"]},
@@ -92,6 +93,8 @@ const OPS = [
   {"d":["ozon.ru"],"p":["hs"]},
   {"d":["ozon.ru"],"p":["origin_referer"]},
   {"d":["ozon.ru"],"p":["perehod"]},
+  {"d":["ozon.ru"],"p":["pid"]},
+  {"d":["ozon.ru"],"p":["source_caller"]},
   {"d":["r.mail.ru"],"p":["fr"]},
   {"d":["r.mail.ru"],"p":["frm"]},
   {"d":["r.mail.ru"],"p":["hasnavig"]},

@@ -1,9 +1,9 @@
-// Generated from official uBO Lite 2026.901.1442.
+// Generated from official uBO Lite 2026.907.2003.
 // Plain site-specific cosmetic selectors only; procedural rules are omitted.
 
 const RULESET_ID = "ubol-tests";
-const SELECTORS = ["#ef #gcf2 .fail","#ccf1 .fail","#ccf2 .fail:not(.a4)","#pcf16 .pass > a:has(b) + .fail","#pcf17 .pass > a:has(b) + .fail:has(b)","#pcf19 .fail:has(+ a)","#ccf4 .fail-pseudo::before","#pcf1 .fail:has(b)","#pcf2 .fail:has(> a > b)","#pcf3 .fail:has(+ a > b)","#pcf5 .fail:has(:is(.pass a > b))","#pcf6 .fail:not(:has(c))","#ffubo2 > script"];
-const SELECTOR_LISTS = ["-1,1,2,3,4,5,6,7,8,9,10,11","12"];
+const SELECTORS = ["#ef #gcf2 .fail","#ccf1 .fail","#ccf2 .fail:not(.a4)","#pcf16 .pass > a:has(b) + .fail","#pcf17 .pass > a:has(b) + .fail:has(b)","#pcf19 .fail:has(+ a)","#ccf4 .fail-pseudo::before","#pcf1 .fail:has(b)","#pcf2 .fail:has(> a > b)","#pcf3 .fail:has(+ a > b)","#pcf5 .fail:has(:is(.pass a > b))","#pcf6 .fail:not(:has(c))"];
+const SELECTOR_LISTS = ["-1,1,2,3,4,5,6,7,8,9,10,11"];
 const HOSTNAMES = ["localhost","ublockorigin.github.io"];
 const SELECTOR_LIST_REFS = [0,0];
 const HAS_ENTITIES = false;
