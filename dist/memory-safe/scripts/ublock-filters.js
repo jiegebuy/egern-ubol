@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.914.1325.
+// Generated from official uBO Lite 2026.920.1710.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
@@ -24,6 +24,7 @@ const OPS = [
   {"d":["facebook.com"],"p":["mibextid"]},
   {"d":["facebook.com"],"p":["rdid"]},
   {"d":["facebook.com"],"p":["share_url"]},
+  {"d":["finya.de"],"p":["visitorGating"]},
   {"d":["go.xlirdr.com"],"q":true},
   {"d":["instagram.com","threads.net"],"p":["igshid"]},
   {"d":["instagram.com"],"p":["ig_rid"]},

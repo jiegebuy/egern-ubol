@@ -35,18 +35,18 @@
     {
       "cosmetic_conversion": {
         "eligible_hostnames": 4472,
-        "eligible_plain_selectors": 4948,
+        "eligible_plain_selectors": 4959,
         "eligible_regex_rules": 1,
         "eligible_selector_lists": 2924,
         "hostnames": 4472,
-        "input_hostnames": 5108,
+        "input_hostnames": 5109,
         "input_regex_rules": 2,
-        "input_selector_lists": 3365,
-        "input_selectors": 6104,
-        "plain_selectors": 4948,
+        "input_selector_lists": 3366,
+        "input_selectors": 6117,
+        "plain_selectors": 4959,
         "regex_rules": 1,
         "selector_lists": 2924,
-        "skipped_procedural_selectors": 1156
+        "skipped_procedural_selectors": 1158
       },
       "enabled_in_preset": true,
       "enabled_upstream_by_default": true,
@@ -55,46 +55,46 @@
       "id": "ublock-filters",
       "input": {
         "actions": {
-          "allow": 1584,
-          "block": 3168,
+          "allow": 1582,
+          "block": 3173,
           "modifyHeaders": 49,
-          "redirect": 851
+          "redirect": 856
         },
         "css": {
           "generic": 667,
-          "specific": 5112
+          "specific": 5113
         },
         "filters": {
-          "accepted": 10439,
+          "accepted": 10459,
           "rejected": 1,
-          "total": 10461
+          "total": 10483
         },
-        "popups": 169,
-        "rules": 5652,
+        "popups": 170,
+        "rules": 5660,
         "strictblock_rules": 50
       },
       "name": "uBlock filters – Ads, trackers, and more",
       "network_conversion": {
-        "candidate_domains": 493,
+        "candidate_domains": 497,
         "converted_domain_rules": 2,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 1014,
+        "converted_url_rules": 1019,
         "domain_suffixes": 148,
-        "domains_removed_for_exceptions": 341,
-        "eligible_url_regexes": 1014,
+        "domains_removed_for_exceptions": 345,
+        "eligible_url_regexes": 1019,
         "exception_domains": 597,
-        "input_block_rules": 3168,
+        "input_block_rules": 3173,
         "input_strictblock_rules": 50,
         "ipv4_cidrs": 2,
         "ipv6_cidrs": 0,
         "skipped_contextual_block_rules": 2152,
         "skipped_contextual_strictblock_rules": 49,
-        "url_regexes": 1014
+        "url_regexes": 1019
       },
       "output": {
         "cosmetic_hostnames": 4472,
         "cosmetic_regex_rules": 1,
-        "cosmetic_selectors": 4948,
+        "cosmetic_selectors": 4959,
         "domain_suffixes": 148,
         "ipv4_cidrs": 2,
         "ipv6_cidrs": 0,
@@ -102,33 +102,33 @@
           "domain": "aboutamazon.com",
           "parameter": "asc_campaign"
         },
-        "query_operations": 217,
-        "url_regexes": 1014
+        "query_operations": 218,
+        "url_regexes": 1019
       },
       "query_conversion": {
-        "converted_query_rules": 217,
+        "converted_query_rules": 218,
         "deduplicated_query_rules": 0,
-        "input_query_rules": 250,
-        "query_operations": 217,
-        "resource_type_conditions_relaxed": 217,
-        "skipped_contextual_query_rules": 33
+        "input_query_rules": 252,
+        "query_operations": 218,
+        "resource_type_conditions_relaxed": 218,
+        "skipped_contextual_query_rules": 34
       }
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 8192,
-        "eligible_plain_selectors": 10447,
+        "eligible_hostnames": 8197,
+        "eligible_plain_selectors": 10460,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 5564,
-        "hostnames": 8192,
-        "input_hostnames": 8253,
+        "eligible_selector_lists": 5568,
+        "hostnames": 8197,
+        "input_hostnames": 8258,
         "input_regex_rules": 0,
-        "input_selector_lists": 5635,
-        "input_selectors": 10773,
-        "plain_selectors": 10447,
+        "input_selector_lists": 5639,
+        "input_selectors": 10783,
+        "plain_selectors": 10460,
         "regex_rules": 0,
-        "selector_lists": 5564,
-        "skipped_procedural_selectors": 326
+        "selector_lists": 5568,
+        "skipped_procedural_selectors": 323
       },
       "enabled_in_preset": true,
       "enabled_upstream_by_default": true,
@@ -138,51 +138,51 @@
       "input": {
         "actions": {
           "allow": 519,
-          "block": 3196,
+          "block": 3198,
           "modifyHeaders": 1,
           "redirect": 7
         },
         "css": {
           "generic": 12329,
-          "specific": 8253
+          "specific": 8258
         },
         "filters": {
-          "accepted": 56118,
+          "accepted": 58270,
           "rejected": 18,
-          "total": 56141
+          "total": 58293
         },
-        "popups": 2789,
-        "rules": 3723,
+        "popups": 2798,
+        "rules": 3725,
         "strictblock_rules": 21
       },
       "name": "EasyList",
       "network_conversion": {
-        "candidate_domains": 46818,
+        "candidate_domains": 48958,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 2015,
-        "domain_suffixes": 46674,
+        "converted_url_rules": 2017,
+        "domain_suffixes": 48814,
         "domains_removed_for_exceptions": 33,
-        "eligible_url_regexes": 2015,
+        "eligible_url_regexes": 2017,
         "exception_domains": 75,
-        "input_block_rules": 3196,
+        "input_block_rules": 3198,
         "input_strictblock_rules": 21,
         "ipv4_cidrs": 104,
         "ipv6_cidrs": 0,
         "skipped_contextual_block_rules": 1180,
         "skipped_contextual_strictblock_rules": 20,
-        "url_regexes": 2015
+        "url_regexes": 2017
       },
       "output": {
-        "cosmetic_hostnames": 8192,
+        "cosmetic_hostnames": 8197,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 10447,
-        "domain_suffixes": 46674,
+        "cosmetic_selectors": 10460,
+        "domain_suffixes": 48814,
         "ipv4_cidrs": 104,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
         "query_operations": 0,
-        "url_regexes": 2015
+        "url_regexes": 2017
       },
       "query_conversion": {
         "deduplicated_query_rules": 0,
@@ -212,8 +212,8 @@
       "id": "easyprivacy",
       "input": {
         "actions": {
-          "allow": 818,
-          "block": 8153,
+          "allow": 820,
+          "block": 8169,
           "modifyHeaders": 2,
           "redirect": 13
         },
@@ -222,41 +222,41 @@
           "specific": 4
         },
         "filters": {
-          "accepted": 56040,
+          "accepted": 56110,
           "rejected": 30,
-          "total": 56072
+          "total": 56142
         },
         "popups": 0,
-        "rules": 8986,
+        "rules": 9004,
         "strictblock_rules": 1
       },
       "name": "EasyPrivacy",
       "network_conversion": {
-        "candidate_domains": 43048,
+        "candidate_domains": 43096,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 7393,
-        "domain_suffixes": 43020,
+        "converted_url_rules": 7403,
+        "domain_suffixes": 43068,
         "domains_removed_for_exceptions": 18,
-        "eligible_url_regexes": 7393,
+        "eligible_url_regexes": 7403,
         "exception_domains": 108,
-        "input_block_rules": 8153,
+        "input_block_rules": 8169,
         "input_strictblock_rules": 1,
         "ipv4_cidrs": 9,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 759,
-        "url_regexes": 7393
+        "skipped_contextual_block_rules": 765,
+        "url_regexes": 7403
       },
       "output": {
         "cosmetic_hostnames": 0,
         "cosmetic_regex_rules": 0,
         "cosmetic_selectors": 0,
-        "domain_suffixes": 43020,
+        "domain_suffixes": 43068,
         "ipv4_cidrs": 9,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
         "query_operations": 0,
-        "url_regexes": 7393
+        "url_regexes": 7403
       },
       "query_conversion": {
         "deduplicated_query_rules": 0,
@@ -279,9 +279,9 @@
           "specific": 0
         },
         "filters": {
-          "accepted": 3479,
+          "accepted": 3467,
           "rejected": 80,
-          "total": 3559
+          "total": 3547
         },
         "popups": 0,
         "rules": 1,
@@ -289,10 +289,10 @@
       },
       "name": "Peter Lowe – Ads, trackers, and more",
       "network_conversion": {
-        "candidate_domains": 3479,
+        "candidate_domains": 3467,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "domain_suffixes": 3468,
+        "domain_suffixes": 3456,
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 0,
         "exception_domains": 0,
@@ -306,7 +306,7 @@
         "cosmetic_hostnames": 0,
         "cosmetic_regex_rules": 0,
         "cosmetic_selectors": 0,
-        "domain_suffixes": 3468,
+        "domain_suffixes": 3456,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -342,44 +342,44 @@
       "input": {
         "actions": {
           "allow": 1,
-          "block": 443,
+          "block": 446,
           "redirect": 1
         },
         "css": {
-          "generic": 46,
+          "generic": 47,
           "specific": 209
         },
         "filters": {
-          "accepted": 9384,
+          "accepted": 9527,
           "rejected": 0,
-          "total": 9401
+          "total": 9544
         },
-        "popups": 1250,
-        "rules": 445,
-        "strictblock_rules": 1057
+        "popups": 1261,
+        "rules": 448,
+        "strictblock_rules": 1058
       },
       "name": "uBlock filters – Badware risks",
       "network_conversion": {
-        "candidate_domains": 2744,
+        "candidate_domains": 2838,
         "converted_strictblock_domain_rules": 1,
         "converted_url_rules": 326,
-        "domain_suffixes": 1079,
-        "domains_removed_for_exceptions": 1661,
+        "domain_suffixes": 1102,
+        "domains_removed_for_exceptions": 1732,
         "eligible_url_regexes": 326,
         "exception_domains": 78,
-        "input_block_rules": 443,
-        "input_strictblock_rules": 1057,
+        "input_block_rules": 446,
+        "input_strictblock_rules": 1058,
         "ipv4_cidrs": 4,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 117,
-        "skipped_contextual_strictblock_rules": 1056,
+        "skipped_contextual_block_rules": 120,
+        "skipped_contextual_strictblock_rules": 1057,
         "url_regexes": 326
       },
       "output": {
         "cosmetic_hostnames": 203,
         "cosmetic_regex_rules": 0,
         "cosmetic_selectors": 41,
-        "domain_suffixes": 1079,
+        "domain_suffixes": 1102,
         "ipv4_cidrs": 4,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -407,9 +407,9 @@
           "specific": 0
         },
         "filters": {
-          "accepted": 3833,
+          "accepted": 3597,
           "rejected": 0,
-          "total": 3833
+          "total": 3597
         },
         "popups": 0,
         "rules": 1,
@@ -417,10 +417,10 @@
       },
       "name": "Malicious URL Blocklist",
       "network_conversion": {
-        "candidate_domains": 3833,
+        "candidate_domains": 3597,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "domain_suffixes": 3811,
+        "domain_suffixes": 3575,
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 0,
         "exception_domains": 0,
@@ -434,7 +434,7 @@
         "cosmetic_hostnames": 0,
         "cosmetic_regex_rules": 0,
         "cosmetic_selectors": 0,
-        "domain_suffixes": 3811,
+        "domain_suffixes": 3575,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -448,19 +448,19 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 4385,
-        "eligible_plain_selectors": 5627,
+        "eligible_hostnames": 4389,
+        "eligible_plain_selectors": 5638,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 3166,
-        "hostnames": 4385,
-        "input_hostnames": 4588,
+        "eligible_selector_lists": 3169,
+        "hostnames": 4389,
+        "input_hostnames": 4592,
         "input_regex_rules": 0,
-        "input_selector_lists": 3334,
-        "input_selectors": 6207,
-        "plain_selectors": 5627,
+        "input_selector_lists": 3337,
+        "input_selectors": 6217,
+        "plain_selectors": 5638,
         "regex_rules": 0,
-        "selector_lists": 3166,
-        "skipped_procedural_selectors": 580
+        "selector_lists": 3169,
+        "skipped_procedural_selectors": 579
       },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
@@ -470,20 +470,20 @@
       "input": {
         "actions": {
           "allow": 135,
-          "block": 415,
+          "block": 416,
           "redirect": 19
         },
         "css": {
           "generic": 71,
-          "specific": 4588
+          "specific": 4592
         },
         "filters": {
-          "accepted": 1571,
+          "accepted": 1572,
           "rejected": 4,
-          "total": 1575
+          "total": 1576
         },
         "popups": 1,
-        "rules": 569,
+        "rules": 570,
         "strictblock_rules": 2
       },
       "name": "AdGuard/uBO – Mobile Ads",
@@ -491,29 +491,29 @@
         "candidate_domains": 921,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 337,
+        "converted_url_rules": 338,
         "domain_suffixes": 907,
         "domains_removed_for_exceptions": 3,
-        "eligible_url_regexes": 337,
+        "eligible_url_regexes": 338,
         "exception_domains": 20,
-        "input_block_rules": 415,
+        "input_block_rules": 416,
         "input_strictblock_rules": 2,
         "ipv4_cidrs": 3,
         "ipv6_cidrs": 0,
         "skipped_contextual_block_rules": 77,
         "skipped_contextual_strictblock_rules": 1,
-        "url_regexes": 337
+        "url_regexes": 338
       },
       "output": {
-        "cosmetic_hostnames": 4385,
+        "cosmetic_hostnames": 4389,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 5627,
+        "cosmetic_selectors": 5638,
         "domain_suffixes": 907,
         "ipv4_cidrs": 3,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
         "query_operations": 0,
-        "url_regexes": 337
+        "url_regexes": 338
       },
       "query_conversion": {
         "deduplicated_query_rules": 0,
@@ -599,19 +599,19 @@
         "actions": {
           "allow": 62,
           "block": 1,
-          "redirect": 2055
+          "redirect": 2072
         },
         "css": {
           "generic": 0,
           "specific": 3
         },
         "filters": {
-          "accepted": 2630,
+          "accepted": 2655,
           "rejected": 0,
-          "total": 2635
+          "total": 2660
         },
         "popups": 0,
-        "rules": 2118,
+        "rules": 2135,
         "strictblock_rules": 0
       },
       "name": "AdGuard/uBO – URL Tracking Protection",
@@ -639,15 +639,15 @@
           "domain": "123chat.jp",
           "parameter": "afid"
         },
-        "query_operations": 2017,
+        "query_operations": 2034,
         "url_regexes": 1
       },
       "query_conversion": {
-        "converted_query_rules": 2017,
+        "converted_query_rules": 2034,
         "deduplicated_query_rules": 0,
-        "input_query_rules": 2055,
-        "query_operations": 2017,
-        "resource_type_conditions_relaxed": 2017,
+        "input_query_rules": 2072,
+        "query_operations": 2034,
+        "resource_type_conditions_relaxed": 2034,
         "skipped_contextual_query_rules": 38
       }
     },
@@ -674,19 +674,19 @@
       "id": "annoyances-ai",
       "input": {
         "actions": {
-          "block": 9
+          "block": 10
         },
         "css": {
           "generic": 4,
           "specific": 151
         },
         "filters": {
-          "accepted": 21,
+          "accepted": 22,
           "rejected": 0,
-          "total": 21
+          "total": 22
         },
         "popups": 0,
-        "rules": 9,
+        "rules": 10,
         "strictblock_rules": 1
       },
       "name": "EasyList – AI Widgets",
@@ -699,11 +699,11 @@
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 5,
         "exception_domains": 0,
-        "input_block_rules": 9,
+        "input_block_rules": 10,
         "input_strictblock_rules": 1,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 3,
+        "skipped_contextual_block_rules": 4,
         "url_regexes": 5
       },
       "output": {
@@ -724,18 +724,18 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 19901,
-        "eligible_plain_selectors": 7251,
+        "eligible_hostnames": 19988,
+        "eligible_plain_selectors": 7266,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 7017,
-        "hostnames": 19901,
-        "input_hostnames": 20220,
+        "eligible_selector_lists": 7032,
+        "hostnames": 19988,
+        "input_hostnames": 20307,
         "input_regex_rules": 0,
-        "input_selector_lists": 7190,
-        "input_selectors": 7376,
-        "plain_selectors": 7251,
+        "input_selector_lists": 7206,
+        "input_selectors": 7391,
+        "plain_selectors": 7266,
         "regex_rules": 0,
-        "selector_lists": 7017,
+        "selector_lists": 7032,
         "skipped_procedural_selectors": 125
       },
       "enabled_in_preset": false,
@@ -745,20 +745,20 @@
       "id": "annoyances-cookies",
       "input": {
         "actions": {
-          "allow": 450,
-          "block": 1379
+          "allow": 451,
+          "block": 1380
         },
         "css": {
           "generic": 13392,
-          "specific": 20220
+          "specific": 20307
         },
         "filters": {
-          "accepted": 2193,
+          "accepted": 2195,
           "rejected": 0,
-          "total": 2194
+          "total": 2196
         },
         "popups": 0,
-        "rules": 1829,
+        "rules": 1831,
         "strictblock_rules": 1
       },
       "name": "EasyList/uBO – Cookie Notices",
@@ -771,17 +771,17 @@
         "domains_removed_for_exceptions": 5,
         "eligible_url_regexes": 1265,
         "exception_domains": 36,
-        "input_block_rules": 1379,
+        "input_block_rules": 1380,
         "input_strictblock_rules": 1,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 113,
+        "skipped_contextual_block_rules": 114,
         "url_regexes": 1265
       },
       "output": {
-        "cosmetic_hostnames": 19901,
+        "cosmetic_hostnames": 19988,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 7251,
+        "cosmetic_selectors": 7266,
         "domain_suffixes": 175,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -796,19 +796,19 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 5539,
-        "eligible_plain_selectors": 4159,
+        "eligible_hostnames": 5545,
+        "eligible_plain_selectors": 4162,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 3413,
-        "hostnames": 5539,
-        "input_hostnames": 6193,
+        "eligible_selector_lists": 3416,
+        "hostnames": 5545,
+        "input_hostnames": 6199,
         "input_regex_rules": 0,
-        "input_selector_lists": 3769,
-        "input_selectors": 4718,
-        "plain_selectors": 4159,
+        "input_selector_lists": 3772,
+        "input_selectors": 4720,
+        "plain_selectors": 4162,
         "regex_rules": 0,
-        "selector_lists": 3413,
-        "skipped_procedural_selectors": 559
+        "selector_lists": 3416,
+        "skipped_procedural_selectors": 558
       },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
@@ -824,7 +824,7 @@
         },
         "css": {
           "generic": 1186,
-          "specific": 6193
+          "specific": 6199
         },
         "filters": {
           "accepted": 478,
@@ -854,9 +854,9 @@
         "url_regexes": 152
       },
       "output": {
-        "cosmetic_hostnames": 5539,
+        "cosmetic_hostnames": 5545,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 4159,
+        "cosmetic_selectors": 4162,
         "domain_suffixes": 13,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -877,16 +877,16 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 5107,
-        "eligible_plain_selectors": 3248,
+        "eligible_hostnames": 5108,
+        "eligible_plain_selectors": 3249,
         "eligible_regex_rules": 0,
         "eligible_selector_lists": 2669,
-        "hostnames": 5107,
-        "input_hostnames": 5123,
+        "hostnames": 5108,
+        "input_hostnames": 5124,
         "input_regex_rules": 0,
         "input_selector_lists": 2687,
-        "input_selectors": 3301,
-        "plain_selectors": 3248,
+        "input_selectors": 3302,
+        "plain_selectors": 3249,
         "regex_rules": 0,
         "selector_lists": 2669,
         "skipped_procedural_selectors": 53
@@ -899,46 +899,46 @@
       "input": {
         "actions": {
           "allow": 70,
-          "block": 525
+          "block": 526
         },
         "css": {
-          "generic": 8806,
-          "specific": 5123
+          "generic": 8807,
+          "specific": 5124
         },
         "filters": {
-          "accepted": 668,
+          "accepted": 669,
           "rejected": 0,
-          "total": 668
+          "total": 669
         },
         "popups": 0,
-        "rules": 595,
+        "rules": 596,
         "strictblock_rules": 0
       },
       "name": "EasyList – Social Widgets",
       "network_conversion": {
         "candidate_domains": 0,
-        "converted_url_rules": 418,
+        "converted_url_rules": 419,
         "domain_suffixes": 0,
         "domains_removed_for_exceptions": 0,
-        "eligible_url_regexes": 418,
+        "eligible_url_regexes": 419,
         "exception_domains": 1,
-        "input_block_rules": 525,
+        "input_block_rules": 526,
         "input_strictblock_rules": 0,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "skipped_contextual_block_rules": 107,
-        "url_regexes": 418
+        "url_regexes": 419
       },
       "output": {
-        "cosmetic_hostnames": 5107,
+        "cosmetic_hostnames": 5108,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 3248,
+        "cosmetic_selectors": 3249,
         "domain_suffixes": 0,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
         "query_operations": 0,
-        "url_regexes": 418
+        "url_regexes": 419
       },
       "query_conversion": {
         "deduplicated_query_rules": 0,
@@ -967,19 +967,19 @@
       "id": "annoyances-widgets",
       "input": {
         "actions": {
-          "block": 69
+          "block": 70
         },
         "css": {
           "generic": 14,
           "specific": 14
         },
         "filters": {
-          "accepted": 245,
+          "accepted": 246,
           "rejected": 1,
-          "total": 246
+          "total": 247
         },
         "popups": 0,
-        "rules": 69,
+        "rules": 70,
         "strictblock_rules": 1
       },
       "name": "EasyList – Chat Widgets",
@@ -992,11 +992,11 @@
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 47,
         "exception_domains": 0,
-        "input_block_rules": 69,
+        "input_block_rules": 70,
         "input_strictblock_rules": 1,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 21,
+        "skipped_contextual_block_rules": 22,
         "url_regexes": 47
       },
       "output": {
@@ -1017,19 +1017,19 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 2593,
-        "eligible_plain_selectors": 2182,
+        "eligible_hostnames": 2595,
+        "eligible_plain_selectors": 2184,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 1686,
-        "hostnames": 2593,
-        "input_hostnames": 2637,
+        "eligible_selector_lists": 1687,
+        "hostnames": 2595,
+        "input_hostnames": 2639,
         "input_regex_rules": 0,
-        "input_selector_lists": 1713,
-        "input_selectors": 2272,
-        "plain_selectors": 2182,
+        "input_selector_lists": 1714,
+        "input_selectors": 2273,
+        "plain_selectors": 2184,
         "regex_rules": 0,
-        "selector_lists": 1686,
-        "skipped_procedural_selectors": 90
+        "selector_lists": 1687,
+        "skipped_procedural_selectors": 89
       },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
@@ -1043,12 +1043,12 @@
         },
         "css": {
           "generic": 785,
-          "specific": 2637
+          "specific": 2639
         },
         "filters": {
-          "accepted": 755,
+          "accepted": 756,
           "rejected": 0,
-          "total": 755
+          "total": 756
         },
         "popups": 1,
         "rules": 432,
@@ -1072,9 +1072,9 @@
         "url_regexes": 274
       },
       "output": {
-        "cosmetic_hostnames": 2593,
+        "cosmetic_hostnames": 2595,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 2182,
+        "cosmetic_selectors": 2184,
         "domain_suffixes": 20,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1089,18 +1089,18 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 1245,
-        "eligible_plain_selectors": 740,
+        "eligible_hostnames": 1246,
+        "eligible_plain_selectors": 741,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 542,
-        "hostnames": 1245,
-        "input_hostnames": 1262,
+        "eligible_selector_lists": 543,
+        "hostnames": 1246,
+        "input_hostnames": 1263,
         "input_regex_rules": 0,
-        "input_selector_lists": 560,
-        "input_selectors": 793,
-        "plain_selectors": 740,
+        "input_selector_lists": 561,
+        "input_selectors": 794,
+        "plain_selectors": 741,
         "regex_rules": 0,
-        "selector_lists": 542,
+        "selector_lists": 543,
         "skipped_procedural_selectors": 53
       },
       "enabled_in_preset": false,
@@ -1115,7 +1115,7 @@
         },
         "css": {
           "generic": 297,
-          "specific": 1262
+          "specific": 1263
         },
         "filters": {
           "accepted": 492,
@@ -1144,9 +1144,9 @@
         "url_regexes": 224
       },
       "output": {
-        "cosmetic_hostnames": 1245,
+        "cosmetic_hostnames": 1246,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 740,
+        "cosmetic_selectors": 741,
         "domain_suffixes": 26,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1514,18 +1514,18 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 3274,
-        "eligible_plain_selectors": 7293,
+        "eligible_hostnames": 3267,
+        "eligible_plain_selectors": 7284,
         "eligible_regex_rules": 3,
-        "eligible_selector_lists": 2800,
-        "hostnames": 3274,
-        "input_hostnames": 3309,
+        "eligible_selector_lists": 2793,
+        "hostnames": 3267,
+        "input_hostnames": 3302,
         "input_regex_rules": 3,
-        "input_selector_lists": 2840,
-        "input_selectors": 7515,
-        "plain_selectors": 7293,
+        "input_selector_lists": 2833,
+        "input_selectors": 7506,
+        "plain_selectors": 7284,
         "regex_rules": 3,
-        "selector_lists": 2800,
+        "selector_lists": 2793,
         "skipped_procedural_selectors": 222
       },
       "enabled_in_preset": true,
@@ -1536,51 +1536,51 @@
       "input": {
         "actions": {
           "allow": 825,
-          "block": 5724,
+          "block": 5690,
           "modifyHeaders": 10,
           "redirect": 49
         },
         "css": {
-          "generic": 1291,
-          "specific": 3312
+          "generic": 1269,
+          "specific": 3305
         },
         "filters": {
-          "accepted": 15302,
+          "accepted": 14913,
           "rejected": 4,
-          "total": 15312
+          "total": 14923
         },
         "popups": 39,
-        "rules": 6608,
+        "rules": 6574,
         "strictblock_rules": 5
       },
       "name": "🇨🇳cn 🇹🇼tw: AdGuard Chinese (中文)",
       "network_conversion": {
-        "candidate_domains": 6140,
+        "candidate_domains": 5790,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 5187,
-        "domain_suffixes": 6122,
+        "converted_url_rules": 5154,
+        "domain_suffixes": 5772,
         "domains_removed_for_exceptions": 12,
-        "eligible_url_regexes": 5187,
+        "eligible_url_regexes": 5154,
         "exception_domains": 151,
-        "input_block_rules": 5724,
+        "input_block_rules": 5690,
         "input_strictblock_rules": 5,
         "ipv4_cidrs": 5,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 536,
+        "skipped_contextual_block_rules": 535,
         "skipped_contextual_strictblock_rules": 4,
-        "url_regexes": 5187
+        "url_regexes": 5154
       },
       "output": {
-        "cosmetic_hostnames": 3274,
+        "cosmetic_hostnames": 3267,
         "cosmetic_regex_rules": 3,
-        "cosmetic_selectors": 7293,
-        "domain_suffixes": 6122,
+        "cosmetic_selectors": 7284,
+        "domain_suffixes": 5772,
         "ipv4_cidrs": 5,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
         "query_operations": 4,
-        "url_regexes": 5187
+        "url_regexes": 5154
       },
       "query_conversion": {
         "converted_query_rules": 4,
@@ -1668,15 +1668,15 @@
     {
       "cosmetic_conversion": {
         "eligible_hostnames": 2114,
-        "eligible_plain_selectors": 3133,
+        "eligible_plain_selectors": 3137,
         "eligible_regex_rules": 0,
         "eligible_selector_lists": 1595,
         "hostnames": 2114,
         "input_hostnames": 2134,
         "input_regex_rules": 0,
         "input_selector_lists": 1618,
-        "input_selectors": 3248,
-        "plain_selectors": 3133,
+        "input_selectors": 3252,
+        "plain_selectors": 3137,
         "regex_rules": 0,
         "selector_lists": 1595,
         "skipped_procedural_selectors": 115
@@ -1689,7 +1689,7 @@
       "input": {
         "actions": {
           "allow": 113,
-          "block": 1727,
+          "block": 1726,
           "modifyHeaders": 1,
           "redirect": 2
         },
@@ -1698,12 +1698,12 @@
           "specific": 2134
         },
         "filters": {
-          "accepted": 2318,
+          "accepted": 2317,
           "rejected": 4,
-          "total": 2322
+          "total": 2321
         },
         "popups": 28,
-        "rules": 1843,
+        "rules": 1842,
         "strictblock_rules": 1
       },
       "name": "🇩🇪de 🇨🇭ch 🇦🇹at: EasyList Germany",
@@ -1711,28 +1711,28 @@
         "candidate_domains": 68,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 1470,
+        "converted_url_rules": 1469,
         "domain_suffixes": 68,
         "domains_removed_for_exceptions": 0,
-        "eligible_url_regexes": 1470,
+        "eligible_url_regexes": 1469,
         "exception_domains": 8,
-        "input_block_rules": 1727,
+        "input_block_rules": 1726,
         "input_strictblock_rules": 1,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "skipped_contextual_block_rules": 256,
-        "url_regexes": 1470
+        "url_regexes": 1469
       },
       "output": {
         "cosmetic_hostnames": 2114,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 3133,
+        "cosmetic_selectors": 3137,
         "domain_suffixes": 68,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
         "query_operations": 0,
-        "url_regexes": 1470
+        "url_regexes": 1469
       },
       "query_conversion": {
         "deduplicated_query_rules": 0,
@@ -1820,19 +1820,19 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 525,
-        "eligible_plain_selectors": 778,
+        "eligible_hostnames": 526,
+        "eligible_plain_selectors": 779,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 370,
-        "hostnames": 525,
-        "input_hostnames": 541,
+        "eligible_selector_lists": 371,
+        "hostnames": 526,
+        "input_hostnames": 542,
         "input_regex_rules": 0,
-        "input_selector_lists": 386,
-        "input_selectors": 890,
-        "plain_selectors": 778,
+        "input_selector_lists": 387,
+        "input_selectors": 893,
+        "plain_selectors": 779,
         "regex_rules": 0,
-        "selector_lists": 370,
-        "skipped_procedural_selectors": 112
+        "selector_lists": 371,
+        "skipped_procedural_selectors": 114
       },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
@@ -1847,7 +1847,7 @@
         },
         "css": {
           "generic": 75,
-          "specific": 541
+          "specific": 542
         },
         "filters": {
           "accepted": 208,
@@ -1874,9 +1874,9 @@
         "url_regexes": 30
       },
       "output": {
-        "cosmetic_hostnames": 525,
+        "cosmetic_hostnames": 526,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 778,
+        "cosmetic_selectors": 779,
         "domain_suffixes": 0,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -1916,7 +1916,7 @@
       "input": {
         "actions": {
           "allow": 472,
-          "block": 3535,
+          "block": 3536,
           "modifyHeaders": 6,
           "redirect": 34
         },
@@ -1925,36 +1925,36 @@
           "specific": 1692
         },
         "filters": {
-          "accepted": 11242,
+          "accepted": 11349,
           "rejected": 904,
-          "total": 12163
+          "total": 12270
         },
         "popups": 310,
-        "rules": 4047,
+        "rules": 4048,
         "strictblock_rules": 1
       },
       "name": "🇫🇷fr 🇧🇪be 🇨🇦ca: AdGuard Français",
       "network_conversion": {
-        "candidate_domains": 4862,
+        "candidate_domains": 4968,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
         "converted_url_rules": 3092,
-        "domain_suffixes": 4857,
+        "domain_suffixes": 4963,
         "domains_removed_for_exceptions": 3,
         "eligible_url_regexes": 3092,
         "exception_domains": 103,
-        "input_block_rules": 3535,
+        "input_block_rules": 3536,
         "input_strictblock_rules": 1,
         "ipv4_cidrs": 1,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 442,
+        "skipped_contextual_block_rules": 443,
         "url_regexes": 3092
       },
       "output": {
         "cosmetic_hostnames": 1656,
         "cosmetic_regex_rules": 0,
         "cosmetic_selectors": 2371,
-        "domain_suffixes": 4857,
+        "domain_suffixes": 4963,
         "ipv4_cidrs": 1,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -1972,15 +1972,15 @@
     {
       "cosmetic_conversion": {
         "eligible_hostnames": 206,
-        "eligible_plain_selectors": 707,
+        "eligible_plain_selectors": 711,
         "eligible_regex_rules": 0,
         "eligible_selector_lists": 202,
         "hostnames": 206,
         "input_hostnames": 208,
         "input_regex_rules": 0,
         "input_selector_lists": 205,
-        "input_selectors": 717,
-        "plain_selectors": 707,
+        "input_selectors": 721,
+        "plain_selectors": 711,
         "regex_rules": 0,
         "selector_lists": 202,
         "skipped_procedural_selectors": 10
@@ -2029,7 +2029,7 @@
       "output": {
         "cosmetic_hostnames": 206,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 707,
+        "cosmetic_selectors": 711,
         "domain_suffixes": 23,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2045,15 +2045,15 @@
     {
       "cosmetic_conversion": {
         "eligible_hostnames": 183,
-        "eligible_plain_selectors": 362,
+        "eligible_plain_selectors": 363,
         "eligible_regex_rules": 0,
         "eligible_selector_lists": 165,
         "hostnames": 183,
         "input_hostnames": 185,
         "input_regex_rules": 0,
         "input_selector_lists": 167,
-        "input_selectors": 373,
-        "plain_selectors": 362,
+        "input_selectors": 374,
+        "plain_selectors": 363,
         "regex_rules": 0,
         "selector_lists": 165,
         "skipped_procedural_selectors": 11
@@ -2101,7 +2101,7 @@
       "output": {
         "cosmetic_hostnames": 183,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 362,
+        "cosmetic_selectors": 363,
         "domain_suffixes": 14,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2189,18 +2189,18 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 885,
-        "eligible_plain_selectors": 1425,
+        "eligible_hostnames": 878,
+        "eligible_plain_selectors": 1437,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 589,
-        "hostnames": 885,
-        "input_hostnames": 886,
+        "eligible_selector_lists": 587,
+        "hostnames": 878,
+        "input_hostnames": 879,
         "input_regex_rules": 0,
-        "input_selector_lists": 590,
-        "input_selectors": 1450,
-        "plain_selectors": 1425,
+        "input_selector_lists": 588,
+        "input_selectors": 1462,
+        "plain_selectors": 1437,
         "regex_rules": 0,
-        "selector_lists": 589,
+        "selector_lists": 587,
         "skipped_procedural_selectors": 25
       },
       "enabled_in_preset": false,
@@ -2211,20 +2211,20 @@
       "input": {
         "actions": {
           "allow": 2,
-          "block": 3190,
+          "block": 3189,
           "redirect": 6
         },
         "css": {
           "generic": 4387,
-          "specific": 886
+          "specific": 879
         },
         "filters": {
-          "accepted": 4298,
+          "accepted": 4292,
           "rejected": 0,
-          "total": 4298
+          "total": 4292
         },
         "popups": 590,
-        "rules": 3198,
+        "rules": 3197,
         "strictblock_rules": 1
       },
       "name": "🇮🇩id 🇲🇾my: ABPindo",
@@ -2237,17 +2237,17 @@
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 79,
         "exception_domains": 2,
-        "input_block_rules": 3190,
+        "input_block_rules": 3189,
         "input_strictblock_rules": 1,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 3110,
+        "skipped_contextual_block_rules": 3109,
         "url_regexes": 79
       },
       "output": {
-        "cosmetic_hostnames": 885,
+        "cosmetic_hostnames": 878,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 1425,
+        "cosmetic_selectors": 1437,
         "domain_suffixes": 9,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2262,18 +2262,18 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 6059,
-        "eligible_plain_selectors": 4996,
+        "eligible_hostnames": 6068,
+        "eligible_plain_selectors": 4998,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 4175,
-        "hostnames": 6059,
-        "input_hostnames": 6105,
+        "eligible_selector_lists": 4179,
+        "hostnames": 6068,
+        "input_hostnames": 6114,
         "input_regex_rules": 0,
-        "input_selector_lists": 4244,
-        "input_selectors": 5132,
-        "plain_selectors": 4996,
+        "input_selector_lists": 4247,
+        "input_selectors": 5134,
+        "plain_selectors": 4998,
         "regex_rules": 0,
-        "selector_lists": 4175,
+        "selector_lists": 4179,
         "skipped_procedural_selectors": 136
       },
       "enabled_in_preset": false,
@@ -2284,46 +2284,46 @@
       "input": {
         "actions": {
           "allow": 82,
-          "block": 5224
+          "block": 5222
         },
         "css": {
           "generic": 7,
-          "specific": 6105
+          "specific": 6114
         },
         "filters": {
-          "accepted": 5348,
+          "accepted": 5346,
           "rejected": 0,
-          "total": 5348
+          "total": 5346
         },
         "popups": 2,
-        "rules": 5306,
+        "rules": 5304,
         "strictblock_rules": 0
       },
       "name": "🇮🇳in 🇱🇰lk 🇳🇵np: IndianList",
       "network_conversion": {
         "candidate_domains": 0,
-        "converted_url_rules": 4885,
+        "converted_url_rules": 4883,
         "domain_suffixes": 0,
         "domains_removed_for_exceptions": 0,
-        "eligible_url_regexes": 4885,
+        "eligible_url_regexes": 4883,
         "exception_domains": 1,
-        "input_block_rules": 5224,
+        "input_block_rules": 5222,
         "input_strictblock_rules": 0,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "skipped_contextual_block_rules": 339,
-        "url_regexes": 4885
+        "url_regexes": 4883
       },
       "output": {
-        "cosmetic_hostnames": 6059,
+        "cosmetic_hostnames": 6068,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 4996,
+        "cosmetic_selectors": 4998,
         "domain_suffixes": 0,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
         "query_operations": 0,
-        "url_regexes": 4885
+        "url_regexes": 4883
       },
       "query_conversion": {
         "deduplicated_query_rules": 0,
@@ -2484,18 +2484,18 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 381,
-        "eligible_plain_selectors": 809,
+        "eligible_hostnames": 385,
+        "eligible_plain_selectors": 823,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 203,
-        "hostnames": 381,
-        "input_hostnames": 383,
+        "eligible_selector_lists": 204,
+        "hostnames": 385,
+        "input_hostnames": 387,
         "input_regex_rules": 0,
-        "input_selector_lists": 207,
-        "input_selectors": 817,
-        "plain_selectors": 809,
+        "input_selector_lists": 208,
+        "input_selectors": 831,
+        "plain_selectors": 823,
         "regex_rules": 0,
-        "selector_lists": 203,
+        "selector_lists": 204,
         "skipped_procedural_selectors": 8
       },
       "enabled_in_preset": false,
@@ -2505,31 +2505,31 @@
       "id": "isr-0",
       "input": {
         "actions": {
-          "allow": 141,
+          "allow": 144,
           "block": 117,
           "modifyHeaders": 1,
           "redirect": 20
         },
         "css": {
-          "generic": 23,
-          "specific": 383
+          "generic": 24,
+          "specific": 387
         },
         "filters": {
-          "accepted": 523,
+          "accepted": 527,
           "rejected": 0,
-          "total": 523
+          "total": 527
         },
         "popups": 4,
-        "rules": 279,
+        "rules": 282,
         "strictblock_rules": 1
       },
       "name": "🇮🇱il: EasyList Hebrew",
       "network_conversion": {
-        "candidate_domains": 32,
+        "candidate_domains": 33,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
         "converted_url_rules": 46,
-        "domain_suffixes": 31,
+        "domain_suffixes": 32,
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 46,
         "exception_domains": 5,
@@ -2541,10 +2541,10 @@
         "url_regexes": 46
       },
       "output": {
-        "cosmetic_hostnames": 381,
+        "cosmetic_hostnames": 385,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 809,
-        "domain_suffixes": 31,
+        "cosmetic_selectors": 823,
+        "domain_suffixes": 32,
         "ipv4_cidrs": 1,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -2559,15 +2559,15 @@
     {
       "cosmetic_conversion": {
         "eligible_hostnames": 2788,
-        "eligible_plain_selectors": 2574,
+        "eligible_plain_selectors": 2578,
         "eligible_regex_rules": 0,
         "eligible_selector_lists": 1754,
         "hostnames": 2788,
         "input_hostnames": 2799,
         "input_regex_rules": 0,
         "input_selector_lists": 1767,
-        "input_selectors": 2600,
-        "plain_selectors": 2574,
+        "input_selectors": 2604,
+        "plain_selectors": 2578,
         "regex_rules": 0,
         "selector_lists": 1754,
         "skipped_procedural_selectors": 26
@@ -2615,7 +2615,7 @@
       "output": {
         "cosmetic_hostnames": 2788,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 2574,
+        "cosmetic_selectors": 2578,
         "domain_suffixes": 27,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2630,19 +2630,19 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 5361,
-        "eligible_plain_selectors": 8421,
+        "eligible_hostnames": 5359,
+        "eligible_plain_selectors": 8419,
         "eligible_regex_rules": 0,
         "eligible_selector_lists": 3970,
-        "hostnames": 5361,
-        "input_hostnames": 5495,
+        "hostnames": 5359,
+        "input_hostnames": 5492,
         "input_regex_rules": 0,
-        "input_selector_lists": 4140,
-        "input_selectors": 9382,
-        "plain_selectors": 8421,
+        "input_selector_lists": 4138,
+        "input_selectors": 9373,
+        "plain_selectors": 8419,
         "regex_rules": 0,
         "selector_lists": 3970,
-        "skipped_procedural_selectors": 961
+        "skipped_procedural_selectors": 954
       },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
@@ -2651,51 +2651,51 @@
       "id": "jpn-1",
       "input": {
         "actions": {
-          "allow": 204,
-          "block": 1285,
+          "allow": 205,
+          "block": 1264,
           "redirect": 26
         },
         "css": {
-          "generic": 498,
-          "specific": 5495
+          "generic": 497,
+          "specific": 5492
         },
         "filters": {
-          "accepted": 2422,
+          "accepted": 2355,
           "rejected": 0,
-          "total": 2422
+          "total": 2355
         },
-        "popups": 29,
-        "rules": 1515,
+        "popups": 23,
+        "rules": 1495,
         "strictblock_rules": 248
       },
       "name": "🇯🇵jp: AdGuard Japanese",
       "network_conversion": {
-        "candidate_domains": 199,
+        "candidate_domains": 184,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 925,
-        "domain_suffixes": 191,
+        "converted_url_rules": 911,
+        "domain_suffixes": 176,
         "domains_removed_for_exceptions": 7,
-        "eligible_url_regexes": 925,
+        "eligible_url_regexes": 911,
         "exception_domains": 95,
-        "input_block_rules": 1285,
+        "input_block_rules": 1264,
         "input_strictblock_rules": 248,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 359,
+        "skipped_contextual_block_rules": 352,
         "skipped_contextual_strictblock_rules": 247,
-        "url_regexes": 925
+        "url_regexes": 911
       },
       "output": {
-        "cosmetic_hostnames": 5361,
+        "cosmetic_hostnames": 5359,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 8421,
-        "domain_suffixes": 191,
+        "cosmetic_selectors": 8419,
+        "domain_suffixes": 176,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
         "query_operations": 1,
-        "url_regexes": 925
+        "url_regexes": 911
       },
       "query_conversion": {
         "converted_query_rules": 1,
@@ -2707,18 +2707,18 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 934,
-        "eligible_plain_selectors": 1731,
-        "eligible_regex_rules": 68,
-        "eligible_selector_lists": 846,
-        "hostnames": 934,
-        "input_hostnames": 975,
-        "input_regex_rules": 68,
-        "input_selector_lists": 863,
-        "input_selectors": 1921,
-        "plain_selectors": 1731,
-        "regex_rules": 68,
-        "selector_lists": 846,
+        "eligible_hostnames": 935,
+        "eligible_plain_selectors": 1735,
+        "eligible_regex_rules": 69,
+        "eligible_selector_lists": 848,
+        "hostnames": 935,
+        "input_hostnames": 976,
+        "input_regex_rules": 69,
+        "input_selector_lists": 865,
+        "input_selectors": 1925,
+        "plain_selectors": 1735,
+        "regex_rules": 69,
+        "selector_lists": 848,
         "skipped_procedural_selectors": 190
       },
       "enabled_in_preset": false,
@@ -2729,20 +2729,20 @@
       "input": {
         "actions": {
           "allow": 49,
-          "block": 1042,
+          "block": 1045,
           "redirect": 24
         },
         "css": {
           "generic": 125,
-          "specific": 1043
+          "specific": 1045
         },
         "filters": {
-          "accepted": 1616,
+          "accepted": 1619,
           "rejected": 1,
-          "total": 1626
+          "total": 1629
         },
         "popups": 0,
-        "rules": 1115,
+        "rules": 1118,
         "strictblock_rules": 10
       },
       "name": "🇰🇷kr: 한국어 (Korean)",
@@ -2750,23 +2750,23 @@
         "candidate_domains": 354,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 907,
+        "converted_url_rules": 909,
         "domain_suffixes": 342,
         "domains_removed_for_exceptions": 7,
-        "eligible_url_regexes": 907,
+        "eligible_url_regexes": 909,
         "exception_domains": 7,
-        "input_block_rules": 1042,
+        "input_block_rules": 1045,
         "input_strictblock_rules": 10,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 134,
+        "skipped_contextual_block_rules": 135,
         "skipped_contextual_strictblock_rules": 9,
-        "url_regexes": 907
+        "url_regexes": 909
       },
       "output": {
-        "cosmetic_hostnames": 934,
-        "cosmetic_regex_rules": 68,
-        "cosmetic_selectors": 1731,
+        "cosmetic_hostnames": 935,
+        "cosmetic_regex_rules": 69,
+        "cosmetic_selectors": 1735,
         "domain_suffixes": 342,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -2775,7 +2775,7 @@
           "parameter": "cp"
         },
         "query_operations": 1,
-        "url_regexes": 907
+        "url_regexes": 909
       },
       "query_conversion": {
         "converted_query_rules": 1,
@@ -2932,18 +2932,18 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 119,
-        "eligible_plain_selectors": 446,
+        "eligible_hostnames": 152,
+        "eligible_plain_selectors": 483,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 119,
-        "hostnames": 119,
-        "input_hostnames": 119,
+        "eligible_selector_lists": 148,
+        "hostnames": 152,
+        "input_hostnames": 152,
         "input_regex_rules": 0,
-        "input_selector_lists": 119,
-        "input_selectors": 448,
-        "plain_selectors": 446,
+        "input_selector_lists": 148,
+        "input_selectors": 485,
+        "plain_selectors": 483,
         "regex_rules": 0,
-        "selector_lists": 119,
+        "selector_lists": 148,
         "skipped_procedural_selectors": 2
       },
       "enabled_in_preset": false,
@@ -2957,12 +2957,12 @@
         },
         "css": {
           "generic": 4,
-          "specific": 119
+          "specific": 152
         },
         "filters": {
-          "accepted": 291,
+          "accepted": 296,
           "rejected": 1,
-          "total": 292
+          "total": 297
         },
         "popups": 0,
         "rules": 160,
@@ -2970,11 +2970,11 @@
       },
       "name": "🇲🇰mk: Macedonian adBlock Filters",
       "network_conversion": {
-        "candidate_domains": 132,
+        "candidate_domains": 137,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
         "converted_url_rules": 131,
-        "domain_suffixes": 132,
+        "domain_suffixes": 137,
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 131,
         "exception_domains": 0,
@@ -2986,10 +2986,10 @@
         "url_regexes": 131
       },
       "output": {
-        "cosmetic_hostnames": 119,
+        "cosmetic_hostnames": 152,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 446,
-        "domain_suffixes": 132,
+        "cosmetic_selectors": 483,
+        "domain_suffixes": 137,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -3076,18 +3076,18 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 742,
-        "eligible_plain_selectors": 1460,
+        "eligible_hostnames": 741,
+        "eligible_plain_selectors": 1459,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 651,
-        "hostnames": 742,
-        "input_hostnames": 838,
+        "eligible_selector_lists": 650,
+        "hostnames": 741,
+        "input_hostnames": 837,
         "input_regex_rules": 0,
-        "input_selector_lists": 677,
-        "input_selectors": 1593,
-        "plain_selectors": 1460,
+        "input_selector_lists": 676,
+        "input_selectors": 1592,
+        "plain_selectors": 1459,
         "regex_rules": 0,
-        "selector_lists": 651,
+        "selector_lists": 650,
         "skipped_procedural_selectors": 133
       },
       "enabled_in_preset": false,
@@ -3097,21 +3097,21 @@
       "id": "nor-0",
       "input": {
         "actions": {
-          "allow": 59,
+          "allow": 60,
           "block": 614,
           "redirect": 7
         },
         "css": {
-          "generic": 341,
-          "specific": 838
+          "generic": 342,
+          "specific": 837
         },
         "filters": {
-          "accepted": 2068,
+          "accepted": 2069,
           "rejected": 0,
-          "total": 2070
+          "total": 2071
         },
         "popups": 141,
-        "rules": 680,
+        "rules": 681,
         "strictblock_rules": 150
       },
       "name": "🇳🇴no 🇩🇰dk 🇮🇸is: Dandelion Sprouts nordiske filtre",
@@ -3133,9 +3133,9 @@
         "url_regexes": 304
       },
       "output": {
-        "cosmetic_hostnames": 742,
+        "cosmetic_hostnames": 741,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 1460,
+        "cosmetic_selectors": 1459,
         "domain_suffixes": 157,
         "ipv4_cidrs": 18,
         "ipv6_cidrs": 0,
@@ -3151,15 +3151,15 @@
     {
       "cosmetic_conversion": {
         "eligible_hostnames": 3429,
-        "eligible_plain_selectors": 4434,
+        "eligible_plain_selectors": 4433,
         "eligible_regex_rules": 0,
         "eligible_selector_lists": 2778,
         "hostnames": 3429,
         "input_hostnames": 3451,
         "input_regex_rules": 0,
         "input_selector_lists": 2809,
-        "input_selectors": 4675,
-        "plain_selectors": 4434,
+        "input_selectors": 4674,
+        "plain_selectors": 4433,
         "regex_rules": 0,
         "selector_lists": 2778,
         "skipped_procedural_selectors": 241
@@ -3171,7 +3171,7 @@
       "id": "pol-0",
       "input": {
         "actions": {
-          "allow": 148,
+          "allow": 149,
           "block": 687,
           "redirect": 12
         },
@@ -3180,12 +3180,12 @@
           "specific": 3451
         },
         "filters": {
-          "accepted": 1237,
+          "accepted": 1238,
           "rejected": 6,
-          "total": 1244
+          "total": 1245
         },
         "popups": 10,
-        "rules": 847,
+        "rules": 848,
         "strictblock_rules": 1
       },
       "name": "🇵🇱pl: Oficjalne Polskie Filtry do uBlocka Origin",
@@ -3208,7 +3208,7 @@
       "output": {
         "cosmetic_hostnames": 3429,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 4434,
+        "cosmetic_selectors": 4433,
         "domain_suffixes": 266,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -3237,9 +3237,9 @@
           "specific": 0
         },
         "filters": {
-          "accepted": 18982,
+          "accepted": 18337,
           "rejected": 0,
-          "total": 18982
+          "total": 18337
         },
         "popups": 0,
         "rules": 1,
@@ -3247,10 +3247,10 @@
       },
       "name": "🇵🇱pl: CERT.PL's Warning List",
       "network_conversion": {
-        "candidate_domains": 18982,
+        "candidate_domains": 18337,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "domain_suffixes": 16387,
+        "domain_suffixes": 15100,
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 0,
         "exception_domains": 0,
@@ -3264,7 +3264,7 @@
         "cosmetic_hostnames": 0,
         "cosmetic_regex_rules": 0,
         "cosmetic_selectors": 0,
-        "domain_suffixes": 16387,
+        "domain_suffixes": 15100,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -3279,15 +3279,15 @@
     {
       "cosmetic_conversion": {
         "eligible_hostnames": 565,
-        "eligible_plain_selectors": 1078,
+        "eligible_plain_selectors": 1079,
         "eligible_regex_rules": 0,
         "eligible_selector_lists": 529,
         "hostnames": 565,
         "input_hostnames": 592,
         "input_regex_rules": 0,
         "input_selector_lists": 558,
-        "input_selectors": 1175,
-        "plain_selectors": 1078,
+        "input_selectors": 1176,
+        "plain_selectors": 1079,
         "regex_rules": 0,
         "selector_lists": 529,
         "skipped_procedural_selectors": 97
@@ -3337,7 +3337,7 @@
       "output": {
         "cosmetic_hostnames": 565,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 1078,
+        "cosmetic_selectors": 1079,
         "domain_suffixes": 74,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -3352,19 +3352,19 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 7412,
-        "eligible_plain_selectors": 10839,
+        "eligible_hostnames": 7414,
+        "eligible_plain_selectors": 10853,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 5488,
-        "hostnames": 7412,
-        "input_hostnames": 7695,
+        "eligible_selector_lists": 5491,
+        "hostnames": 7414,
+        "input_hostnames": 7725,
         "input_regex_rules": 0,
-        "input_selector_lists": 5692,
-        "input_selectors": 12133,
-        "plain_selectors": 10839,
+        "input_selector_lists": 5698,
+        "input_selectors": 12153,
+        "plain_selectors": 10853,
         "regex_rules": 0,
-        "selector_lists": 5488,
-        "skipped_procedural_selectors": 1294
+        "selector_lists": 5491,
+        "skipped_procedural_selectors": 1300
       },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
@@ -3373,47 +3373,47 @@
       "id": "rus-0",
       "input": {
         "actions": {
-          "allow": 788,
-          "block": 5120,
-          "modifyHeaders": 48,
-          "redirect": 42
+          "allow": 789,
+          "block": 5127,
+          "modifyHeaders": 49,
+          "redirect": 43
         },
         "css": {
           "generic": 1269,
-          "specific": 7695
+          "specific": 7725
         },
         "filters": {
-          "accepted": 19814,
+          "accepted": 19829,
           "rejected": 7,
-          "total": 19821
+          "total": 19836
         },
         "popups": 765,
-        "rules": 5998,
+        "rules": 6008,
         "strictblock_rules": 9
       },
       "name": "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList",
       "network_conversion": {
-        "candidate_domains": 4259,
+        "candidate_domains": 4260,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 3267,
-        "domain_suffixes": 1259,
+        "converted_url_rules": 3273,
+        "domain_suffixes": 1260,
         "domains_removed_for_exceptions": 3000,
-        "eligible_url_regexes": 3267,
+        "eligible_url_regexes": 3273,
         "exception_domains": 123,
-        "input_block_rules": 5120,
+        "input_block_rules": 5127,
         "input_strictblock_rules": 9,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 1852,
+        "skipped_contextual_block_rules": 1853,
         "skipped_contextual_strictblock_rules": 8,
-        "url_regexes": 3267
+        "url_regexes": 3273
       },
       "output": {
-        "cosmetic_hostnames": 7412,
+        "cosmetic_hostnames": 7414,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 10839,
-        "domain_suffixes": 1259,
+        "cosmetic_selectors": 10853,
+        "domain_suffixes": 1260,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": {
@@ -3421,15 +3421,15 @@
           "parameter": "ref"
         },
         "query_operations": 12,
-        "url_regexes": 3267
+        "url_regexes": 3273
       },
       "query_conversion": {
         "converted_query_rules": 12,
         "deduplicated_query_rules": 0,
-        "input_query_rules": 21,
+        "input_query_rules": 22,
         "query_operations": 12,
         "resource_type_conditions_relaxed": 12,
-        "skipped_contextual_query_rules": 9
+        "skipped_contextual_query_rules": 10
       }
     },
     {
@@ -3586,18 +3586,18 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 1908,
-        "eligible_plain_selectors": 3439,
+        "eligible_hostnames": 1909,
+        "eligible_plain_selectors": 3442,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 1578,
-        "hostnames": 1908,
-        "input_hostnames": 1998,
+        "eligible_selector_lists": 1579,
+        "hostnames": 1909,
+        "input_hostnames": 1999,
         "input_regex_rules": 1,
-        "input_selector_lists": 1644,
-        "input_selectors": 3696,
-        "plain_selectors": 3439,
+        "input_selector_lists": 1645,
+        "input_selectors": 3699,
+        "plain_selectors": 3442,
         "regex_rules": 0,
-        "selector_lists": 1578,
+        "selector_lists": 1579,
         "skipped_procedural_selectors": 257
       },
       "enabled_in_preset": false,
@@ -3613,7 +3613,7 @@
         },
         "css": {
           "generic": 176,
-          "specific": 1999
+          "specific": 2000
         },
         "filters": {
           "accepted": 1292,
@@ -3643,9 +3643,9 @@
         "url_regexes": 543
       },
       "output": {
-        "cosmetic_hostnames": 1908,
+        "cosmetic_hostnames": 1909,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 3439,
+        "cosmetic_selectors": 3442,
         "domain_suffixes": 88,
         "ipv4_cidrs": 1,
         "ipv6_cidrs": 0,
@@ -3733,18 +3733,18 @@
     {
       "cosmetic_conversion": {
         "eligible_hostnames": 1470,
-        "eligible_plain_selectors": 1216,
+        "eligible_plain_selectors": 1217,
         "eligible_regex_rules": 0,
         "eligible_selector_lists": 896,
         "hostnames": 1470,
         "input_hostnames": 1513,
         "input_regex_rules": 0,
         "input_selector_lists": 950,
-        "input_selectors": 1568,
-        "plain_selectors": 1216,
+        "input_selectors": 1570,
+        "plain_selectors": 1217,
         "regex_rules": 0,
         "selector_lists": 896,
-        "skipped_procedural_selectors": 352
+        "skipped_procedural_selectors": 353
       },
       "enabled_in_preset": false,
       "enabled_upstream_by_default": false,
@@ -3763,9 +3763,9 @@
           "specific": 1513
         },
         "filters": {
-          "accepted": 1830,
+          "accepted": 1831,
           "rejected": 0,
-          "total": 1830
+          "total": 1831
         },
         "popups": 8,
         "rules": 1426,
@@ -3792,7 +3792,7 @@
       "output": {
         "cosmetic_hostnames": 1470,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 1216,
+        "cosmetic_selectors": 1217,
         "domain_suffixes": 71,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -3884,18 +3884,18 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 3928,
-        "eligible_plain_selectors": 3451,
-        "eligible_regex_rules": 139,
-        "eligible_selector_lists": 1662,
-        "hostnames": 3928,
-        "input_hostnames": 4140,
-        "input_regex_rules": 143,
-        "input_selector_lists": 1750,
-        "input_selectors": 3801,
-        "plain_selectors": 3451,
-        "regex_rules": 139,
-        "selector_lists": 1662,
+        "eligible_hostnames": 3869,
+        "eligible_plain_selectors": 3462,
+        "eligible_regex_rules": 143,
+        "eligible_selector_lists": 1673,
+        "hostnames": 3869,
+        "input_hostnames": 4081,
+        "input_regex_rules": 147,
+        "input_selector_lists": 1761,
+        "input_selectors": 3812,
+        "plain_selectors": 3462,
+        "regex_rules": 143,
+        "selector_lists": 1673,
         "skipped_procedural_selectors": 350
       },
       "enabled_in_preset": false,
@@ -3905,21 +3905,21 @@
       "id": "tur-0",
       "input": {
         "actions": {
-          "allow": 89,
+          "allow": 90,
           "block": 1252,
           "redirect": 29
         },
         "css": {
-          "generic": 278,
-          "specific": 4283
+          "generic": 280,
+          "specific": 4228
         },
         "filters": {
-          "accepted": 1696,
+          "accepted": 1701,
           "rejected": 0,
-          "total": 1697
+          "total": 1702
         },
         "popups": 8,
-        "rules": 1370,
+        "rules": 1371,
         "strictblock_rules": 2
       },
       "name": "🇹🇷tr: AdGuard Turkish",
@@ -3941,9 +3941,9 @@
         "url_regexes": 1035
       },
       "output": {
-        "cosmetic_hostnames": 3928,
-        "cosmetic_regex_rules": 139,
-        "cosmetic_selectors": 3451,
+        "cosmetic_hostnames": 3869,
+        "cosmetic_regex_rules": 143,
+        "cosmetic_selectors": 3462,
         "domain_suffixes": 114,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
@@ -3958,18 +3958,18 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 1240,
-        "eligible_plain_selectors": 1473,
+        "eligible_hostnames": 1235,
+        "eligible_plain_selectors": 1470,
         "eligible_regex_rules": 1,
-        "eligible_selector_lists": 687,
-        "hostnames": 1240,
-        "input_hostnames": 1283,
+        "eligible_selector_lists": 686,
+        "hostnames": 1235,
+        "input_hostnames": 1278,
         "input_regex_rules": 1,
-        "input_selector_lists": 715,
-        "input_selectors": 1587,
-        "plain_selectors": 1473,
+        "input_selector_lists": 714,
+        "input_selectors": 1584,
+        "plain_selectors": 1470,
         "regex_rules": 1,
-        "selector_lists": 687,
+        "selector_lists": 686,
         "skipped_procedural_selectors": 114
       },
       "enabled_in_preset": false,
@@ -3985,7 +3985,7 @@
         },
         "css": {
           "generic": 654,
-          "specific": 1284
+          "specific": 1279
         },
         "filters": {
           "accepted": 3514,
@@ -4015,9 +4015,9 @@
         "url_regexes": 953
       },
       "output": {
-        "cosmetic_hostnames": 1240,
+        "cosmetic_hostnames": 1235,
         "cosmetic_regex_rules": 1,
-        "cosmetic_selectors": 1473,
+        "cosmetic_selectors": 1470,
         "domain_suffixes": 427,
         "ipv4_cidrs": 2,
         "ipv6_cidrs": 0,
@@ -4035,18 +4035,18 @@
     },
     {
       "cosmetic_conversion": {
-        "eligible_hostnames": 355,
-        "eligible_plain_selectors": 621,
+        "eligible_hostnames": 352,
+        "eligible_plain_selectors": 614,
         "eligible_regex_rules": 0,
-        "eligible_selector_lists": 312,
-        "hostnames": 355,
-        "input_hostnames": 355,
+        "eligible_selector_lists": 308,
+        "hostnames": 352,
+        "input_hostnames": 352,
         "input_regex_rules": 0,
-        "input_selector_lists": 312,
-        "input_selectors": 629,
-        "plain_selectors": 621,
+        "input_selector_lists": 308,
+        "input_selectors": 622,
+        "plain_selectors": 614,
         "regex_rules": 0,
-        "selector_lists": 312,
+        "selector_lists": 308,
         "skipped_procedural_selectors": 8
       },
       "enabled_in_preset": false,
@@ -4057,50 +4057,50 @@
       "input": {
         "actions": {
           "allow": 27,
-          "block": 261,
+          "block": 259,
           "modifyHeaders": 6,
           "redirect": 6
         },
         "css": {
           "generic": 45,
-          "specific": 355
+          "specific": 352
         },
         "filters": {
-          "accepted": 423,
+          "accepted": 421,
           "rejected": 0,
-          "total": 423
+          "total": 421
         },
         "popups": 2,
-        "rules": 300,
+        "rules": 298,
         "strictblock_rules": 1
       },
       "name": "🇻🇳vn: ABPVN List",
       "network_conversion": {
-        "candidate_domains": 58,
+        "candidate_domains": 59,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 63,
-        "domain_suffixes": 58,
+        "converted_url_rules": 62,
+        "domain_suffixes": 59,
         "domains_removed_for_exceptions": 0,
-        "eligible_url_regexes": 63,
+        "eligible_url_regexes": 62,
         "exception_domains": 7,
-        "input_block_rules": 261,
+        "input_block_rules": 259,
         "input_strictblock_rules": 1,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 197,
-        "url_regexes": 63
+        "skipped_contextual_block_rules": 196,
+        "url_regexes": 62
       },
       "output": {
-        "cosmetic_hostnames": 355,
+        "cosmetic_hostnames": 352,
         "cosmetic_regex_rules": 0,
-        "cosmetic_selectors": 621,
-        "domain_suffixes": 58,
+        "cosmetic_selectors": 614,
+        "domain_suffixes": 59,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
         "query_operations": 0,
-        "url_regexes": 63
+        "url_regexes": 62
       },
       "query_conversion": {
         "deduplicated_query_rules": 0,
@@ -4110,29 +4110,29 @@
   ],
   "schema_version": 2,
   "source": {
-    "asset_sha256": "e16d2acc446e13e5d703ec6f7f5fe6c7b2680f0909d9272068e77b0a5ca23593",
-    "asset_url": "https://github.com/uBlockOrigin/uBOL-home/releases/download/2026.914.1325/uBOLite_2026.914.1325.chromium.zip",
+    "asset_sha256": "3ebf1458078d8738daf580e5ddeb41412cfa20fe4874a2fb321373f5ff7a09f1",
+    "asset_url": "https://github.com/uBlockOrigin/uBOL-home/releases/download/2026.920.1710/uBOLite_2026.920.1710.chromium.zip",
     "origin": "official-release",
-    "published_at": "2026-09-14T13:27:02Z",
-    "release_url": "https://github.com/uBlockOrigin/uBOL-home/releases/tag/2026.914.1325",
-    "version": "2026.914.1325"
+    "published_at": "2026-09-20T17:11:27Z",
+    "release_url": "https://github.com/uBlockOrigin/uBOL-home/releases/tag/2026.920.1710",
+    "version": "2026.920.1710"
   },
   "totals": {
-    "cosmetic_hostnames": 102411,
-    "cosmetic_regex_rules": 212,
+    "cosmetic_hostnames": 102484,
+    "cosmetic_regex_rules": 217,
     "cosmetic_scripts": 51,
-    "cosmetic_selectors": 110192,
-    "domain_suffixes": 130692,
+    "cosmetic_selectors": 110339,
+    "domain_suffixes": 131117,
     "input_actions": {
-      "allow": 7631,
-      "block": 59296,
-      "modifyHeaders": 135,
-      "redirect": 3812
+      "allow": 7640,
+      "block": 59277,
+      "modifyHeaders": 136,
+      "redirect": 3835
     },
-    "input_rules": 70874,
+    "input_rules": 70888,
     "ipv4_cidrs": 156,
     "ipv6_cidrs": 0,
-    "query_operations": 2639,
-    "url_regexes": 43031
+    "query_operations": 2657,
+    "url_regexes": 43007
   }
 }

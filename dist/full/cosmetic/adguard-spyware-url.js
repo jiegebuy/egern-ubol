@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.914.1325.
+// Generated from official uBO Lite 2026.920.1710.
 // Plain site-specific cosmetic selectors only; procedural rules are omitted.
 
 const RULESET_ID = "adguard-spyware-url";
