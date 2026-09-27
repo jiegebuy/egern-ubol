@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.920.1710.
+// Generated from official uBO Lite 2026.926.2202.
 // Plain site-specific cosmetic selectors only; procedural rules are omitted.
 
 const RULESET_ID = "ubol-tests";

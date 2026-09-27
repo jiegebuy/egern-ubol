@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.920.1710.
+// Generated from official uBO Lite 2026.926.2202.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
@@ -110,6 +110,7 @@ const OPS = [
   {"d":["radiosputnik.ru","ria.ru"],"p":["rcmd_alg"]},
   {"d":["radiosputnik.ru","ria.ru"],"p":["rcmd_id"]},
   {"d":["rambler.ru"],"f":"block_click=","p":["block_click"]},
+  {"d":["rambler.ru"],"p":["agent"]},
   {"d":["rambler.ru"],"p":["es"]},
   {"d":["rambler.ru"],"p":["readmore"]},
   {"d":["ria.com"],"p":["r_audience"]},
@@ -169,6 +170,7 @@ const OPS = [
   {"f":"/\\?ref=tg","p":["ref"]},
   {"f":"\\.html\\?media\\&ila_","p":["media"]},
   {"f":"\\?es=smi2","p":["es"]},
+  {"f":"\\?from=rcm\\-","p":["from"]},
   {"f":"\\?from=smi2agg","p":["from"]},
   {"f":"\\?prov=ukrnet","p":["prov"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?afisha\\.yandex\\..*/.*(?:[^A-Za-z0-9_.%\\-]|$)source=","p":["source"]},
