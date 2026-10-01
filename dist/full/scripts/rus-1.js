@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.926.2202.
+// Generated from official uBO Lite 2026.930.1227.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
@@ -91,6 +91,7 @@ const OPS = [
   {"d":["ozon.ru"],"p":["avte"]},
   {"d":["ozon.ru"],"p":["avts"]},
   {"d":["ozon.ru"],"p":["hs"]},
+  {"d":["ozon.ru"],"p":["onelink_id"]},
   {"d":["ozon.ru"],"p":["origin_referer"]},
   {"d":["ozon.ru"],"p":["perehod"]},
   {"d":["ozon.ru"],"p":["pid"]},

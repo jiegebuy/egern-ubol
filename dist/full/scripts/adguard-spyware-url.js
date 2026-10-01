@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.926.2202.
+// Generated from official uBO Lite 2026.930.1227.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
@@ -8,7 +8,7 @@ const OPS = [
   {"d":["1password.university"],"p":["utm_ref"]},
   {"d":["2chblog.jp","animember.net","bipblog.com","blog.jp","blog.livedoor.jp","coincards.com","jin115.com","sbbit.jp","soundcore.com","startmail.com"],"p":["ref"]},
   {"d":["3movs.com"],"p":["site_id"]},
-  {"d":["4kdownload.com","app.startpage.com","biccamera.com","cmswire.com","cnet.com","cnn.com","cyberghostvpn.com","edx.org","fiverr.com","immobilienscout24.de","incogni.com","moffme.com","myaccount.google.com","navan.com","netflix.com","news.yahoo.co.jp","owlclick.com","rdrtr.com","semrush.com","shimotsuke.co.jp","spotfund.com","status.medium.com","tcgplayer.com","teknosa.com","theathletic.com","tradingview.com","tumblr.com","vivareal.com.br","www.bilibili.com"],"p":["source"]},
+  {"d":["4kdownload.com","app.startpage.com","biccamera.com","cmswire.com","cnet.com","cnn.com","cyberghostvpn.com","cybernews.com","edx.org","fiverr.com","immobilienscout24.de","incogni.com","moffme.com","myaccount.google.com","navan.com","netflix.com","news.yahoo.co.jp","owlclick.com","rdrtr.com","semrush.com","shimotsuke.co.jp","spotfund.com","status.medium.com","tcgplayer.com","teknosa.com","theathletic.com","tradingview.com","tumblr.com","vivareal.com.br","www.bilibili.com"],"p":["source"]},
   {"d":["777casino.top","blogostoks.com","browsec-uninstall.s3-website.eu-central-1.amazonaws.com","d.ghostery.com","go.tscprts.com","go.xlivrdr.com","join.worldoftanks.eu","promo.korabli.su","ref.digital.pumb.ua","trck.wargaming.net","uatracer.link"],"q":true},
   {"d":["7net.omni7.jp"],"p":["intpr"]},
   {"d":["7net.omni7.jp"],"p":["intpr2"]},
@@ -49,6 +49,11 @@ const OPS = [
   {"d":["adshares.net","ana.co.jp","apple.com","asahi.com","belta.co.jp","candy.ai","controld.com","eiga.com","flipkart.com","giphy.com","lululemon.com.hk","minkara.carview.co.jp","nhk.jp","nhk.or.jp","petbook.de","porntube.com","rac.co.uk","realtor.com","samsung.com","sonybank.jp","teknosa.com","urban-vpn.com","video.unext.jp"],"p":["cid"]},
   {"d":["adweek.com"],"p":["traffic_source"]},
   {"d":["affiliate.privatevpn.com","expressvpn.com","vpnarea.com","wook.pt"],"p":["a_aid"]},
+  {"d":["afpbb.com"],"p":["cx_from"]},
+  {"d":["afpbb.com"],"p":["cx_id"]},
+  {"d":["afpbb.com"],"p":["cx_part"]},
+  {"d":["afpbb.com"],"p":["cx_position"]},
+  {"d":["afpbb.com"],"p":["cx_rss"]},
   {"d":["agoda.com","gaming.amazon.com","japan.cnet.com"],"p":["tag"]},
   {"d":["airvpn.org"],"p":["referred_by"]},
   {"d":["alice.yandex.ru"],"p":["utm_to"]},
@@ -86,7 +91,7 @@ const OPS = [
   {"d":["aozorabank.co.jp","clickserve.dartsearch.net","flipkart.com","kakaku.com"],"p":["lid"]},
   {"d":["app.5-delivery.ru","awaliwa.com","getir.com","news.jp","onelink.me","roboform.com","ure.pia.co.jp"],"p":["c"]},
   {"d":["app.adjust.com","cv-measurement.com"],"p":["creative"]},
-  {"d":["app.adjust.com","gettranny.com","moffme.com","online.nojima.co.jp","ubereats.com","www.alternate.de"],"p":["campaign"]},
+  {"d":["app.adjust.com","cybernews.com","gettranny.com","moffme.com","online.nojima.co.jp","ubereats.com","www.alternate.de"],"p":["campaign"]},
   {"d":["app.adjust.com","web.vstat.info"],"p":["user_agent"]},
   {"d":["app.adjust.com"],"p":["install_callback"]},
   {"d":["app.adjust.com"],"p":["ip_address"]},
@@ -264,7 +269,7 @@ const OPS = [
   {"d":["cmoa.jp"],"p":["lp_fol"]},
   {"d":["cnbc.com"],"p":["__source"]},
   {"d":["cnbc.com"],"p":["par"]},
-  {"d":["cnet.com","moffme.com"],"p":["medium"]},
+  {"d":["cnet.com","cybernews.com","moffme.com"],"p":["medium"]},
   {"d":["coca-cola.com"],"p":["openExternalBrowser"]},
   {"d":["coconala.com"],"p":["ref_kind"]},
   {"d":["coconala.com"],"p":["ref_no"]},
@@ -565,6 +570,8 @@ const OPS = [
   {"d":["incogni.com"],"p":["affiliate_id"]},
   {"d":["incogni.com"],"p":["transaction_id"]},
   {"d":["index.hr"],"p":["index_ref"]},
+  {"d":["instacart"],"p":["ic_campaignid"]},
+  {"d":["instacart.com"],"p":["ic_source"]},
   {"d":["instagram.com","threads.com","threads.net"],"p":["igshid"]},
   {"d":["instagram.com"],"p":["click_source"]},
   {"d":["instagram.com"],"p":["ig_rid"]},
