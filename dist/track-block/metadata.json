@@ -77,12 +77,12 @@
   ],
   "schema_version": 1,
   "source": {
-    "asset_sha256": "13dd17bcc9720abbf5006793b0a4f7b672d34b394db2e6198daa7ef282b20361",
-    "asset_url": "https://github.com/uBlockOrigin/uBOL-home/releases/download/2026.930.1227/uBOLite_2026.930.1227.chromium.zip",
+    "asset_sha256": "1670f92590f5ad5b20f02d0a75e144572567b4ba979b3dc3204c41f651206fe7",
+    "asset_url": "https://github.com/uBlockOrigin/uBOL-home/releases/download/2026.1006.1931/uBOLite_2026.1006.1931.chromium.zip",
     "origin": "official-release",
-    "published_at": "2026-09-30T12:29:10Z",
-    "release_url": "https://github.com/uBlockOrigin/uBOL-home/releases/tag/2026.930.1227",
-    "version": "2026.930.1227"
+    "published_at": "2026-10-06T19:32:44Z",
+    "release_url": "https://github.com/uBlockOrigin/uBOL-home/releases/tag/2026.1006.1931",
+    "version": "2026.1006.1931"
   },
   "totals": {
     "domain_suffixes": 3461,
