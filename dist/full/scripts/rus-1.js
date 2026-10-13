@@ -1,9 +1,9 @@
-// Generated from official uBO Lite 2026.1006.1931.
+// Generated from official uBO Lite 2026.1012.1545.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
   {"d":["116.ru","14.ru","161.ru","164.ru","178.ru","26.ru","29.ru","35.ru","43.ru","45.ru","48.ru","51.ru","53.ru","56.ru","59.ru","60.ru","63.ru","68.ru","71.ru","72.ru","74.ru","76.ru","86.ru","89.ru","93.ru","chita.ru","e1.ru","ircity.ru","mgorsk.ru","msk1.ru","ngs.ru","ngs22.ru","ngs24.ru","ngs42.ru","ngs55.ru","ngs70.ru","nn.ru","proizhevsk.ru","sochi1.ru","sterlitamak1.ru","tolyatty.ru","ufa1.ru","v1.ru","vladivostok1.ru","voronezh1.ru","ya62.ru"],"f":"from=pogoda","p":["from"]},
-  {"d":["3dnews.ru","7days.ru","auto.ru","autodaily.ru","autonews.ru","autopilot.ru","habr.com","igromania.ru","klops.ru","kommersant.ru","kp.ru","mail.ru","metro-cc.ru","mk.ru","myweekend.ru","ntv.ru","ozon.ru","peers.tv","rbc.ru","rbcautonews.ru","rbclifemedia.ru","rbcrealty.ru","ridus.ru","sportmail.ru","sportrbc.ru","sports.ru","vedomosti.ru","vkplay.ru"],"f":"\\?from=","p":["from"],"x":["account.mail.ru","auth.mail.ru","light.mail.ru","o2.mail.ru"]},
+  {"d":["3dnews.ru","7days.ru","auto.ru","autodaily.ru","autonews.ru","autopilot.ru","habr.com","igromania.ru","klops.ru","kommersant.ru","kp.ru","libertycity.net","libertycity.ru","mail.ru","metro-cc.ru","mk.ru","myweekend.ru","ntv.ru","ozon.ru","peers.tv","rbc.ru","rbcautonews.ru","rbclifemedia.ru","rbcrealty.ru","ridus.ru","sportmail.ru","sportrbc.ru","sports.ru","vedomosti.ru","vkplay.ru"],"f":"\\?from=","p":["from"],"x":["account.mail.ru","auth.mail.ru","light.mail.ru","o2.mail.ru"]},
   {"d":["3dnews.ru"],"p":["from-source"]},
   {"d":["3dnews.ru"],"p":["topblock"]},
   {"d":["ati.su"],"p":["mp_source"]},

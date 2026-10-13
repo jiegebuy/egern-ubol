@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.1006.1931.
+// Generated from official uBO Lite 2026.1012.1545.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
@@ -9,6 +9,7 @@ const OPS = [
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?ipcamlive\\.com/player/player\\.php\\?.*autoplay=true","p":["autoplay"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?my\\.mail\\.ru/video/embed/.*autoplay=1","p":["autoplay"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?ok\\.ru/videoembed/.*autoplay=1","q":true},
+  {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?rutube\\.ru/api/play/options/.*\\&referer=rambler\\.","p":["referer"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?sportrecs\\.com/embed/.*autoplay=1","q":true},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?u\\-stream\\.in/start/.*\\&autoplay=1","q":true},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?video\\.matchtv\\.ru/iframe/feed/.*autostart=1","p":["autostart"]},

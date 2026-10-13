@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.1006.1931.
+// Generated from official uBO Lite 2026.1012.1545.
 // Plain site-specific cosmetic selectors only; procedural rules are omitted.
 
 const RULESET_ID = "nld-0";

@@ -1,11 +1,11 @@
-// Generated from official uBO Lite 2026.1006.1931.
+// Generated from official uBO Lite 2026.1012.1545.
 // Plain site-specific cosmetic selectors only; procedural rules are omitted.
 
 const RULESET_ID = "annoyances-widgets";
-const SELECTORS = ["#chat-wrapper","#chatbotToronto","#floating-experience-feature-tour-popover","#view-__module-context__-_amzn_conversational-experience-module__tandalone-0","[style*=\"display: flex; flex-direction: column; z-index: 999999;\"]","#launcher",".chat-button",".chat-container",".chatbotentrybtn",".healthshotsChannels",".secBannerWidget",".chatWindow",".chatbotSection",".chatbotSlider",".rufus-panel-container",".ux-faq-singtel",".woot-widget-bubble","ai-chatbot","button:has(> [alt=\"Chat\"])","button:has([alt=\"Chat with SIMBA\"])","div:has(> [class^=\"ChatWindow\"])","react-chatbot"];
-const SELECTOR_LISTS = ["0","1","2,3","4,5","6,7","8,9,10,11,12,13","14","15","16","17","18","19","20","21"];
-const HOSTNAMES = ["hp.com","ga4.com","simba.sg","m1.com.sg","amazon.com","casbin.org","singtel.com","vectara.com","healthhub.sg","healthshots.com","ishopchangi.com","therealdeal.com","docs.aws.amazon.com","support.carousell.com"];
-const SELECTOR_LIST_REFS = [1,10,11,12,6,4,7,13,9,5,0,8,2,3];
+const SELECTORS = ["#chat-wrapper","#chatbotToronto","#floating-experience-feature-tour-popover","#view-__module-context__-_amzn_conversational-experience-module__tandalone-0","[style*=\"display: flex; flex-direction: column; z-index: 999999;\"]","#launcher",".chat-button",".chat-container",".chatbotentrybtn",".healthshotsChannels",".secBannerWidget",".chatWindow",".chatbotSection",".chatbotSlider",".live-chat-loader-placeholder",".rufus-panel-container",".ux-faq-singtel",".woot-widget-bubble","ai-chatbot","button:has(> [alt=\"Chat\"])","button:has([alt=\"Chat with SIMBA\"])","div:has(> [class^=\"ChatWindow\"])","react-chatbot"];
+const SELECTOR_LISTS = ["0","1","2,3","4,5","6,7","8,9,10,11,12,13","14","15","16","17","18","19","20","21","22"];
+const HOSTNAMES = ["hp.com","ga4.com","simba.sg","m1.com.sg","amazon.com","casbin.org","singtel.com","vectara.com","healthhub.sg","internxt.com","healthshots.com","ishopchangi.com","therealdeal.com","docs.aws.amazon.com","support.carousell.com"];
+const SELECTOR_LIST_REFS = [1,11,12,13,7,4,8,14,10,6,5,0,9,2,3];
 const HAS_ENTITIES = false;
 const REGEXES = [];
 
