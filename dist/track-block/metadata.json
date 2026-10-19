@@ -37,9 +37,9 @@
           "specific": 0
         },
         "filters": {
-          "accepted": 3468,
+          "accepted": 3489,
           "rejected": 80,
-          "total": 3548
+          "total": 3569
         },
         "popups": 0,
         "rules": 1,
@@ -47,10 +47,10 @@
       },
       "name": "Peter Lowe – Ads, trackers, and more",
       "network_conversion": {
-        "candidate_domains": 3468,
+        "candidate_domains": 3489,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "domain_suffixes": 3457,
+        "domain_suffixes": 3477,
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 0,
         "exception_domains": 0,
@@ -62,7 +62,7 @@
         "url_regexes_omitted_for_memory": 0
       },
       "output": {
-        "domain_suffixes": 3457,
+        "domain_suffixes": 3477,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -77,15 +77,15 @@
   ],
   "schema_version": 1,
   "source": {
-    "asset_sha256": "73909c8f26d608b00a99f446192630868bea4f947ba293c29bbd18ae948d903b",
-    "asset_url": "https://github.com/uBlockOrigin/uBOL-home/releases/download/2026.1012.1545/uBOLite_2026.1012.1545.chromium.zip",
+    "asset_sha256": "c48dfa2f925ed31fdbd478d6b504432152ac995ab1e0fc96c3a008a0307dbbe2",
+    "asset_url": "https://github.com/uBlockOrigin/uBOL-home/releases/download/2026.1018.2229/uBOLite_2026.1018.2229.chromium.zip",
     "origin": "official-release",
-    "published_at": "2026-10-12T15:46:37Z",
-    "release_url": "https://github.com/uBlockOrigin/uBOL-home/releases/tag/2026.1012.1545",
-    "version": "2026.1012.1545"
+    "published_at": "2026-10-18T22:30:19Z",
+    "release_url": "https://github.com/uBlockOrigin/uBOL-home/releases/tag/2026.1018.2229",
+    "version": "2026.1018.2229"
   },
   "totals": {
-    "domain_suffixes": 3457,
+    "domain_suffixes": 3477,
     "input_actions": {
       "block": 1
     },

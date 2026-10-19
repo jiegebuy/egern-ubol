@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.1012.1545.
+// Generated from official uBO Lite 2026.1018.2229.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
@@ -8,7 +8,7 @@ const OPS = [
   {"d":["1password.university"],"p":["utm_ref"]},
   {"d":["2chblog.jp","animember.net","bipblog.com","blog.jp","blog.livedoor.jp","coincards.com","jin115.com","sbbit.jp","soundcore.com","startmail.com"],"p":["ref"]},
   {"d":["3movs.com"],"p":["site_id"]},
-  {"d":["4kdownload.com","app.startpage.com","biccamera.com","cmswire.com","cnet.com","cnn.com","cyberghostvpn.com","cybernews.com","edx.org","fiverr.com","immobilienscout24.de","incogni.com","moffme.com","myaccount.google.com","navan.com","netflix.com","owlclick.com","rdrtr.com","semrush.com","shimotsuke.co.jp","spotfund.com","status.medium.com","tcgplayer.com","teknosa.com","theathletic.com","tradingview.com","tumblr.com","vivareal.com.br","www.bilibili.com","yahoo.co.jp"],"p":["source"]},
+  {"d":["4kdownload.com","app.startpage.com","biccamera.com","cmswire.com","cnet.com","cnn.com","cyberghostvpn.com","cybernews.com","edx.org","fiverr.com","immobilienscout24.de","incogni.com","moffme.com","myaccount.google.com","navan.com","netflix.com","owlclick.com","rdrtr.com","semrush.com","shimotsuke.co.jp","spotfund.com","status.medium.com","tcgplayer.com","teknosa.com","theathletic.com","tradingview.com","tumblr.com","vivareal.com.br","wayground.com","www.bilibili.com","yahoo.co.jp"],"p":["source"]},
   {"d":["777casino.top","blogostoks.com","browsec-uninstall.s3-website.eu-central-1.amazonaws.com","d.ghostery.com","go.tscprts.com","go.xlivrdr.com","join.worldoftanks.eu","promo.korabli.su","ref.digital.pumb.ua","trck.wargaming.net","uatracer.link"],"q":true},
   {"d":["7net.omni7.jp"],"p":["intpr"]},
   {"d":["7net.omni7.jp"],"p":["intpr2"]},
@@ -156,6 +156,9 @@ const OPS = [
   {"d":["bestbuycreators.7tiv.net"],"p":["subId2"]},
   {"d":["bestbuycreators.7tiv.net"],"p":["subId3"]},
   {"d":["bestbuycreators.7tiv.net"],"p":["svlink"]},
+  {"d":["bfmtv.com"],"p":["at_brand"]},
+  {"d":["bfmtv.com"],"p":["at_compte"]},
+  {"d":["bfmtv.com"],"p":["at_plateforme"]},
   {"d":["bg-mania.jp","j-cast.com"],"p":["in"]},
   {"d":["bild.de"],"p":["t_ref"]},
   {"d":["bilibili.com","dvdfab.cn","dvdfab.org","streamfab.jp"],"p":["trackid"]},
@@ -404,6 +407,7 @@ const OPS = [
   {"d":["ebikes.ca"],"p":["___store"]},
   {"d":["ejje.weblio.jp"],"p":["erl"]},
   {"d":["ejoker.de","galaxus.de","mioga.de","netgames.de","www.alternate.de","www.electronic4you.de","www.hitseller.de","www.technikdirekt.de"],"p":["idealoid"]},
+  {"d":["elcomercio.es"],"p":["mrfcid"]},
   {"d":["elgato.com"],"p":["attribution_window"]},
   {"d":["elgato.com"],"p":["contact_id"]},
   {"d":["elgato.com"],"p":["link_id"]},

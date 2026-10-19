@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.1012.1545.
+// Generated from official uBO Lite 2026.1018.2229.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
@@ -80,6 +80,7 @@ const OPS = [
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?hentaicomics\\.pro/.*\\?code=","p":["code"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?hktvmall\\.com/yuicombo\\?.*(?:[^A-Za-z0-9_.%\\-]|$)/_ui/shared/common/js/analytics/with\\-intersection\\-track\\.js=","p":["/_ui/shared/common/js/analytics/with-intersection-track.js"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?play\\.google\\.com/store/apps/.*referrer","p":["referrer"]},
+  {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?sotlpy6yh\\.mxcontent\\.net/d/.*/.*\\?","q":true},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?www\\.amazon\\..*/page/.*(?:[^A-Za-z0-9_.%\\-]|$)ingress=","p":["ingress"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?www\\.amazon\\..*/page/.*(?:[^A-Za-z0-9_.%\\-]|$)lp_context_asin=","p":["lp_context_asin"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?www\\.amazon\\..*/page/.*(?:[^A-Za-z0-9_.%\\-]|$)ref_=","p":["ref_"]},

@@ -1,5 +1,5 @@
 name: "uBlock Origin Lite 规则"
-description: "一个 Egern 模块，包含 56 个可独立配置的 uBO Lite 2026.1012.1545 过滤列表开关（完整 URL 过滤与站点专用 CSS 元素隐藏）。"
+description: "一个 Egern 模块，包含 56 个可独立配置的 uBO Lite 2026.1018.2229 过滤列表开关（完整 URL 过滤与站点专用 CSS 元素隐藏）。"
 author: "Raymond Hill 与各上游过滤列表维护者"
 homepage: "https://github.com/uBlockOrigin/uBOL-home"
 manual: "https://github.com/uBlockOrigin/uBOL-home"
@@ -698,15 +698,6 @@ scriptings:
       timeout: 5
       body_required: true
       disabled: {{{禁用通知提示}}}
-  - http_response:
-      name: "uBlock filters – Experimental - Safari 网页元素隐藏"
-      match: "^https?://(?!(?:[^/?#]+\\.)?iplark\\.com(?::\\d+)?(?:[/?#]|$))(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"
-      script_url: "https://raw.githubusercontent.com/jiegebuy/egern-ubol/main/dist/full/cosmetic/ublock-experimental.js"
-      update_interval: 86400
-      max_size: 1048576
-      timeout: 5
-      body_required: true
-      disabled: {{{禁用uBlock实验规则}}}
   - http_response:
       name: "uBO Lite Test Filters - Safari 网页元素隐藏"
       match: "^https?://(?!(?:[^/?#]+\\.)?iplark\\.com(?::\\d+)?(?:[/?#]|$))(?:[^/?#]+(?:/[^?#.]*)?|[^?#]+\\.(?:html?|xhtml|php|aspx?|jsp|cfm|cgi))(?:[?#]|$)"

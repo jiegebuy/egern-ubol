@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.1012.1545.
+// Generated from official uBO Lite 2026.1018.2229.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
@@ -121,6 +121,7 @@ const OPS = [
   {"d":["ria.com"],"p":["withoutHeader"]},
   {"d":["ria.ru"],"p":["in"]},
   {"d":["sibnet.ru"],"p":["weid"]},
+  {"d":["steamcommunity.com","steamgames.com","steampowered.com"],"p":["snr"]},
   {"d":["svoboda.org"],"p":["int_cid"]},
   {"d":["svpressa.ru"],"p":["cba"]},
   {"d":["svpressa.ru"],"p":["cban"]},
