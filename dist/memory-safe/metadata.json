@@ -38,22 +38,22 @@
       "id": "ublock-filters",
       "input": {
         "actions": {
-          "allow": 1659,
-          "block": 3253,
+          "allow": 1661,
+          "block": 3254,
           "modifyHeaders": 48,
           "redirect": 863
         },
         "css": {
           "generic": 673,
-          "specific": 5157
+          "specific": 5160
         },
         "filters": {
-          "accepted": 10721,
+          "accepted": 10725,
           "rejected": 1,
-          "total": 10745
+          "total": 10749
         },
         "popups": 172,
-        "rules": 5823,
+        "rules": 5826,
         "strictblock_rules": 50
       },
       "name": "uBlock filters – Ads, trackers, and more",
@@ -61,19 +61,19 @@
         "candidate_domains": 530,
         "converted_domain_rules": 2,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 1083,
+        "converted_url_rules": 1084,
         "domain_suffixes": 154,
         "domains_removed_for_exceptions": 372,
-        "eligible_url_regexes": 1083,
+        "eligible_url_regexes": 1084,
         "exception_domains": 604,
-        "input_block_rules": 3253,
+        "input_block_rules": 3254,
         "input_strictblock_rules": 50,
         "ipv4_cidrs": 2,
         "ipv6_cidrs": 0,
         "skipped_contextual_block_rules": 2168,
         "skipped_contextual_strictblock_rules": 49,
         "url_regexes": 0,
-        "url_regexes_omitted_for_memory": 1083
+        "url_regexes_omitted_for_memory": 1084
       },
       "output": {
         "domain_suffixes": 154,
@@ -103,45 +103,45 @@
       "id": "easylist",
       "input": {
         "actions": {
-          "allow": 515,
-          "block": 3205,
+          "allow": 510,
+          "block": 3211,
           "modifyHeaders": 1,
           "redirect": 7
         },
         "css": {
           "generic": 12329,
-          "specific": 8295
+          "specific": 8298
         },
         "filters": {
-          "accepted": 59209,
+          "accepted": 60094,
           "rejected": 18,
-          "total": 59239
+          "total": 60124
         },
         "popups": 2811,
-        "rules": 3728,
+        "rules": 3729,
         "strictblock_rules": 21
       },
       "name": "EasyList",
       "network_conversion": {
-        "candidate_domains": 49880,
+        "candidate_domains": 50764,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 2028,
-        "domain_suffixes": 49734,
+        "converted_url_rules": 2034,
+        "domain_suffixes": 50619,
         "domains_removed_for_exceptions": 33,
-        "eligible_url_regexes": 2028,
+        "eligible_url_regexes": 2034,
         "exception_domains": 74,
-        "input_block_rules": 3205,
+        "input_block_rules": 3211,
         "input_strictblock_rules": 21,
         "ipv4_cidrs": 104,
         "ipv6_cidrs": 0,
         "skipped_contextual_block_rules": 1176,
         "skipped_contextual_strictblock_rules": 20,
         "url_regexes": 0,
-        "url_regexes_omitted_for_memory": 2028
+        "url_regexes_omitted_for_memory": 2034
       },
       "output": {
-        "domain_suffixes": 49734,
+        "domain_suffixes": 50619,
         "ipv4_cidrs": 104,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -161,8 +161,8 @@
       "id": "easyprivacy",
       "input": {
         "actions": {
-          "allow": 831,
-          "block": 8222,
+          "allow": 830,
+          "block": 8230,
           "modifyHeaders": 2,
           "redirect": 13
         },
@@ -171,34 +171,34 @@
           "specific": 4
         },
         "filters": {
-          "accepted": 56323,
+          "accepted": 56356,
           "rejected": 29,
-          "total": 56354
+          "total": 56387
         },
         "popups": 0,
-        "rules": 9068,
+        "rules": 9075,
         "strictblock_rules": 1
       },
       "name": "EasyPrivacy",
       "network_conversion": {
-        "candidate_domains": 43237,
+        "candidate_domains": 43263,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 7450,
-        "domain_suffixes": 43208,
+        "converted_url_rules": 7461,
+        "domain_suffixes": 43234,
         "domains_removed_for_exceptions": 19,
-        "eligible_url_regexes": 7450,
+        "eligible_url_regexes": 7461,
         "exception_domains": 113,
-        "input_block_rules": 8222,
+        "input_block_rules": 8230,
         "input_strictblock_rules": 1,
         "ipv4_cidrs": 9,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 771,
+        "skipped_contextual_block_rules": 768,
         "url_regexes": 0,
-        "url_regexes_omitted_for_memory": 7450
+        "url_regexes_omitted_for_memory": 7461
       },
       "output": {
-        "domain_suffixes": 43208,
+        "domain_suffixes": 43234,
         "ipv4_cidrs": 9,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -225,9 +225,9 @@
           "specific": 0
         },
         "filters": {
-          "accepted": 3489,
+          "accepted": 3492,
           "rejected": 80,
-          "total": 3569
+          "total": 3572
         },
         "popups": 0,
         "rules": 1,
@@ -235,10 +235,10 @@
       },
       "name": "Peter Lowe – Ads, trackers, and more",
       "network_conversion": {
-        "candidate_domains": 3489,
+        "candidate_domains": 3492,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "domain_suffixes": 3477,
+        "domain_suffixes": 3480,
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 0,
         "exception_domains": 0,
@@ -250,7 +250,7 @@
         "url_regexes_omitted_for_memory": 0
       },
       "output": {
-        "domain_suffixes": 3477,
+        "domain_suffixes": 3480,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -279,34 +279,34 @@
           "specific": 209
         },
         "filters": {
-          "accepted": 9676,
+          "accepted": 10307,
           "rejected": 0,
-          "total": 9693
+          "total": 10324
         },
-        "popups": 1287,
+        "popups": 1300,
         "rules": 463,
-        "strictblock_rules": 1061
+        "strictblock_rules": 1062
       },
       "name": "uBlock filters – Badware risks",
       "network_conversion": {
-        "candidate_domains": 2865,
+        "candidate_domains": 3443,
         "converted_strictblock_domain_rules": 1,
         "converted_url_rules": 325,
-        "domain_suffixes": 1112,
-        "domains_removed_for_exceptions": 1749,
+        "domain_suffixes": 1119,
+        "domains_removed_for_exceptions": 2320,
         "eligible_url_regexes": 325,
         "exception_domains": 78,
         "input_block_rules": 460,
-        "input_strictblock_rules": 1061,
+        "input_strictblock_rules": 1062,
         "ipv4_cidrs": 4,
         "ipv6_cidrs": 0,
         "skipped_contextual_block_rules": 135,
-        "skipped_contextual_strictblock_rules": 1060,
+        "skipped_contextual_strictblock_rules": 1061,
         "url_regexes": 0,
         "url_regexes_omitted_for_memory": 325
       },
       "output": {
-        "domain_suffixes": 1112,
+        "domain_suffixes": 1119,
         "ipv4_cidrs": 4,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -333,9 +333,9 @@
           "specific": 0
         },
         "filters": {
-          "accepted": 2074,
+          "accepted": 1797,
           "rejected": 0,
-          "total": 2074
+          "total": 1797
         },
         "popups": 0,
         "rules": 1,
@@ -343,10 +343,10 @@
       },
       "name": "Malicious URL Blocklist",
       "network_conversion": {
-        "candidate_domains": 2074,
+        "candidate_domains": 1797,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "domain_suffixes": 2051,
+        "domain_suffixes": 1774,
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 0,
         "exception_domains": 0,
@@ -358,7 +358,7 @@
         "url_regexes_omitted_for_memory": 0
       },
       "output": {
-        "domain_suffixes": 2051,
+        "domain_suffixes": 1774,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -378,21 +378,21 @@
       "id": "adguard-mobile",
       "input": {
         "actions": {
-          "allow": 136,
+          "allow": 135,
           "block": 418,
           "redirect": 19
         },
         "css": {
           "generic": 71,
-          "specific": 4641
+          "specific": 4643
         },
         "filters": {
-          "accepted": 1579,
+          "accepted": 1578,
           "rejected": 4,
-          "total": 1583
+          "total": 1582
         },
         "popups": 1,
-        "rules": 573,
+        "rules": 572,
         "strictblock_rules": 2
       },
       "name": "AdGuard/uBO – Mobile Ads",
@@ -551,7 +551,7 @@
         },
         "css": {
           "generic": 4,
-          "specific": 155
+          "specific": 156
         },
         "filters": {
           "accepted": 28,
@@ -606,7 +606,7 @@
         },
         "css": {
           "generic": 13380,
-          "specific": 20598
+          "specific": 20628
         },
         "filters": {
           "accepted": 2203,
@@ -725,7 +725,7 @@
         },
         "css": {
           "generic": 8811,
-          "specific": 5148
+          "specific": 5149
         },
         "filters": {
           "accepted": 669,
@@ -832,7 +832,7 @@
         },
         "css": {
           "generic": 784,
-          "specific": 2646
+          "specific": 2647
         },
         "filters": {
           "accepted": 756,
@@ -1208,44 +1208,44 @@
       "input": {
         "actions": {
           "allow": 809,
-          "block": 5117,
+          "block": 5096,
           "modifyHeaders": 8,
           "redirect": 47
         },
         "css": {
-          "generic": 1089,
-          "specific": 3136
+          "generic": 1087,
+          "specific": 3134
         },
         "filters": {
-          "accepted": 14166,
+          "accepted": 14174,
           "rejected": 3,
-          "total": 14175
+          "total": 14184
         },
         "popups": 27,
-        "rules": 5981,
+        "rules": 5960,
         "strictblock_rules": 5
       },
       "name": "🇨🇳cn 🇹🇼tw: AdGuard Chinese (中文)",
       "network_conversion": {
-        "candidate_domains": 5677,
+        "candidate_domains": 5706,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 4617,
-        "domain_suffixes": 5659,
+        "converted_url_rules": 4596,
+        "domain_suffixes": 5688,
         "domains_removed_for_exceptions": 12,
-        "eligible_url_regexes": 4617,
+        "eligible_url_regexes": 4596,
         "exception_domains": 150,
-        "input_block_rules": 5117,
+        "input_block_rules": 5096,
         "input_strictblock_rules": 5,
         "ipv4_cidrs": 5,
         "ipv6_cidrs": 0,
         "skipped_contextual_block_rules": 499,
         "skipped_contextual_strictblock_rules": 4,
         "url_regexes": 0,
-        "url_regexes_omitted_for_memory": 4617
+        "url_regexes_omitted_for_memory": 4596
       },
       "output": {
-        "domain_suffixes": 5659,
+        "domain_suffixes": 5688,
         "ipv4_cidrs": 5,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -1327,21 +1327,21 @@
       "input": {
         "actions": {
           "allow": 113,
-          "block": 1722,
+          "block": 1721,
           "modifyHeaders": 1,
           "redirect": 2
         },
         "css": {
           "generic": 418,
-          "specific": 2135
+          "specific": 2133
         },
         "filters": {
-          "accepted": 2314,
+          "accepted": 2312,
           "rejected": 3,
-          "total": 2317
+          "total": 2315
         },
         "popups": 29,
-        "rules": 1838,
+        "rules": 1837,
         "strictblock_rules": 1
       },
       "name": "🇩🇪de 🇨🇭ch 🇦🇹at: EasyList Germany",
@@ -1354,11 +1354,11 @@
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 1466,
         "exception_domains": 8,
-        "input_block_rules": 1722,
+        "input_block_rules": 1721,
         "input_strictblock_rules": 1,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 255,
+        "skipped_contextual_block_rules": 254,
         "url_regexes": 0,
         "url_regexes_omitted_for_memory": 1466
       },
@@ -1503,21 +1503,21 @@
       "input": {
         "actions": {
           "allow": 472,
-          "block": 3542,
+          "block": 3541,
           "modifyHeaders": 6,
           "redirect": 34
         },
         "css": {
           "generic": 1846,
-          "specific": 1699
+          "specific": 1701
         },
         "filters": {
-          "accepted": 11583,
+          "accepted": 11582,
           "rejected": 905,
-          "total": 12505
+          "total": 12504
         },
         "popups": 311,
-        "rules": 4054,
+        "rules": 4053,
         "strictblock_rules": 1
       },
       "name": "🇫🇷fr 🇧🇪be 🇨🇦ca: AdGuard Français",
@@ -1530,11 +1530,11 @@
         "domains_removed_for_exceptions": 3,
         "eligible_url_regexes": 3096,
         "exception_domains": 103,
-        "input_block_rules": 3542,
+        "input_block_rules": 3541,
         "input_strictblock_rules": 1,
         "ipv4_cidrs": 1,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 445,
+        "skipped_contextual_block_rules": 444,
         "url_regexes": 0,
         "url_regexes_omitted_for_memory": 3096
       },
@@ -1682,9 +1682,9 @@
           "specific": 498
         },
         "filters": {
-          "accepted": 391,
+          "accepted": 390,
           "rejected": 1,
-          "total": 393
+          "total": 392
         },
         "popups": 0,
         "rules": 237,
@@ -1734,8 +1734,8 @@
           "redirect": 6
         },
         "css": {
-          "generic": 4353,
-          "specific": 883
+          "generic": 4350,
+          "specific": 863
         },
         "filters": {
           "accepted": 4340,
@@ -1786,36 +1786,36 @@
       "input": {
         "actions": {
           "allow": 82,
-          "block": 5257
+          "block": 5260
         },
         "css": {
           "generic": 7,
-          "specific": 6183
+          "specific": 6192
         },
         "filters": {
-          "accepted": 5381,
+          "accepted": 5384,
           "rejected": 0,
-          "total": 5381
+          "total": 5384
         },
         "popups": 2,
-        "rules": 5339,
+        "rules": 5342,
         "strictblock_rules": 0
       },
       "name": "🇮🇳in 🇱🇰lk 🇳🇵np: IndianList",
       "network_conversion": {
         "candidate_domains": 0,
-        "converted_url_rules": 4919,
+        "converted_url_rules": 4922,
         "domain_suffixes": 0,
         "domains_removed_for_exceptions": 0,
-        "eligible_url_regexes": 4919,
+        "eligible_url_regexes": 4922,
         "exception_domains": 1,
-        "input_block_rules": 5257,
+        "input_block_rules": 5260,
         "input_strictblock_rules": 0,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "skipped_contextual_block_rules": 338,
         "url_regexes": 0,
-        "url_regexes_omitted_for_memory": 4919
+        "url_regexes_omitted_for_memory": 4922
       },
       "output": {
         "domain_suffixes": 0,
@@ -2069,20 +2069,20 @@
       "input": {
         "actions": {
           "allow": 255,
-          "block": 1279,
+          "block": 1281,
           "redirect": 27
         },
         "css": {
           "generic": 502,
-          "specific": 5520
+          "specific": 5522
         },
         "filters": {
-          "accepted": 2450,
+          "accepted": 2452,
           "rejected": 0,
-          "total": 2450
+          "total": 2452
         },
         "popups": 25,
-        "rules": 1561,
+        "rules": 1563,
         "strictblock_rules": 255
       },
       "name": "🇯🇵jp: AdGuard Japanese",
@@ -2090,19 +2090,19 @@
         "candidate_domains": 187,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 924,
+        "converted_url_rules": 925,
         "domain_suffixes": 179,
         "domains_removed_for_exceptions": 7,
-        "eligible_url_regexes": 924,
+        "eligible_url_regexes": 925,
         "exception_domains": 95,
-        "input_block_rules": 1279,
+        "input_block_rules": 1281,
         "input_strictblock_rules": 255,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 354,
+        "skipped_contextual_block_rules": 355,
         "skipped_contextual_strictblock_rules": 254,
         "url_regexes": 0,
-        "url_regexes_omitted_for_memory": 924
+        "url_regexes_omitted_for_memory": 925
       },
       "output": {
         "domain_suffixes": 179,
@@ -2134,12 +2134,12 @@
         },
         "css": {
           "generic": 125,
-          "specific": 1056
+          "specific": 1058
         },
         "filters": {
-          "accepted": 1631,
+          "accepted": 1632,
           "rejected": 1,
-          "total": 1641
+          "total": 1642
         },
         "popups": 0,
         "rules": 1130,
@@ -2150,19 +2150,19 @@
         "candidate_domains": 354,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 916,
+        "converted_url_rules": 917,
         "domain_suffixes": 342,
         "domains_removed_for_exceptions": 7,
-        "eligible_url_regexes": 916,
+        "eligible_url_regexes": 917,
         "exception_domains": 7,
         "input_block_rules": 1056,
         "input_strictblock_rules": 10,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 139,
+        "skipped_contextual_block_rules": 138,
         "skipped_contextual_strictblock_rules": 9,
         "url_regexes": 0,
-        "url_regexes_omitted_for_memory": 916
+        "url_regexes_omitted_for_memory": 917
       },
       "output": {
         "domain_suffixes": 342,
@@ -2413,43 +2413,43 @@
       "input": {
         "actions": {
           "allow": 60,
-          "block": 629,
+          "block": 633,
           "redirect": 7
         },
         "css": {
           "generic": 348,
-          "specific": 839
+          "specific": 840
         },
         "filters": {
-          "accepted": 2086,
+          "accepted": 2090,
           "rejected": 0,
-          "total": 2088
+          "total": 2092
         },
-        "popups": 141,
-        "rules": 696,
+        "popups": 150,
+        "rules": 700,
         "strictblock_rules": 150
       },
       "name": "🇳🇴no 🇩🇰dk 🇮🇸is: Dandelion Sprouts nordiske filtre",
       "network_conversion": {
-        "candidate_domains": 177,
+        "candidate_domains": 186,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 309,
-        "domain_suffixes": 159,
+        "converted_url_rules": 323,
+        "domain_suffixes": 168,
         "domains_removed_for_exceptions": 0,
-        "eligible_url_regexes": 309,
+        "eligible_url_regexes": 323,
         "exception_domains": 7,
-        "input_block_rules": 629,
+        "input_block_rules": 633,
         "input_strictblock_rules": 150,
         "ipv4_cidrs": 18,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 319,
+        "skipped_contextual_block_rules": 309,
         "skipped_contextual_strictblock_rules": 149,
         "url_regexes": 0,
-        "url_regexes_omitted_for_memory": 309
+        "url_regexes_omitted_for_memory": 323
       },
       "output": {
-        "domain_suffixes": 159,
+        "domain_suffixes": 168,
         "ipv4_cidrs": 18,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -2478,9 +2478,9 @@
           "specific": 3451
         },
         "filters": {
-          "accepted": 1239,
+          "accepted": 1240,
           "rejected": 6,
-          "total": 1246
+          "total": 1247
         },
         "popups": 10,
         "rules": 848,
@@ -2488,11 +2488,11 @@
       },
       "name": "🇵🇱pl: Oficjalne Polskie Filtry do uBlocka Origin",
       "network_conversion": {
-        "candidate_domains": 270,
+        "candidate_domains": 271,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
         "converted_url_rules": 136,
-        "domain_suffixes": 267,
+        "domain_suffixes": 268,
         "domains_removed_for_exceptions": 2,
         "eligible_url_regexes": 136,
         "exception_domains": 18,
@@ -2505,7 +2505,7 @@
         "url_regexes_omitted_for_memory": 136
       },
       "output": {
-        "domain_suffixes": 267,
+        "domain_suffixes": 268,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -2532,9 +2532,9 @@
           "specific": 0
         },
         "filters": {
-          "accepted": 16718,
+          "accepted": 17468,
           "rejected": 0,
-          "total": 16718
+          "total": 17468
         },
         "popups": 0,
         "rules": 1,
@@ -2542,10 +2542,10 @@
       },
       "name": "🇵🇱pl: CERT.PL's Warning List",
       "network_conversion": {
-        "candidate_domains": 16718,
+        "candidate_domains": 17468,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "domain_suffixes": 12829,
+        "domain_suffixes": 13580,
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 0,
         "exception_domains": 0,
@@ -2557,7 +2557,7 @@
         "url_regexes_omitted_for_memory": 0
       },
       "output": {
-        "domain_suffixes": 12829,
+        "domain_suffixes": 13580,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -2637,19 +2637,19 @@
           "allow": 791,
           "block": 5135,
           "modifyHeaders": 48,
-          "redirect": 45
+          "redirect": 46
         },
         "css": {
-          "generic": 1272,
-          "specific": 7723
+          "generic": 1273,
+          "specific": 7724
         },
         "filters": {
-          "accepted": 19849,
+          "accepted": 19861,
           "rejected": 7,
-          "total": 19856
+          "total": 19868
         },
         "popups": 772,
-        "rules": 6019,
+        "rules": 6020,
         "strictblock_rules": 8
       },
       "name": "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList",
@@ -2657,19 +2657,19 @@
         "candidate_domains": 4236,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 3280,
+        "converted_url_rules": 3281,
         "domain_suffixes": 1255,
         "domains_removed_for_exceptions": 2981,
-        "eligible_url_regexes": 3280,
+        "eligible_url_regexes": 3281,
         "exception_domains": 123,
         "input_block_rules": 5135,
         "input_strictblock_rules": 8,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 1854,
+        "skipped_contextual_block_rules": 1853,
         "skipped_contextual_strictblock_rules": 7,
         "url_regexes": 0,
-        "url_regexes_omitted_for_memory": 3280
+        "url_regexes_omitted_for_memory": 3281
       },
       "output": {
         "domain_suffixes": 1255,
@@ -2685,10 +2685,10 @@
       "query_conversion": {
         "converted_query_rules": 13,
         "deduplicated_query_rules": 0,
-        "input_query_rules": 23,
+        "input_query_rules": 24,
         "query_operations": 13,
         "resource_type_conditions_relaxed": 13,
-        "skipped_contextual_query_rules": 10
+        "skipped_contextual_query_rules": 11
       }
     },
     {
@@ -2700,7 +2700,7 @@
       "input": {
         "actions": {
           "allow": 67,
-          "block": 568,
+          "block": 570,
           "redirect": 448
         },
         "css": {
@@ -2708,12 +2708,12 @@
           "specific": 89
         },
         "filters": {
-          "accepted": 1555,
+          "accepted": 1557,
           "rejected": 1,
-          "total": 1556
+          "total": 1558
         },
         "popups": 0,
-        "rules": 1083,
+        "rules": 1085,
         "strictblock_rules": 1
       },
       "name": "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList: Counters",
@@ -2721,18 +2721,18 @@
         "candidate_domains": 118,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
-        "converted_url_rules": 405,
+        "converted_url_rules": 406,
         "domain_suffixes": 117,
         "domains_removed_for_exceptions": 1,
-        "eligible_url_regexes": 405,
+        "eligible_url_regexes": 406,
         "exception_domains": 6,
-        "input_block_rules": 568,
+        "input_block_rules": 570,
         "input_strictblock_rules": 1,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 162,
+        "skipped_contextual_block_rules": 163,
         "url_regexes": 0,
-        "url_regexes_omitted_for_memory": 405
+        "url_regexes_omitted_for_memory": 406
       },
       "output": {
         "domain_suffixes": 117,
@@ -2823,7 +2823,7 @@
         },
         "css": {
           "generic": 174,
-          "specific": 2017
+          "specific": 2018
         },
         "filters": {
           "accepted": 1303,
@@ -2930,21 +2930,21 @@
       "input": {
         "actions": {
           "allow": 19,
-          "block": 1411,
+          "block": 1414,
           "modifyHeaders": 2,
           "redirect": 14
         },
         "css": {
           "generic": 308,
-          "specific": 1513
+          "specific": 1516
         },
         "filters": {
-          "accepted": 1852,
+          "accepted": 1856,
           "rejected": 0,
-          "total": 1852
+          "total": 1856
         },
         "popups": 8,
-        "rules": 1446,
+        "rules": 1449,
         "strictblock_rules": 9
       },
       "name": "🇸🇪se: Frellwit's Swedish Filter",
@@ -2957,11 +2957,11 @@
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 653,
         "exception_domains": 6,
-        "input_block_rules": 1411,
+        "input_block_rules": 1414,
         "input_strictblock_rules": 9,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 757,
+        "skipped_contextual_block_rules": 760,
         "skipped_contextual_strictblock_rules": 8,
         "url_regexes": 0,
         "url_regexes_omitted_for_memory": 653
@@ -2997,7 +2997,7 @@
         },
         "css": {
           "generic": 7,
-          "specific": 205
+          "specific": 206
         },
         "filters": {
           "accepted": 779,
@@ -3053,7 +3053,7 @@
         },
         "css": {
           "generic": 282,
-          "specific": 4205
+          "specific": 4207
         },
         "filters": {
           "accepted": 1710,
@@ -3164,44 +3164,44 @@
       "id": "vie-1",
       "input": {
         "actions": {
-          "allow": 27,
-          "block": 266,
+          "allow": 31,
+          "block": 267,
           "modifyHeaders": 6,
           "redirect": 7
         },
         "css": {
           "generic": 45,
-          "specific": 353
+          "specific": 354
         },
         "filters": {
-          "accepted": 427,
+          "accepted": 433,
           "rejected": 0,
-          "total": 427
+          "total": 433
         },
         "popups": 2,
-        "rules": 306,
+        "rules": 311,
         "strictblock_rules": 1
       },
       "name": "🇻🇳vn: ABPVN List",
       "network_conversion": {
-        "candidate_domains": 58,
+        "candidate_domains": 59,
         "converted_domain_rules": 1,
         "converted_strictblock_domain_rules": 1,
         "converted_url_rules": 62,
-        "domain_suffixes": 58,
+        "domain_suffixes": 59,
         "domains_removed_for_exceptions": 0,
         "eligible_url_regexes": 62,
         "exception_domains": 7,
-        "input_block_rules": 266,
+        "input_block_rules": 267,
         "input_strictblock_rules": 1,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
-        "skipped_contextual_block_rules": 203,
+        "skipped_contextual_block_rules": 204,
         "url_regexes": 0,
         "url_regexes_omitted_for_memory": 62
       },
       "output": {
-        "domain_suffixes": 58,
+        "domain_suffixes": 59,
         "ipv4_cidrs": 0,
         "ipv6_cidrs": 0,
         "query_cleaning_sample": null,
@@ -3216,22 +3216,22 @@
   ],
   "schema_version": 1,
   "source": {
-    "asset_sha256": "c48dfa2f925ed31fdbd478d6b504432152ac995ab1e0fc96c3a008a0307dbbe2",
-    "asset_url": "https://github.com/uBlockOrigin/uBOL-home/releases/download/2026.1018.2229/uBOLite_2026.1018.2229.chromium.zip",
+    "asset_sha256": "0ff92d3e33437e0fa389a16a3d4c3a486fbda08e33114e07859db1f58d789d0b",
+    "asset_url": "https://github.com/uBlockOrigin/uBOL-home/releases/download/2026.1021.1354/uBOLite_2026.1021.1354.chromium.zip",
     "origin": "official-release",
-    "published_at": "2026-10-18T22:30:19Z",
-    "release_url": "https://github.com/uBlockOrigin/uBOL-home/releases/tag/2026.1018.2229",
-    "version": "2026.1018.2229"
+    "published_at": "2026-10-21T13:55:54Z",
+    "release_url": "https://github.com/uBlockOrigin/uBOL-home/releases/tag/2026.1021.1354",
+    "version": "2026.1021.1354"
   },
   "totals": {
-    "domain_suffixes": 128589,
+    "domain_suffixes": 130024,
     "input_actions": {
-      "allow": 7772,
-      "block": 59077,
+      "allow": 7771,
+      "block": 59084,
       "modifyHeaders": 132,
-      "redirect": 3880
+      "redirect": 3881
     },
-    "input_rules": 70861,
+    "input_rules": 70868,
     "ipv4_cidrs": 156,
     "ipv6_cidrs": 0,
     "query_operations": 2693,
