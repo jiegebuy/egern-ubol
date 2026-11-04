@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.1026.1812.
+// Generated from official uBO Lite 2026.1103.1743.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
@@ -93,6 +93,7 @@ const OPS = [
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?www\\.ebay\\..*(?:[^A-Za-z0-9_.%\\-]|$)ssspo=","p":["ssspo"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?www\\.ebay\\..*(?:[^A-Za-z0-9_.%\\-]|$)sssrc=","p":["sssrc"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?www\\.ebay\\..*(?:[^A-Za-z0-9_.%\\-]|$)ssuid=","p":["ssuid"]},
+  {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?x\\.com/.*/status/","p":["a"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?youtube\\.com/live/.*(?:[^A-Za-z0-9_.%\\-]|$)is=","p":["is"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?youtube\\.com/live/.*(?:[^A-Za-z0-9_.%\\-]|$)si=","p":["si"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?youtube\\.com/post/.*(?:[^A-Za-z0-9_.%\\-]|$)si=","p":["si"]},
