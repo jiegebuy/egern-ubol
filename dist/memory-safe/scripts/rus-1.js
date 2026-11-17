@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.1110.1816.
+// Generated from official uBO Lite 2026.1116.1650.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
@@ -225,6 +225,8 @@ const OPS = [
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?market\\.yandex\\..*(?:[^A-Za-z0-9_.%\\-]|$)vid=","p":["vid"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?namy\\.ws/embed/.*geo_block=","p":["geo_block"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?namy\\.ws/embed/.*geoblock=","p":["geoBlock"]},
+  {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?nextembed\\.ws/embed/.*geo_block=","p":["geo_block"]},
+  {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?nextembed\\.ws/embed/.*geoblock=","p":["geoBlock"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?obrut\\.show/.*geo_block=","p":["geo_block"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?online\\-serial\\.com/.*block=","p":["block"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?ortified\\.ws/embed/.*geo_block=","p":["geo_block"]},
