@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.1116.1650.
+// Generated from official uBO Lite 2026.1122.1948.
 // Query-only transforms without initiator/domain-type conditions are included.
 
 const OPS = [
@@ -208,6 +208,8 @@ const OPS = [
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?booking\\.com/.*\\.html\\?.*(?:[^A-Za-z0-9_.%\\-]|$)force_referer=","p":["force_referer"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?booking\\.com/.*\\.html\\?.*(?:[^A-Za-z0-9_.%\\-]|$)label=","p":["label"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?disk\\.yandex\\..*(?:[^A-Za-z0-9_.%\\-]|$)source=","p":["source"]},
+  {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?embf\\.net/embed/.*geo_block=","p":["geo_block"]},
+  {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?embf\\.net/embed/.*geoblock=","p":["geoBlock"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?kodik\\.cc/.*geoblock=","p":["geoblock"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?kodik\\.info/.*geoblock=","p":["geoblock"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?kodikdb\\.com/.*geoblock=","p":["geoblock"]},
@@ -228,6 +230,7 @@ const OPS = [
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?nextembed\\.ws/embed/.*geo_block=","p":["geo_block"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?nextembed\\.ws/embed/.*geoblock=","p":["geoBlock"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?obrut\\.show/.*geo_block=","p":["geo_block"]},
+  {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?obrut\\.show/.*geoblock=","p":["geoBlock"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?online\\-serial\\.com/.*block=","p":["block"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?ortified\\.ws/embed/.*geo_block=","p":["geo_block"]},
   {"f":"^[A-Za-z][A-Za-z0-9+.-]*://(?:[^/?#]*\\.)?ortified\\.ws/embed/.*geoblock=","p":["geoBlock"]},
