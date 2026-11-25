@@ -1,4 +1,4 @@
-// Generated from official uBO Lite 2026.1122.1948.
+// Generated from official uBO Lite 2026.1124.1811.
 // Plain site-specific cosmetic selectors only; procedural rules are omitted.
 
 const RULESET_ID = "annoyances-notifications";
